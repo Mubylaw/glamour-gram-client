@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* *::-webkit-scrollbar {
+  display: none;
+} */
+
+body,
+html {
+  overflow-x: hidden;
+  font-family: "Quicksand", sans-serif;
+  background: #fff;
+}
+
+.home {
+  width: 83vw;
+  margin-left: 17vw;
+  padding: 0 0 15px;
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+
+.flicker {
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #d5d5d5 8%, #f2f2f2 38%, #d5d5d5 54%);
+  background-size: 1000px 640px;
+
+  position: relative;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.flick.flicker {
+  height: 20px;
+}
+
+@media (max-width: 1200px) {
+  .home {
+    width: calc(100vw - 204px);
+    margin-left: 204px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 15px 0 15px;
+    width: 100vw;
+    margin-left: 0;
+  }
+}
