@@ -1,4 +1,4 @@
-.landing .header {
+.header {
   font-family: "Open Sans", sans-serif;
   color: #fff;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -12,12 +12,12 @@
   justify-content: space-between;
 }
 
-.landing .header .links {
+.header .links {
   display: flex;
   align-items: center;
 }
 
-.landing .header .logo img {
+.header .logo img {
   width: 40px;
 }
 
@@ -360,6 +360,10 @@
   margin-top: 50px;
 }
 
+.footer.br-top {
+  margin-top: 0;
+}
+
 .footer .top {
   display: flex;
   justify-content: space-between;
@@ -407,6 +411,7 @@
   display: flex;
   justify-content: space-between;
   margin: 50px 0 0;
+  font-size: 13px;
 }
 
 .footer .bottom .terms a {

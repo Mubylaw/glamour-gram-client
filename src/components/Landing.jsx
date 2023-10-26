@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../assets/styles/landing.css";
 import SectionWrapper from "../hocs/SectionWrapper";
-import down from "../assets/svg/down.svg";
+
 import cross from "../assets/svg/cross.svg";
 import topCrown from "../assets/svg/topCrown.svg";
 import bottomCrown from "../assets/svg/bottomCrown.svg";
@@ -9,54 +9,15 @@ import CurveSvg from "../assets/svg/curve";
 import CircleSvg from "../assets/svg/circle";
 import CapSvg from "../assets/svg/cap";
 import stars from "../assets/svg/stars.svg";
-import facebook from "../assets/svg/facebook.svg";
-import insta from "../assets/svg/insta.svg";
-import twitter from "../assets/svg/twitter.svg";
-import linkedin from "../assets/svg/linkedin.svg";
-import youtube from "../assets/svg/youtube.svg";
+
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Landing = ({}) => {
   const [tag, setTag] = useState([]);
   return (
     <div className="landing">
-      <div className="header">
-        <div className="logo">
-          <img src="/assets/logo.png" alt="" />
-        </div>
-        <div className="links">
-          <div className="nav-link">
-            <span>featured Services</span>
-            <img src={down} alt="down" />
-            <div className="in"></div>
-            <div className="inner">
-              <div className="line">Hair</div>
-              <div className="line">Hair</div>
-              <div className="line">Hair</div>
-              <div className="line">Hair</div>
-            </div>
-          </div>
-          <div className="nav-link">
-            <span>Glamor Gram Business</span>
-            <img src={down} alt="down" />
-            <div className="in"></div>
-            <div className="inner">
-              <div className="line">Hair</div>
-              <div className="line">Hair</div>
-              <div className="line">Hair</div>
-              <div className="line">Hair</div>
-            </div>
-          </div>
-          <div className="nav-link">
-            <span>About Us</span>
-          </div>
-          <div className="nav-link">
-            <span>Contact Us</span>
-          </div>
-          <div className="nav-link">
-            <div className="log-in">Log In</div>
-          </div>
-        </div>
-      </div>
+      <Header />
       <div className="hero">
         <h1>Discover Beauty. Book with Confidence.</h1>
         <div className="form">
@@ -236,45 +197,7 @@ const Landing = ({}) => {
           <div className="btn join">Join Now</div>
         </div>
       </div>
-      <div className="footer">
-        <div className="top">
-          <div className="slide">
-            <div className="logo">
-              <img src="/assets/logo.png" alt="" />
-            </div>
-            <p>contact</p>
-            <div className="no">02031234123</div>
-            <div className="email">info@glamorgram.co.uk</div>
-            <div className="social">
-              <img src={facebook} alt="" />
-              <img src={insta} alt="" />
-              <img src={linkedin} alt="" />
-              <img src={twitter} alt="" />
-              <img src={youtube} alt="" />
-            </div>
-          </div>
-          <div className="slide info">
-            <div className="line">
-              <div className="item">FAQs</div>
-              <div className="item">Blogs</div>
-              <div className="item">Help and Support</div>
-            </div>
-            <div className="line">
-              <div className="item">Pricing</div>
-              <div className="item">Sign up to our newsletter</div>
-              <div className="item">Testimonials</div>
-            </div>
-          </div>
-        </div>
-        <div className="bottom">
-          <div className="copy">© 2023 Glamor Gram. All rights reserved.</div>
-          <div className="terms">
-            <a href="">Privacy Policy</a>
-            <a href="">Terms of Service</a>
-            <a href="">Cookie Settings</a>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 };

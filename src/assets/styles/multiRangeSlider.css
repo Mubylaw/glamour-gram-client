@@ -1,0 +1,99 @@
+.ex-nav .filer .container {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ex-nav .filer .slider {
+  position: relative;
+  width: 200px;
+}
+
+.ex-nav .filer .slider__track,
+.ex-nav .filer .slider__range,
+.ex-nav .filer .slider__left-value,
+.ex-nav .filer .slider__right-value {
+  position: absolute;
+}
+
+.ex-nav .filer .slider__track,
+.ex-nav .filer .slider__range {
+  border-radius: 3px;
+  height: 3px;
+}
+
+.ex-nav .filer .slider__track {
+  background-color: #ced4da;
+  width: 100%;
+  z-index: 1;
+}
+
+.ex-nav .filer .slider__range {
+  background-color: #000;
+  z-index: 2;
+}
+
+.ex-nav .filer .slider__left-value,
+.ex-nav .filer .slider__right-value {
+  color: #000;
+  font-weight: 500;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.ex-nav .filer .slider__right-value {
+  right: -4px;
+}
+
+/* Removing the default appearance */
+.ex-nav .filer .thumb,
+.ex-nav .filer .thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ex-nav .filer .thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 200px;
+  outline: none;
+}
+
+.ex-nav .filer .thumb--left {
+  z-index: 3;
+}
+
+.ex-nav .filer .thumb--right {
+  z-index: 4;
+}
+
+/* For Chrome browsers */
+.ex-nav .filer .thumb::-webkit-slider-thumb {
+  background-color: #47bbec;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+/* For Firefox browsers */
+.ex-nav .filer .thumb::-moz-range-thumb {
+  background-color: #47bbec;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
