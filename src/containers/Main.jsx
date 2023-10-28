@@ -7,6 +7,7 @@ import { authUser, forgotPassword, resetPassword } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import Dashboard from "./Dashboard";
 import Explore from "./Explore";
+import Show from "./Show";
 // import Donation from "./Donation";
 // import Transfer from "./Transfer";
 // import UpdateBank from "./UpdateBank";
@@ -73,7 +74,7 @@ const Main = (props) => {
             />
           }
         /> */}
-
+        <Route exact path="/:id" element={<Show {...props} />} />
         <Route
           path="*"
           element={

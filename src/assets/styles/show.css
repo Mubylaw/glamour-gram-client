@@ -1,0 +1,536 @@
+.show {
+  padding: 65px 65px 0;
+}
+
+.show .name {
+  font-size: 35px;
+  font-weight: 500;
+  text-align: center;
+  margin: 10px 0 30px;
+}
+
+.show .top .img {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.show .top .img img {
+  width: 100%;
+}
+
+.show .top .info {
+  display: flex;
+  width: 80%;
+  margin: 40px auto;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 15px;
+  align-items: center;
+}
+
+.show .top svg {
+  cursor: pointer;
+}
+
+.show .avail {
+  border-radius: 100px;
+  border: 1px solid #000;
+  padding: 25px 50px;
+}
+
+.avail .heading {
+  position: relative;
+  font-size: 20px;
+  display: flex;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+}
+
+.avail .heading span {
+  cursor: pointer;
+}
+
+.avail .heading .cal {
+  cursor: pointer;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.avail .heading .cross {
+  cursor: pointer;
+  width: 25px;
+  position: absolute;
+  right: 25px;
+}
+
+.avail .calendar {
+  height: 700px;
+  overflow: hidden;
+  transition: all ease 0.5s;
+  position: relative;
+  margin-top: 30px;
+}
+
+.avail .calendar.hide {
+  height: 0px;
+  margin: 0;
+}
+
+.avail .calendar img {
+  position: absolute;
+  top: 15px;
+  width: 10px;
+}
+
+.avail .calendar img.right {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.avail .calendar .inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.avail .calendar .inner .month {
+  width: calc(50% - 20px);
+}
+
+.show .avail .calendar .inner .name {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: 15px 0 20px;
+}
+
+.calendar .inner .day-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.calendar .inner .day-body {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 20px;
+}
+
+.calendar .inner .day-header .dh,
+.calendar .inner .day-body .dm {
+  display: block;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar .inner .day-body .dm {
+  margin: 5px 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all ease 0.3s;
+}
+
+.calendar .inner .day-body .dm.fade {
+  color: #ccc;
+}
+
+.calendar .inner .day-body .dm.active {
+  color: #fff;
+  background: #006ce4;
+}
+
+.calendar .inner .day-body .dm:hover {
+  color: #fff;
+  background: #4f93e0;
+  border-radius: 3px;
+}
+
+.calendar .inner .day-body .dm.fade:hover {
+  color: #fff;
+  background: #97a1ad;
+  border-radius: 3px;
+}
+
+.calendar .times {
+  display: flex;
+  margin: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 250px;
+}
+
+.calendar .times .time {
+  border-radius: 100px;
+  background: #47bbec;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 20px 40px;
+  margin: 30px;
+}
+
+.show .about {
+  margin: 60px 0;
+}
+
+.popular .title,
+.price .title,
+.portfolio .title,
+.about .title {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.about .text {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.text .more {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #eb335a;
+  cursor: pointer;
+}
+
+.more svg {
+  position: relative;
+  top: 2px;
+  width: 16px;
+  margin-left: 5px;
+  transition: all ease 0.5s;
+}
+
+.more svg.rota {
+  transform: rotate(180deg);
+}
+
+.about .social,
+.about .certs {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.about .social .label,
+.about .certs .label {
+  margin-right: 10px;
+}
+
+.certs .item {
+  border-radius: 100px;
+  border: 1px solid #000;
+  padding: 1px 8px;
+  font-size: 10px;
+  line-height: 14px;
+  background: #ffbd59;
+  margin: 0 5px;
+}
+
+.social img {
+  margin: 0 5px;
+}
+
+.portfolio .img-group {
+  display: flex;
+  margin: 30px 0;
+  justify-content: space-between;
+}
+
+.portfolio .img-group .img {
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+}
+
+.portfolio .img-group .img.big {
+  width: 30%;
+}
+
+.portfolio .img-group .img.big img {
+  width: 100%;
+}
+
+.portfolio .img-group .img.long,
+.portfolio .img-group .duo {
+  width: 20%;
+}
+
+.portfolio .img-group .duo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio .img-group .duo .img {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc((30vw - 70px) / 2);
+}
+
+.portfolio .img-group .duo .img img {
+  width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.portfolio .img-group .img.long img {
+  height: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portfolio .more {
+  color: #ff3f56;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.portfolio .more span {
+  margin-right: 6px;
+}
+
+.portfolio .more img {
+  width: 12px;
+}
+
+.popular,
+.price {
+  margin: 60px 0;
+}
+
+.price .category {
+  margin: 30px 0;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 20px 30px;
+}
+
+.category .head-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category .head-line span {
+  font-weight: 500;
+}
+
+.category .head-line .tag svg {
+  width: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all ease 0.5s;
+  transform: rotate(180deg);
+}
+
+.category .head-line .tag {
+  cursor: pointer;
+}
+
+.category .head-line .tag span {
+  display: none;
+}
+
+.category.hide .head-line .tag span {
+  display: inline-block;
+}
+
+.category.hide .head-line .tag svg {
+  transform: rotate(0deg);
+}
+
+.category .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+}
+
+.category .item .name {
+  font-size: 16px;
+  margin: 0;
+  width: calc(100% - 250px);
+  text-align: left;
+}
+
+.category .item .book {
+  border-radius: 30px;
+  background: #eb335a;
+  padding: 4px 15px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.category .inner {
+  overflow: scroll;
+  height: 212px;
+  transition: all ease 0.5s;
+}
+
+.category.hide .inner {
+  height: 0;
+}
+
+.category .inner::-webkit-scrollbar {
+  display: none;
+}
+
+.popular .frame {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.frame .item {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 7px;
+  width: calc(25% - 20px);
+}
+
+.frame .item img {
+  width: 100%;
+}
+
+.frame .item .info {
+  display: flex;
+  margin: 10px 0;
+  justify-content: space-between;
+}
+
+.frame .item .info .desc {
+  font-size: 20px;
+  width: 100px;
+}
+
+.frame .item .info img {
+  width: 25px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.faq {
+  margin: 200px 0;
+}
+
+.faq .name {
+  width: 650px;
+  font-size: 45px;
+  margin: 20px auto;
+}
+
+.faq .btn-group {
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.faq .btn-group .btn {
+  border-radius: 100px;
+  background: #47bbec;
+  text-align: center;
+  width: 170px;
+  height: 55px;
+  display: flex;
+  margin: 0 10px;
+  padding: 4px 35px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.faq .btn-group .btn.canc {
+  background: #eb335a;
+  color: white;
+}
+
+.show .chat {
+  width: 450px;
+  text-align: center;
+  margin-left: calc(100% - 450px);
+}
+
+.chat .head {
+  font-weight: 700;
+  font-size: 26px;
+  border-radius: 15px 15px 0px 0px;
+  background: #ffbd59;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.chat .body {
+  overflow: scroll;
+  height: 500px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: all ease 0.5s;
+  position: relative;
+}
+
+.chat .body.hide {
+  height: 0px;
+}
+
+.chat .body::-webkit-scrollbar {
+  display: none;
+}
+
+.chat .body .inner {
+  padding: 20px;
+}
+
+.chat .body .inner .ques {
+  border-radius: 20px;
+  background: #d9d9d9;
+  width: 50%;
+  font-size: 17px;
+  padding: 20px;
+  text-align: left;
+  margin: 20px 0 20px calc(100% - 210px);
+}
+
+.chat .body .inner .ans {
+  border-radius: 20px;
+  border: 1px solid #000;
+  width: 50%;
+  font-size: 17px;
+  padding: 20px;
+  text-align: left;
+  margin: 20px calc(100% - 210px) 20px 0;
+}
+
+.chat .body .inner .input {
+  position: absolute;
+  bottom: 20px;
+  width: 410px;
+}
+
+.chat .body .inner .input input {
+  border-radius: 20px;
+  border: 1px solid #000;
+  width: 100%;
+  padding: 12px 20px;
+}
+
+.chat .body .inner .input img {
+  position: absolute;
+  right: 20px;
+  width: 18px;
+  bottom: 11px;
+}
