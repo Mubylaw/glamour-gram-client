@@ -1,0 +1,97 @@
+.top-bins {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0 35px;
+}
+
+.top-bins .tic-name {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.top-bins .deets {
+  font-weight: 500;
+  text-align: right;
+}
+
+.settings hr {
+  height: 1px;
+  background: black;
+  margin: 20px -50px;
+}
+
+.settings .ticket .item {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.settings .ticket .item .img {
+  background: rgb(217, 217, 217);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: block;
+}
+
+.settings .item .down {
+  width: calc(100% - 60px);
+}
+
+.settings .ticket .item .down .tic-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.settings .ticket .item .down .tic-line .name {
+  font-weight: 700;
+}
+
+.settings .ticket .item .down .message {
+  font-size: 15px;
+  color: #646060;
+}
+
+.settings .hedr {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.settings .notee .item {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Open Sans", sans-serif;
+  margin: 60px 0;
+}
+
+.settings .notee .item .down .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.home.full {
+  width: 100vw;
+}
+
+.cali .tril.light {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cali .tril.light svg {
+  margin-left: 10px;
+  width: 20px;
+}
+
+.cali .apoint.pay .top {
+  width: 350px;
+}
+
+.cali .apoint.pay .top .date {
+  font-size: 18px;
+  margin-bottom: 15px;
+}

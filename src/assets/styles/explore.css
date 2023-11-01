@@ -248,6 +248,7 @@
 .main-tab .res-tab .service-card .service .line .price,
 .main-tab .res-tab .service-card .info-tab .up .name {
   font-weight: 700;
+  margin: 0;
 }
 
 .main-tab .res-tab .service-card .service .line span,

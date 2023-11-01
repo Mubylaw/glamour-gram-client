@@ -64,7 +64,7 @@
   right: 25px;
 }
 
-.avail .calendar {
+.calendar {
   height: 700px;
   overflow: hidden;
   transition: all ease 0.5s;
@@ -72,32 +72,32 @@
   margin-top: 30px;
 }
 
-.avail .calendar.hide {
+.calendar.hide {
   height: 0px;
   margin: 0;
 }
 
-.avail .calendar img {
+.calendar img {
   position: absolute;
   top: 15px;
   width: 10px;
 }
 
-.avail .calendar img.right {
+.calendar img.right {
   right: 0;
   transform: rotate(180deg);
 }
 
-.avail .calendar .inner {
+.calendar .inner {
   display: flex;
   justify-content: space-between;
 }
 
-.avail .calendar .inner .month {
+.calendar .inner .month {
   width: calc(50% - 20px);
 }
 
-.show .avail .calendar .inner .name {
+.calendar .inner .name {
   font-size: 18px;
   font-weight: 700;
   text-align: center;
@@ -169,6 +169,7 @@
   font-weight: 600;
   padding: 20px 40px;
   margin: 30px;
+  cursor: pointer;
 }
 
 .show .about {
@@ -292,6 +293,7 @@
   color: #ff3f56;
   font-weight: 500;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .portfolio .more span {
@@ -533,4 +535,264 @@
   right: 20px;
   width: 18px;
   bottom: 11px;
+}
+
+.show .portfolio-ex {
+  margin: 60px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.portfolio-ex img {
+  width: calc(33% - 10px);
+  margin: 10px 0;
+}
+
+.show .checkout,
+.show .booking {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.show .checkout .pop,
+.show .booking .pop {
+  border: 1px solid #000;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 80vw;
+  height: 90vh;
+  overflow: scroll;
+  padding: 30px;
+  position: relative;
+}
+
+.show .checkout .pop::-webkit-scrollbar,
+.show .booking .pop::-webkit-scrollbar {
+  display: none;
+}
+
+.checkout .pop .title,
+.booking .pop .title {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+  margin: 10px 0 30px;
+}
+
+.booking .pop p {
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.booking .pop .img-group {
+  display: flex;
+  justify-content: center;
+}
+
+.booking .pop .img-group .imag {
+  width: 35%;
+  margin: 0 20px;
+}
+
+.booking .pop .img-group .imag img {
+  width: 100%;
+}
+
+.checkout .pop .cross,
+.booking .pop .cross {
+  position: absolute;
+  right: 25px;
+  width: 30px;
+  top: 25px;
+  cursor: pointer;
+}
+
+.show .checkout .inn,
+.show .booking .inner {
+  opacity: 0.5;
+  background: #fff;
+  filter: blur(250px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.show .checkout.hide,
+.show .booking.hide {
+  display: none;
+}
+
+.show .service {
+  margin: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show .service .main {
+  max-width: 400px;
+  margin: auto;
+}
+
+.show .service .title {
+  margin: 30px 0 10px;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.show .service .tags {
+  display: flex;
+  margin: 0 0 20px;
+}
+
+.show .service .tags .item {
+  border-radius: 10px;
+  background: #47bbec;
+  padding: 3px 10px;
+  margin: 0 10px;
+  font-size: 13px;
+}
+
+.show .service .tags .item .cross {
+  position: relative;
+  top: 2px;
+}
+
+.service .add-on {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 500;
+}
+
+.service .add-on .total {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.service .btn {
+  border-radius: 100px;
+  background: #eb335a;
+  padding: 12px 35px;
+  color: white;
+  cursor: pointer;
+}
+
+.checkout .pop .title {
+  font-size: 22px;
+}
+
+.show .checkout .pop {
+  border-radius: 35px;
+  position: relative;
+}
+
+.checkout .pop .star {
+  position: absolute;
+  left: 10%;
+}
+
+.checkout .pop .star:nth-child(3) {
+  right: 10%;
+  left: unset;
+}
+
+.checkout.pay .pop {
+  text-align: center;
+  font-weight: 500;
+}
+
+.checkout .pop .servi {
+  font-size: 14px;
+}
+
+.checkout .pop .date {
+  font-size: 14px;
+  margin: 10px 0 0;
+}
+
+.checkout .pop .time {
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+.checkout .pop .back {
+  font-size: 14px;
+  color: #1b0cc8;
+  text-decoration: underline;
+}
+
+.checkout .pop .total {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 10px 0 30px;
+}
+
+.checkout .pop .choice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout .choice .line {
+  width: 2px;
+  background: black;
+  height: 60px;
+  position: relative;
+  top: 60px;
+}
+
+.checkout .choice .item {
+  width: calc(50% - 20px);
+}
+
+.checkout .choice .btn-cover {
+  width: calc(50% - 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.checkout .choice .btn-cover .btn {
+  border-radius: 100px;
+  background-color: #47bbec;
+  cursor: pointer;
+  padding: 14px 40px;
+}
+
+.checkout .choice .btn-cover .btn.guest {
+  background-color: #ff3f56;
+  color: #fff;
+}
+
+.checkout .choice .item .str {
+  font-weight: 400;
+  font-size: 21px;
+  margin: 10px 0 30px;
+}
+
+.checkout .choice .item p {
+  font-weight: 400;
+  font-size: 15px;
+  padding: 0 20px;
+}
+
+.checkout .choice .line.bee {
+  top: 20px;
+}
+
+.checkout .or {
+  margin-top: 20px;
 }

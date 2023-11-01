@@ -1,0 +1,173 @@
+.nav {
+  height: 100vh;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.nav .main {
+  background: #232324;
+  padding: 30px;
+  width: 235px;
+  overflow: scroll;
+  position: relative;
+  color: white;
+}
+
+.nav .side::-webkit-scrollbar,
+.nav .main::-webkit-scrollbar {
+  display: none;
+}
+
+.nav .main .nav-item {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  z-index: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav .main .nav-item.active {
+  color: black;
+  font-weight: 700;
+}
+
+.nav .main svg {
+  width: 25px;
+  margin: 5px 17px 0 0;
+}
+
+.nav .main .tag {
+  position: absolute;
+  top: 47px;
+  width: 100%;
+  height: 60px;
+  background: white;
+  left: 0;
+  transition: all ease 0.5s;
+}
+
+.nav .side {
+  width: 235px;
+  border-right: 1px solid black;
+  padding: 25px;
+  overflow: scroll;
+}
+
+.nav .side .extr {
+  display: none;
+}
+
+.nav .side .extr.active {
+  display: block;
+}
+
+.nav .side .title {
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.nav .side .side-item {
+  margin: 35px 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav .side .side-item p {
+  color: #646060;
+  font-size: 14px;
+}
+
+.nav .side .side-item .hedr {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.nav .side .side-item.active .hedr {
+  font-weight: 700;
+}
+
+.nav .side .side-item img {
+  width: 8px;
+  transform: rotate(180deg);
+  position: absolute;
+  top: 3px;
+  right: 10px;
+}
+
+.nav .side .hadr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav .side .hadr .title {
+  margin-bottom: 0;
+}
+
+.nav .side .hadr svg {
+  width: 12px;
+  height: 12px;
+  margin-left: 3px;
+}
+
+.nav .side .tic {
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+  height: 20px;
+  border-radius: 30px;
+  background: #47bbec;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.nav .side .hadr .state {
+  font-size: 12px;
+}
+
+.nav .side .side-item.alp.active:hover,
+.nav .side .side-item.alp.active {
+  background: rgba(217, 217, 217, 0.2);
+}
+
+.nav .side .side-item.alp:hover {
+  background: rgba(217, 217, 217, 0.1);
+}
+
+.nav .side .side-item.alp {
+  padding: 15px 25px;
+  margin: 20px -25px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Open Sans", sans-serif;
+}
+
+.nav .side .side-item.alp .img {
+  background: rgb(217, 217, 217);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: block;
+}
+
+.nav .side .side-item.alp .down {
+  width: calc(100% - 50px);
+}
+
+.nav .side .side-item.alp .down .tic-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 1px;
+}
+
+.nav .side .side-item.alp .down .tic-line .name {
+  font-weight: 700;
+}
+
+.nav .side .side-item.alp .down .desc {
+  font-size: 11px;
+  color: #646060;
+}

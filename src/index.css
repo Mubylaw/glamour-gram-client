@@ -19,11 +19,17 @@ html {
 }
 
 .home {
-  width: 83vw;
-  margin-left: 17vw;
-  padding: 0 0 15px;
-  background: #f8f8f8;
+  width: calc(100vw - 487px);
   min-height: 100vh;
+  padding: 25px 50px;
+}
+
+.dash-container {
+  display: flex;
+}
+
+.btn {
+  cursor: pointer;
 }
 
 .flicker {

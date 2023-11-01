@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../assets/styles/landing.css";
 import SectionWrapper from "../hocs/SectionWrapper";
 
@@ -15,14 +15,35 @@ import Footer from "./Footer";
 
 const Landing = ({}) => {
   const [tag, setTag] = useState([]);
+  const [popu, setPopu] = useState(false);
+  const typingTimer = useRef(null);
+
+  const handleSearch = (e) => {
+    setPopu(true);
+    clearTimeout(typingTimer.current);
+    if (e.target.value === "") {
+      setPopu(false);
+    }
+    typingTimer.current = setTimeout(() => {
+      setPopu(false);
+    }, 5000);
+  };
   return (
     <div className="landing">
       <Header />
       <div className="hero">
         <h1>Discover Beauty. Book with Confidence.</h1>
         <div className="form">
-          <input type="text" placeholder="What Service?" />
-          <input type="text" placeholder="Which Location?" />
+          <input
+            type="text"
+            placeholder="What Service?"
+            onChange={handleSearch}
+          />
+          <input
+            type="text"
+            placeholder="Which Location?"
+            onChange={handleSearch}
+          />
           <div className="search">Search</div>
         </div>
         <div className="tag">
@@ -36,7 +57,7 @@ const Landing = ({}) => {
           </div>
         </div>
         <div className="dd"></div>
-        <div className="results hide">
+        <div className={`results ${popu ? "" : "hide"}`}>
           <div className="title">Popular Searches</div>
           <hr />
           <div className="item">Hair</div>

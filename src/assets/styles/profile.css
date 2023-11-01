@@ -1,0 +1,267 @@
+.profile .headr {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.profile .info {
+  display: flex;
+  margin: 30px 0;
+  align-items: center;
+}
+
+.profile .info .img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  margin-right: 20px;
+}
+
+.profile .info .name {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.profile .form .item {
+  display: flex;
+  margin: 40px 0;
+  position: relative;
+}
+
+.profile .form .item label {
+  width: 150px;
+  margin-right: 20px;
+}
+
+.profile .form .item textarea,
+.profile .form .item input {
+  width: calc(100% - 170px);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  height: 40px;
+  padding: 20px;
+}
+
+.profile .form .item .input {
+  width: calc(100% - 170px);
+}
+
+.profile .form .item .input .box {
+  display: flex;
+  align-items: center;
+}
+
+.profile .form .item .input .box input {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.profile .form .item img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+}
+
+.profile .form .item textarea {
+  height: 140px;
+}
+
+.profile .hr {
+  height: 1px;
+  background: black;
+  margin: 85px -50px 20px;
+}
+
+.profile .btn-cover {
+  display: flex;
+  justify-content: end;
+  margin: 20px 0 20px;
+}
+
+.profile .btn {
+  background: #eb335a;
+  padding: 12px 30px;
+  color: white;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+.profile .info .new {
+  border-radius: 30px;
+  background: #47bbec;
+  padding: 4px 15px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.profile .info.ser {
+  justify-content: space-between;
+}
+
+.profile .info .new img {
+  margin-left: 10px;
+}
+
+.profile .info.book p {
+  font-weight: 500;
+  width: 100%;
+}
+
+.profile .line {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 30px 0;
+  font-weight: 500;
+}
+
+.profile .line .name {
+  font-size: 18px;
+}
+
+.profile .line .btn-group {
+  display: flex;
+}
+
+.profile .line .btn-group .btn {
+  background: none;
+  color: black;
+  border: 1px solid black;
+  padding: 4px 20px;
+  font-size: 13px;
+}
+
+.profile.cali .line .btn-group .btn.rem,
+.profile .line .btn-group .btn:nth-child(2) {
+  margin-left: 15px;
+  border: 1px solid #eb335a;
+  background: #eb335a;
+  color: white;
+}
+
+.profile .service {
+  margin: 50px 0;
+  height: calc(100vh - 300px);
+}
+
+.profile .sort {
+  margin: 10px 0 20px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.profile .sort label {
+  font-size: 17px;
+  font-weight: 500;
+  margin-right: 18px;
+}
+
+.profile .sort select {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.profile .review .item {
+  margin: 30px 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.profile .review .item .top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.profile .review .item .top .icon {
+  margin-right: 5px;
+}
+
+.profile .portfolio {
+  margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.profile .portfolio .img-cover {
+  width: calc(33% - 10px);
+  margin: 10px 0;
+  position: relative;
+}
+
+.profile .portfolio .img-cover img.main {
+  width: 100%;
+}
+
+.profile .portfolio .img-cover img.pin {
+  position: absolute;
+  top: -15px;
+  right: 0;
+}
+
+.profile .booking .subtitle {
+  font-weight: 600;
+  font-size: 17px;
+  margin: 20px 0;
+}
+
+.profile .booking .tril {
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+.profile .booking .policy {
+  border-radius: 20px;
+  border: 1px solid #000;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 600px;
+  margin: 30px 0;
+  cursor: pointer;
+}
+
+.profile .booking .policy .top {
+  display: flex;
+}
+
+.profile .booking .policy .top .note {
+  margin-right: 30px;
+}
+
+.profile .booking .policy .top .date {
+  color: #646060;
+}
+
+.profile .booking .policy .arrow {
+  transform: rotate(180deg);
+  width: 20px;
+}
+
+.profile .booking .more {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile .booking .more img {
+  transform: rotate(-90deg);
+  width: 10px;
+  margin-left: 15px;
+}
+
+.profile.cali p {
+  width: calc(100% - 200px);
+}
