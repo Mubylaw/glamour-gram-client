@@ -30,6 +30,7 @@ import Prefrences from "./Prefrences";
 import ViewAppointment from "./ViewAppointment";
 import Favourite from "./Favourite";
 import Payment from "./Payment";
+import NewBooking from "./NewBooking";
 // import Donation from "./Donation";
 // import Transfer from "./Transfer";
 // import UpdateBank from "./UpdateBank";
@@ -61,6 +62,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={Profile}
               position="one"
+              exPos="one"
               {...props}
             />
           }
@@ -74,6 +76,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={ServiceDash}
               position="one"
+              exPos="two"
               {...props}
             />
           }
@@ -87,6 +90,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={Review}
               position="one"
+              exPos="three"
               {...props}
             />
           }
@@ -100,6 +104,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={PortfolioDash}
               position="one"
+              exPos="four"
               {...props}
             />
           }
@@ -113,6 +118,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={Booking}
               position="one"
+              exPos="five"
               {...props}
             />
           }
@@ -124,8 +130,23 @@ const Main = (props) => {
             <Homepage
               currentUser={currentUser}
               removeError={removeError}
+              Page={NewBooking}
+              position="one"
+              exPos="five"
+              {...props}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/booking/:id"
+          element={
+            <Homepage
+              currentUser={currentUser}
+              removeError={removeError}
               Page={EditBooking}
               position="one"
+              exPos="five"
               {...props}
             />
           }
@@ -138,7 +159,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Calendar}
-              position="one"
+              position="two"
               {...props}
             />
           }
@@ -323,6 +344,20 @@ const Main = (props) => {
               errors={errors}
               onAuth={authUser}
               forgot={forgotPassword}
+              {...props}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/signup"
+          element={
+            <AuthForm
+              removeError={removeError}
+              errors={errors}
+              onAuth={authUser}
+              forgot={forgotPassword}
+              signUp
               {...props}
             />
           }

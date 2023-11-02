@@ -8,6 +8,11 @@
   display: flex;
   margin: 30px 0;
   align-items: center;
+  justify-content: space-between;
+}
+
+.profile .info.nil {
+  justify-content: unset;
 }
 
 .profile .info .img {
@@ -28,6 +33,10 @@
   display: flex;
   margin: 40px 0;
   position: relative;
+}
+
+.profile .form .item.hide {
+  display: none;
 }
 
 .profile .form .item label {
@@ -89,11 +98,35 @@
   font-weight: 600;
 }
 
+.profile .btn.acv {
+  background: #fff;
+  padding: 10px 30px;
+  color: black;
+  border: 1px solid black;
+  margin-right: 10px;
+}
+
 .profile .info .new {
   border-radius: 30px;
   background: #47bbec;
   padding: 4px 15px;
   margin-left: 30px;
+  cursor: pointer;
+  position: relative;
+}
+
+.profile .info .new a {
+  color: #000;
+  text-decoration: none;
+}
+
+.profile .info .new input {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
   cursor: pointer;
 }
 
@@ -108,6 +141,10 @@
 .profile .info.book p {
   font-weight: 500;
   width: 100%;
+}
+
+.profile .info p.space {
+  width: calc(100% - 235px);
 }
 
 .profile .line {
@@ -147,7 +184,7 @@
 
 .profile .service {
   margin: 50px 0;
-  height: calc(100vh - 300px);
+  min-height: calc(100vh - 300px);
 }
 
 .profile .sort {
@@ -197,6 +234,7 @@
   width: calc(33% - 10px);
   margin: 10px 0;
   position: relative;
+  cursor: pointer;
 }
 
 .profile .portfolio .img-cover img.main {
@@ -207,6 +245,17 @@
   position: absolute;
   top: -15px;
   right: 0;
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+
+.profile .portfolio .img-cover:hover img.pin {
+  opacity: 0.5;
+}
+
+.profile .portfolio .img-cover img.pin.active,
+.profile .portfolio .img-cover:hover img.pin.active {
+  opacity: 1;
 }
 
 .profile .booking .subtitle {
@@ -256,6 +305,10 @@
   cursor: pointer;
 }
 
+.profile .booking .more.hide {
+  display: none;
+}
+
 .profile .booking .more img {
   transform: rotate(-90deg);
   width: 10px;
@@ -264,4 +317,46 @@
 
 .profile.cali p {
   width: calc(100% - 200px);
+}
+
+.profile .pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile .pop.hide {
+  display: none;
+}
+
+.profile .pop .cancel {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+}
+
+.profile .pop .inner {
+  width: 600px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+}
+
+.profile .pop .inner img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.profile .pop .inner .btn {
+  text-align: center;
 }

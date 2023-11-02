@@ -1,12 +1,26 @@
+import { Link } from "react-router-dom";
 import "../assets/styles/landing.css";
 import down from "../assets/svg/down.svg";
+import { logout } from "../store/actions/auth";
+import { connect } from "react-redux";
 
-const Header = ({ title, noInfo, obj }) => {
+const Header = ({ logout, title, noInfo, obj, user }) => {
   if (obj && obj.name) {
     var name = obj.name;
   } else {
     name = "";
   }
+
+  const logoutFn = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="header">
       <div className="logo">
@@ -41,12 +55,26 @@ const Header = ({ title, noInfo, obj }) => {
         <div className="nav-link">
           <span>Contact Us</span>
         </div>
-        <div className="nav-link">
-          <div className="log-in">Log In</div>
-        </div>
+        {user ? (
+          <div className="nav-link" onClick={logoutFn}>
+            <div className="log-in">Log Out</div>
+          </div>
+        ) : (
+          <Link to="/signin" className="nav-link">
+            <div className="log-in">Log In</div>
+          </Link>
+        )}
       </div>
     </div>
   );
 };
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    errors: state.errors,
+  };
+}
+
+export default connect(mapStateToProps, {
+  logout,
+})(Header);

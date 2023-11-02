@@ -12,6 +12,9 @@ import MarketingSvg from "../assets/nav/marketing";
 import arrow from "../assets/svg/sideBlack.svg";
 
 const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
+  const handleSide = (loc) => {
+    navigate(loc);
+  };
   return (
     <div className="nav">
       <div className="main">
@@ -58,27 +61,42 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
         <div className="side">
           <div className={`extr ${position === "one" ? "active" : ""}`}>
             <div className="title">My Profile</div>
-            <div className="side-item active">
+            <div
+              onClick={() => handleSide("/")}
+              className={`side-item ${exPos === "one" ? "active" : ""}`}
+            >
               <div className="hedr">Profile Settings</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
-            <div className="side-item">
+            <div
+              onClick={() => handleSide("/service")}
+              className={`side-item ${exPos === "two" ? "active" : ""}`}
+            >
               <div className="hedr">My Services</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
-            <div className="side-item">
+            <div
+              onClick={() => handleSide("/review")}
+              className={`side-item ${exPos === "three" ? "active" : ""}`}
+            >
               <div className="hedr">My Reviews</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
-            <div className="side-item">
+            <div
+              onClick={() => handleSide("/portfolio")}
+              className={`side-item ${exPos === "four" ? "active" : ""}`}
+            >
               <div className="hedr">My Portfolio</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
-            <div className="side-item">
+            <div
+              onClick={() => handleSide("/booking")}
+              className={`side-item ${exPos === "five" ? "active" : ""}`}
+            >
               <div className="hedr">Booking Information</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />

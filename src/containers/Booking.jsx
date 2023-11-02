@@ -1,55 +1,40 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
 import { connect } from "react-redux";
-import note from "../assets/svg/note.svg";
-import arrow from "../assets/svg/sideBlack.svg";
 
-const Booking = ({}) => {
+import { Link } from "react-router-dom";
+import { getBookingsFn } from "../store/actions/booking";
+import Policy from "../components/Policy";
+
+const Booking = ({ getBookingsFn, user, bookings }) => {
+  useEffect(() => {
+    getBookingsFn(`user=${user.id}&populate=user`);
+  }, []);
+
   return (
     <div className="home profile">
       <div className="headr">Booking Information</div>
       <div className="info book">
-        <p>
+        <p className="space">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam
           nobis ex ad. Perspiciatis illo neque impedit quasi unde sunt
           obcaecati. Deserunt quo aliquid ab, ipsa esse beatae ratione rerum
           libero.
         </p>
+        <div className="new">
+          <Link to="/booking/new">New Policy</Link>
+        </div>
       </div>
       <div className="booking">
         <div className="subtitle">Booking Policies</div>
         <div className="tril">Active:</div>
-        <div className="policy">
-          <div className="top">
-            <img className="note" src={note} alt="" />
-            <div className="tab">
-              <div className="desc">Hair by xyz booking policy V4</div>
-              <div className="date">Updated January 2023</div>
-            </div>
-          </div>
-          <img className="arrow" src={arrow} alt="" />
-        </div>
+        {bookings.map((bk, i) => (
+          <Policy bk={bk} active={true} key={i} />
+        ))}
         <div className="tril">Inactive:</div>
-        <div className="policy">
-          <div className="top">
-            <img className="note" src={note} alt="" />
-            <div className="tab">
-              <div className="desc">Hair by xyz booking policy V4</div>
-              <div className="date">Updated January 2023</div>
-            </div>
-          </div>
-          <img className="arrow" src={arrow} alt="" />
-        </div>
-        <div className="policy">
-          <div className="top">
-            <img className="note" src={note} alt="" />
-            <div className="tab">
-              <div className="desc">Hair by xyz booking policy V4</div>
-              <div className="date">Updated January 2023</div>
-            </div>
-          </div>
-          <img className="arrow" src={arrow} alt="" />
-        </div>
+        {bookings.map((bk, i) => (
+          <Policy bk={bk} active={false} key={i} />
+        ))}
       </div>
     </div>
   );
@@ -58,7 +43,10 @@ const Booking = ({}) => {
 function mapStateToProps(state) {
   return {
     errors: state.errors,
+    bookings: state.booking.all,
   };
 }
 
-export default connect(mapStateToProps, {})(Booking);
+export default connect(mapStateToProps, {
+  getBookingsFn,
+})(Booking);

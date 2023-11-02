@@ -3,11 +3,11 @@ import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import edit from "../assets/svg/edit.svg";
 import arrow from "../assets/svg/sideBlack.svg";
-import { getBookingFn, updateBookingFn } from "../store/actions/booking";
+import { addBookingFn } from "../store/actions/booking";
+import { useNavigate } from "react-router-dom";
 
-const Booking = ({ total, booking, getBookingFn, updateBookingFn, update }) => {
+const NewBooking = ({ total, addBookingFn, booking }) => {
   const [show, setShow] = useState(3);
-  const [id, setId] = useState("");
   const [char, setChar] = useState({
     cancellation: "",
     rescheduling: "",
@@ -16,36 +16,9 @@ const Booking = ({ total, booking, getBookingFn, updateBookingFn, update }) => {
     client: "",
     general: "",
     business: "",
-    no: 0,
-    active: false,
   });
-  const [click, setClick] = useState(false);
   const [view, setView] = useState(false);
-
-  useEffect(() => {
-    const path = window.location.pathname;
-    const id = path.split("/").pop();
-    setId(id);
-  }, []);
-
-  useEffect(() => {
-    if (id) {
-      getBookingFn(id);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (booking) {
-      for (const key in booking) {
-        if (key in char) {
-          setChar((prevFormData) => ({
-            ...prevFormData,
-            [key]: booking[key],
-          }));
-        }
-      }
-    }
-  }, [booking]);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,24 +28,17 @@ const Booking = ({ total, booking, getBookingFn, updateBookingFn, update }) => {
     }));
   };
 
-  useEffect(() => {
-    if (update) {
-      if (update._id && click) {
-        setView(false);
-        setClick(false);
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
-    }
-  }, [update]);
-
   const handleSubmit = () => {
     setView(true);
-    setClick(true);
-    updateBookingFn(char, id);
+    addBookingFn(char);
   };
+
+  useEffect(() => {
+    if (booking.new && booking.new._id) {
+      setView(false);
+      navigate(`/booking/${booking.new._id}`);
+    }
+  }, [booking.new]);
 
   return (
     <div className="home profile">
@@ -87,7 +53,7 @@ const Booking = ({ total, booking, getBookingFn, updateBookingFn, update }) => {
       </div>
       <div className="booking">
         <div className="subtitle">Booking Policies</div>
-        <div className="subtitle">Hair by xyz booking policy V{char.no}</div>
+        <div className="subtitle">Hair by xyz booking policy V{total + 1}</div>
         <div className="form">
           <div className="item">
             <label htmlFor="cancellation">Cancellation Policy:</label>
@@ -177,21 +143,10 @@ const Booking = ({ total, booking, getBookingFn, updateBookingFn, update }) => {
         <div className="hr"></div>
         <div className="btn-cover">
           <div
-            className="btn acv"
-            onClick={() =>
-              setChar((prevFormData) => ({
-                ...prevFormData,
-                active: !char.active,
-              }))
-            }
-          >
-            {char.active ? "Deactivate" : "Activate"}
-          </div>
-          <div
             className={`btn ${view ? "btn-load" : ""}`}
             onClick={handleSubmit}
           >
-            <span className="btn_text">Save Changes</span>
+            <span className="btn_text">Create Policy</span>
           </div>
         </div>
       </div>
@@ -203,12 +158,8 @@ function mapStateToProps(state) {
   return {
     errors: state.errors,
     total: state.booking.total,
-    booking: state.booking.one,
-    update: state.booking.update,
+    booking: state.booking,
   };
 }
 
-export default connect(mapStateToProps, {
-  getBookingFn,
-  updateBookingFn,
-})(Booking);
+export default connect(mapStateToProps, { addBookingFn })(NewBooking);

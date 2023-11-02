@@ -4,14 +4,13 @@ import Nav from "./Nav";
 import Landing from "../components/Landing";
 import Header from "../components/Header";
 
-const Homepage = ({ currentUser, Page, position, title, noSide }) => {
+const Homepage = ({ currentUser, Page, position, title, noSide, exPos }) => {
   const navigate = useNavigate();
-  console.log(currentUser);
   return (
     <>
-      {!currentUser.isAuthenticated ? (
+      {currentUser.isAuthenticated ? (
         <>
-          <Header />
+          <Header user />
           <div className="dash-container">
             <Nav
               navigate={navigate}
@@ -19,6 +18,7 @@ const Homepage = ({ currentUser, Page, position, title, noSide }) => {
               title={title}
               role={currentUser.user.role}
               noSide={noSide}
+              exPos={exPos}
             />
             <Page user={currentUser.user} />
           </div>

@@ -23,6 +23,8 @@
 .header .links .nav-link {
   margin: 0 30px;
   cursor: pointer;
+  color: white;
+  text-decoration: none;
 }
 
 .header .links .nav-link:nth-child(5) {

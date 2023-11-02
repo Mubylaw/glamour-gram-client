@@ -2,11 +2,21 @@ import React, { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import revStar from "../assets/svg/revStars.svg";
+import { getReviewsFn } from "../store/actions/review";
 
-const Review = ({}) => {
+const Review = ({ getReviewsFn, review, total, user }) => {
+  const [sort, setSort] = useState("");
+  useEffect(() => {
+    // getReviewsFn(`store=${user.id}`);
+    getReviewsFn();
+  }, []);
+
+  useEffect(() => {
+    getReviewsFn(`sort=${sort}`);
+  }, [sort]);
   return (
     <div className="home profile">
-      <div className="headr">My Reviews (111)</div>
+      <div className="headr">My Reviews ({total})</div>
       <div className="info ser">
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam
@@ -17,173 +27,31 @@ const Review = ({}) => {
       </div>
       <div className="sort">
         <label for="sort">Sort By:</label>
-        <select type="text" id="sort">
+        <select
+          type="text"
+          id="sort"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
           <option value="">Choose option</option>
-          <option value="rated">Highest Rated</option>
-          <option value="price">Lowest Rated</option>
+          <option value="-rating">Highest Rated</option>
+          <option value="+rating">Lowest Rated</option>
         </select>
       </div>
       <div className="review">
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
+        {review.map((rev, id) => (
+          <div className="item" key={id}>
+            <div className="top">
+              <div className="icon">
+                {Array.from({ length: rev.rating }, (_, i) => (
+                  <img src={revStar} alt="" key={i} />
+                ))}
+              </div>
+              <div className="name">- {rev.name}</div>
             </div>
-            <div className="name">- Name</div>
+            <div className="text">{rev.message}</div>
           </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
-        <div className="item">
-          <div className="top">
-            <div className="icon">
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-              <img src={revStar} alt="" />
-            </div>
-            <div className="name">- Name</div>
-          </div>
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            reprehenderit vel voluptate corporis odio, inventore ut tenetur cum
-            eveniet in, voluptatem harum accusantium neque nisi, aliquam facere
-            adipisci porro cupiditate.
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -192,7 +60,11 @@ const Review = ({}) => {
 function mapStateToProps(state) {
   return {
     errors: state.errors,
+    review: state.review.all,
+    total: state.review.total,
   };
 }
 
-export default connect(mapStateToProps, {})(Review);
+export default connect(mapStateToProps, {
+  getReviewsFn,
+})(Review);
