@@ -4,6 +4,7 @@ import errors from "./errors";
 import payment from "./payment";
 import review from "./review";
 import booking from "./booking";
+import authUrl from "./auth";
 
 const rootReducer = combineReducers({
   currentUser,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   review,
   payment,
   booking,
+  authUrl,
 });
 
 export default rootReducer;

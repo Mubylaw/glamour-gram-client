@@ -60,17 +60,41 @@
   position: relative;
 }
 
+.cali .form .duo {
+  display: flex;
+  margin: 40px 0;
+  justify-content: space-between;
+}
+
+.cali .form .duo .item {
+  width: 45%;
+  margin: 0;
+}
+
 .cali .form .item label {
   width: 150px;
   margin-right: 20px;
 }
 
+.cali .form .item select,
 .cali .form .item input {
   width: calc(100% - 170px);
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.6);
   height: 40px;
   padding: 20px;
+}
+
+.cali .form .item select.error,
+.cali .form .item input.error {
+  background: white;
+  color: black;
+  border: 1px solid red;
+  margin: 0;
+}
+
+.cali .form .item select {
+  padding: 0 20px;
 }
 
 .cali .hr {
@@ -162,4 +186,34 @@
 
 .cali .apoint.diff .btn-group .btn {
   margin: 0 7px;
+}
+
+.cali .times {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cali .times .mm {
+  padding: 15px;
+  background: #47bbec;
+  color: black;
+  font-weight: 500;
+  border-radius: 15px;
+  display: flex;
+  margin: 10px 5px;
+}
+
+.cali .times img {
+  width: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.cali .err-alert {
+  background-color: red;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: white;
 }

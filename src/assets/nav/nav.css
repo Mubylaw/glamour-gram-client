@@ -40,12 +40,40 @@
 
 .nav .main .tag {
   position: absolute;
-  top: 47px;
   width: 100%;
   height: 60px;
   background: white;
   left: 0;
+  top: 47px;
   transition: all ease 0.5s;
+}
+
+.nav .main .tag.over {
+  width: 3px;
+}
+
+.nav .main .tag.one {
+  top: 47px;
+}
+
+.nav .main .tag.two {
+  top: 116px;
+}
+
+.nav .main .tag.three {
+  top: 185px;
+}
+
+.nav .main .tag.four {
+  top: 254px;
+}
+
+.nav .main .tag.five {
+  top: 323px;
+}
+
+.nav .main .tag.six {
+  top: 392px;
 }
 
 .nav .side {
@@ -83,6 +111,7 @@
 .nav .side .side-item .hedr {
   font-size: 15px;
   margin-bottom: 5px;
+  width: calc(100% - 20px);
 }
 
 .nav .side .side-item.active .hedr {

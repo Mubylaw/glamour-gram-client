@@ -49,3 +49,25 @@ export const updateUser = (data, params, config) => (dispatch, getState) => {
       dispatch(addError(err));
     });
 };
+
+export const addTime = (data) => (dispatch) => {
+  return apiCall("put", `/api/v1/users/freetime`, data)
+    .then(({ data }) => {
+      dispatch(setCurrentUser(data));
+      dispatch(removeError());
+    })
+    .catch((err) => {
+      dispatch(addError(err));
+    });
+};
+
+export const removeTime = (id) => (dispatch) => {
+  return apiCall("delete", `/api/v1/users/freetime/${id}`)
+    .then(({ data }) => {
+      dispatch(setCurrentUser(data));
+      dispatch(removeError());
+    })
+    .catch((err) => {
+      dispatch(addError(err));
+    });
+};

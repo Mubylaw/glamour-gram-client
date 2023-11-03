@@ -3,9 +3,9 @@ import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import add from "../assets/svg/add.svg";
 import cross from "../assets/svg/cross.svg";
-import { getUser, updateUser } from "../store/actions/user";
+import { updateUser } from "../store/actions/user";
 
-const ServiceDash = ({ getUser, user, updateUser }) => {
+const ServiceDash = ({ user, updateUser }) => {
   const [pop, setPop] = useState(false);
   const [view, setView] = useState(false);
   const [char, setChar] = useState({
@@ -21,12 +21,6 @@ const ServiceDash = ({ getUser, user, updateUser }) => {
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    if (user.iat) {
-      getUser(user.id);
-    }
-  }, []);
 
   const handleSubmit = () => {
     setView(true);
@@ -167,4 +161,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getUser, updateUser })(ServiceDash);
+export default connect(mapStateToProps, { updateUser })(ServiceDash);

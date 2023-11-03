@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/nav/nav.css";
 import { logout } from "../store/actions/auth";
 import { connect } from "react-redux";
@@ -12,50 +12,80 @@ import MarketingSvg from "../assets/nav/marketing";
 import arrow from "../assets/svg/sideBlack.svg";
 
 const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
+  const [hov, setHov] = useState("");
+
+  useEffect(() => {
+    setHov(position);
+  }, [position]);
+
   const handleSide = (loc) => {
     navigate(loc);
   };
   return (
     <div className="nav">
       <div className="main">
-        <div className="nav-item active">
+        <div
+          className={`nav-item ${position === "one" ? "active" : ""}`}
+          onClick={() => handleSide("/")}
+          onMouseOver={() => setHov("one")}
+        >
           <div className="icon">
-            <ProfileSvg fill="black" />
+            <ProfileSvg fill={position === "one" ? "black" : "white"} />
           </div>
           <div className="text">My Profile</div>
         </div>
-        <div className="nav-item">
+        <div
+          className={`nav-item ${position === "two" ? "active" : ""}`}
+          onClick={() => handleSide("/calendar")}
+          onMouseOver={() => setHov("two")}
+        >
           <div className="icon">
-            <CalendarSvg fill="white" />
+            <CalendarSvg fill={position === "two" ? "black" : "white"} />
           </div>
           <div className="text">My Calendar</div>
         </div>
-        <div className="nav-item">
+        <div
+          className={`nav-item ${position === "three" ? "active" : ""}`}
+          onClick={() => handleSide("/performance")}
+          onMouseOver={() => setHov("three")}
+        >
           <div className="icon">
-            <AnalyticsSvg fill="white" />
+            <AnalyticsSvg fill={position === "three" ? "black" : "white"} />
           </div>
           <div className="text">My Analytics</div>
         </div>
-        <div className="nav-item">
+        <div
+          className={`nav-item ${position === "four" ? "active" : ""}`}
+          onClick={() => handleSide("/")}
+          onMouseOver={() => setHov("four")}
+        >
           <div className="icon">
-            <AccountSvg fill="white" />
+            <AccountSvg fill={position === "four" ? "black" : "white"} />
           </div>
           <div className="text">Account Settings</div>
         </div>
-        <div className="nav-item">
+        <div
+          className={`nav-item ${position === "five" ? "active" : ""}`}
+          onClick={() => handleSide("/earning")}
+          onMouseOver={() => setHov("five")}
+        >
           <div className="icon">
-            <PaymentSvg fill="white" />
+            <PaymentSvg fill={position === "five" ? "black" : "white"} />
           </div>
           <div className="text">Payments</div>
         </div>
-        <div className="nav-item">
+        <div
+          className={`nav-item ${position === "six" ? "active" : ""}`}
+          onClick={() => handleSide("/")}
+          onMouseOver={() => setHov("six")}
+        >
           <div className="icon">
-            <MarketingSvg fill="white" />
+            <MarketingSvg fill={position === "six" ? "black" : "white"} />
           </div>
           <div className="text">Marketing</div>
         </div>
-        <div className="tag"></div>
-        <div className="tag over"></div>
+        <div className={`tag over ${hov}`}></div>
+        <div className={`tag ${position}`}></div>
       </div>
       {!noSide && (
         <div className="side">
@@ -98,6 +128,95 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
               className={`side-item ${exPos === "five" ? "active" : ""}`}
             >
               <div className="hedr">Booking Information</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+          </div>
+          <div className={`extr ${position === "two" ? "active" : ""}`}>
+            <div className="title">My Calendar</div>
+            <div
+              onClick={() => handleSide("/calendar")}
+              className={`side-item ${exPos === "one" ? "active" : ""}`}
+            >
+              <div className="hedr">Calendar Integration</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/appointment")}
+              className={`side-item ${exPos === "two" ? "active" : ""}`}
+            >
+              <div className="hedr">Calendar View</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/availability")}
+              className={`side-item ${exPos === "three" ? "active" : ""}`}
+            >
+              <div className="hedr">Availability Management</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+          </div>
+          <div className={`extr ${position === "three" ? "active" : ""}`}>
+            <div className="title">My Calendar</div>
+            <div
+              onClick={() => handleSide("/performance")}
+              className={`side-item ${exPos === "one" ? "active" : ""}`}
+            >
+              <div className="hedr">Performance Overview</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/booking/insights")}
+              className={`side-item ${exPos === "two" ? "active" : ""}`}
+            >
+              <div className="hedr">Booking Insights</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/client")}
+              className={`side-item ${exPos === "three" ? "active" : ""}`}
+            >
+              <div className="hedr">Client Engagement</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+          </div>
+          <div className={`extr ${position === "five" ? "active" : ""}`}>
+            <div className="title">Payments</div>
+            <div
+              onClick={() => handleSide("/earning")}
+              className={`side-item ${exPos === "one" ? "active" : ""}`}
+            >
+              <div className="hedr">Earnings</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/earning")}
+              className={`side-item ${exPos === "two" ? "active" : ""}`}
+            >
+              <div className="hedr">Withdrawals & Payouts</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/earning")}
+              className={`side-item ${exPos === "three" ? "active" : ""}`}
+            >
+              <div className="hedr">Invoicing</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
+            <div
+              onClick={() => handleSide("/earning")}
+              className={`side-item ${exPos === "three" ? "active" : ""}`}
+            >
+              <div className="hedr">Tax & Financial Information</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>

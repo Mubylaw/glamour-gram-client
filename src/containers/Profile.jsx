@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
 import { connect } from "react-redux";
-import { getUser, updateUser } from "../store/actions/user";
+import { updateUser } from "../store/actions/user";
 
-const Profile = ({ user, getUser, updateUser }) => {
+const Profile = ({ user, updateUser }) => {
   const [char, setChar] = useState({
     location: "",
     phoneNo: "",
@@ -29,12 +29,6 @@ const Profile = ({ user, getUser, updateUser }) => {
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    if (user.iat) {
-      getUser(user.id);
-    }
-  }, []);
 
   useEffect(() => {
     if (!user.iat) {
@@ -241,6 +235,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  getUser,
   updateUser,
 })(Profile);
