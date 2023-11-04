@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../assets/styles/landing.css";
 import SectionWrapper from "../hocs/SectionWrapper";
 
@@ -12,11 +12,19 @@ import stars from "../assets/svg/stars.svg";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Landing = ({}) => {
+const Landing = ({ currentUser }) => {
   const [tag, setTag] = useState([]);
   const [popu, setPopu] = useState(false);
   const typingTimer = useRef(null);
+  const [userMan, setUserMan] = useState(false);
+  const [char, setChar] = useState({
+    location: "",
+    serivce: "",
+  });
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     setPopu(true);
@@ -27,43 +35,111 @@ const Landing = ({}) => {
     typingTimer.current = setTimeout(() => {
       setPopu(false);
     }, 5000);
+    if (e.target.name) {
+      const { name, value } = e.target;
+      setChar((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
+
+  useEffect(() => {
+    if (currentUser && currentUser.isAuthenticated) {
+      setUserMan(true);
+    }
+  }, [currentUser]);
+
+  const handleService = () => {
+    if (char.serivce) {
+      setTag((prev) => [...prev, char.serivce]);
+      setChar((prev) => ({
+        ...prev,
+        serivce: "",
+      }));
+    }
+  };
+
+  const handleFilter = (tg) => {
+    const newTag = tag.filter((taag) => tg !== taag);
+    setTag(newTag);
+  };
+
+  const handleSubmit = () => {
+    if (tag.length > 0) {
+      const tagStr = tag.join("-");
+      navigate(`/explore?service=${tagStr}&location=${char.location}`);
+    }
+  };
+
   return (
     <div className="landing">
-      <Header />
+      <Header user={userMan} />
       <div className="hero">
         <h1>Discover Beauty. Book with Confidence.</h1>
         <div className="form">
           <input
             type="text"
             placeholder="What Service?"
+            value={char.serivce}
+            name="serivce"
             onChange={handleSearch}
           />
           <input
             type="text"
             placeholder="Which Location?"
+            value={char.location}
+            name="location"
             onChange={handleSearch}
           />
-          <div className="search">Search</div>
+          <div className="search" onClick={handleSubmit}>
+            Search
+          </div>
+          <img src={cross} alt="" onClick={handleService} />
         </div>
         <div className="tag">
-          <div className="inner">
-            <span>#hair</span>
-            <img src={cross} alt="" />
-          </div>
-          <div className="inner">
-            <span>#hair</span>
-            <img src={cross} alt="" />
-          </div>
+          {tag.map((tg, i) => (
+            <div className="inner" key={i}>
+              <span>#{tg}</span>
+              <img src={cross} alt="" onClick={() => handleFilter(tg)} />
+            </div>
+          ))}
         </div>
         <div className="dd"></div>
-        <div className={`results ${popu ? "" : "hide"}`}>
+        <div
+          className={`results ${popu ? "" : "hide"}`}
+          onMouseOver={() => {
+            setPopu(true);
+            clearTimeout(typingTimer.current);
+          }}
+          onMouseLeave={handleSearch}
+        >
           <div className="title">Popular Searches</div>
           <hr />
-          <div className="item">Hair</div>
-          <div className="item">Gel Manicure</div>
-          <div className="item">Hollywood Wax</div>
-          <div className="item">Brazilian Wax</div>
+          <div
+            className="item"
+            onClick={() => setTag((prev) => [...prev, "Hair"])}
+          >
+            Hair
+          </div>
+          <div
+            className="item"
+            onClick={() => setTag((prev) => [...prev, "Gel Manicure"])}
+          >
+            Gel Manicure
+          </div>
+          <div
+            className="item"
+            onClick={() => setTag((prev) => [...prev, "Hollywood Wax"])}
+          >
+            Hollywood Wax
+          </div>
+          <div
+            className="item"
+            onClick={() => setTag((prev) => [...prev, "Brazilian Wax"])}
+          >
+            Brazilian Wax
+          </div>
         </div>
       </div>
       <div className="why">
@@ -214,8 +290,12 @@ const Landing = ({}) => {
           </div>
         </div>
         <div className="btn-group">
-          <div className="btn">Explore Glamor Gram</div>
-          <div className="btn join">Join Now</div>
+          <Link to="/explore" className="btn">
+            Explore Glamor Gram
+          </Link>
+          <Link to="/signin" className="btn join">
+            Join Now
+          </Link>
         </div>
       </div>
       <Footer />
@@ -223,4 +303,4 @@ const Landing = ({}) => {
   );
 };
 
-export default SectionWrapper(Landing, "Landing");
+export default Landing;

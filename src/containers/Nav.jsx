@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../assets/nav/nav.css";
 import { logout } from "../store/actions/auth";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import ProfileSvg from "../assets/nav/profile";
 import CalendarSvg from "../assets/nav/calendar";
 import AnalyticsSvg from "../assets/nav/analytics";
@@ -10,12 +9,32 @@ import AccountSvg from "../assets/nav/account";
 import PaymentSvg from "../assets/nav/payment";
 import MarketingSvg from "../assets/nav/marketing";
 import arrow from "../assets/svg/sideBlack.svg";
+import { getTicketsFn } from "../store/actions/ticket";
+import TicketNav from "../components/TicketNav";
 
-const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
+const Nav = ({
+  logout,
+  navigate,
+  position,
+  title,
+  role,
+  exPos,
+  noSide,
+  getTicketsFn,
+  ticket,
+  total,
+}) => {
   const [hov, setHov] = useState("");
+  const [id, setId] = useState(false);
 
   useEffect(() => {
     setHov(position);
+    if (position === "four") {
+      getTicketsFn();
+      const path = window.location.pathname;
+      const id = path.split("/").pop();
+      setId(id);
+    }
   }, [position]);
 
   const handleSide = (loc) => {
@@ -23,7 +42,7 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
   };
   return (
     <div className="nav">
-      <div className="main">
+      <div className="main" onMouseLeave={() => setHov(position)}>
         <div
           className={`nav-item ${position === "one" ? "active" : ""}`}
           onClick={() => handleSide("/")}
@@ -56,7 +75,7 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
         </div>
         <div
           className={`nav-item ${position === "four" ? "active" : ""}`}
-          onClick={() => handleSide("/")}
+          onClick={() => handleSide("/ticket/new")}
           onMouseOver={() => setHov("four")}
         >
           <div className="icon">
@@ -76,13 +95,13 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
         </div>
         <div
           className={`nav-item ${position === "six" ? "active" : ""}`}
-          onClick={() => handleSide("/")}
+          onClick={() => handleSide("/notification")}
           onMouseOver={() => setHov("six")}
         >
           <div className="icon">
             <MarketingSvg fill={position === "six" ? "black" : "white"} />
           </div>
-          <div className="text">Marketing</div>
+          <div className="text">Notification</div>
         </div>
         <div className={`tag over ${hov}`}></div>
         <div className={`tag ${position}`}></div>
@@ -221,56 +240,38 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
               <img src={arrow} alt="" />
             </div>
           </div>
-          <div className={`extr ${position === "zero" ? "active" : ""}`}>
+          <div className={`extr ${position === "four" ? "active" : ""}`}>
             <div className="hadr">
               <div className="up">
                 <div className="title">Messages</div>
-                <div className="state">4 Messages</div>
+                <div className="state">{total} Messages</div>
               </div>
-              <div className="tic">
+              <div className="tic" onClick={() => handleSide("/ticket/new")}>
                 <span>Raise a Ticket</span>
                 <ProfileSvg fill="black" />
               </div>
             </div>
-            <div className="side-item alp active">
-              <div className="img"></div>
-              <div className="down">
-                <div className="tic-line">
-                  <div className="name">Ticket 1</div>
-                  <div className="time">20:09</div>
-                </div>
-                <div className="desc">Lorem ipsum dolor sit ...</div>
-              </div>
+            {ticket.map((tick) => (
+              <TicketNav tick={tick} id={id} handleClick={handleSide} />
+            ))}
+          </div>
+          <div className={`extr ${position === "six" ? "active" : ""}`}>
+            <div className="title">Notifications</div>
+            <div
+              onClick={() => handleSide("/notification")}
+              className={`side-item ${exPos === "one" ? "active" : ""}`}
+            >
+              <div className="hedr">All Notifications</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
             </div>
-            <div className="side-item alp">
-              <div className="img"></div>
-              <div className="down">
-                <div className="tic-line">
-                  <div className="name">Ticket 1</div>
-                  <div className="time">20:09</div>
-                </div>
-                <div className="desc">Lorem ipsum dolor sit ...</div>
-              </div>
-            </div>
-            <div className="side-item alp">
-              <div className="img"></div>
-              <div className="down">
-                <div className="tic-line">
-                  <div className="name">Ticket 1</div>
-                  <div className="time">20:09</div>
-                </div>
-                <div className="desc">Lorem ipsum dolor sit ...</div>
-              </div>
-            </div>
-            <div className="side-item alp">
-              <div className="img"></div>
-              <div className="down">
-                <div className="tic-line">
-                  <div className="name">Ticket 1</div>
-                  <div className="time">20:09</div>
-                </div>
-                <div className="desc">Lorem ipsum dolor sit ...</div>
-              </div>
+            <div
+              onClick={() => handleSide("/prefrence")}
+              className={`side-item ${exPos === "two" ? "active" : ""}`}
+            >
+              <div className="hedr">Prefrences</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
             </div>
           </div>
         </div>
@@ -282,9 +283,12 @@ const Nav = ({ logout, navigate, position, title, role, exPos, noSide }) => {
 function mapStateToProps(state) {
   return {
     errors: state.errors,
+    ticket: state.ticket.all,
+    total: state.ticket.total,
   };
 }
 
 export default connect(mapStateToProps, {
   logout,
+  getTicketsFn,
 })(Nav);

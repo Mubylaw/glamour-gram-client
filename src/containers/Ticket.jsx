@@ -1,8 +1,41 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
 import { connect } from "react-redux";
+import { addTicketFn } from "../store/actions/ticket";
+import { useNavigate } from "react-router-dom";
 
-const Ticket = ({}) => {
+const Ticket = ({ addTicketFn, ticket }) => {
+  const [char, setChar] = useState({
+    firstName: "",
+    lastName: "",
+    description: "",
+    subject: "",
+  });
+  const [view, setView] = useState(false);
+  const [click, setClick] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setChar((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    setView(true);
+    setClick(true);
+    addTicketFn(char);
+  };
+
+  useEffect(() => {
+    if (ticket.new && ticket.new._id && click) {
+      setView(false);
+      navigate(`/ticket/${ticket.new._id}`);
+    }
+  }, [ticket.new]);
+
   return (
     <div className="home profile">
       <div className="headr">Raise a Ticket</div>
@@ -16,20 +49,50 @@ const Ticket = ({}) => {
       </div>
       <div className="form">
         <div className="item">
-          <label htmlFor="location">First Name:</label>
-          <input type="text" id="location" />
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={char.firstName}
+            onChange={handleChange}
+          />
         </div>
         <div className="item">
-          <label htmlFor="location">Last Name:</label>
-          <input type="text" id="location" />
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={char.lastName}
+            onChange={handleChange}
+          />
         </div>
         <div className="item">
-          <label htmlFor="location">Subject:</label>
-          <textarea type="text" id="location" />
+          <label htmlFor="subject">Subject:</label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            value={char.subject}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="item">
+          <label htmlFor="description">Description:</label>
+          <textarea
+            type="text"
+            id="description"
+            name="description"
+            value={char.description}
+            onChange={handleChange}
+          />
         </div>
       </div>
       <div className="btn-cover">
-        <div className="btn">Send</div>
+        <div className={`btn ${view ? "btn-load" : ""}`} onClick={handleSubmit}>
+          <span className="btn_text">Send</span>
+        </div>
       </div>
     </div>
   );
@@ -38,7 +101,8 @@ const Ticket = ({}) => {
 function mapStateToProps(state) {
   return {
     errors: state.errors,
+    ticket: state.ticket,
   };
 }
 
-export default connect(mapStateToProps, {})(Ticket);
+export default connect(mapStateToProps, { addTicketFn })(Ticket);

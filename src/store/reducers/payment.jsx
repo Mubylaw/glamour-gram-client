@@ -1,17 +1,17 @@
-import { GET_BANKS } from "../actionTypes";
+import { GET_PAYMENT_URL } from "../actionTypes";
 
-const charity = (
+const payment = (
   state = {
-    banks: [],
+    url: "",
   },
   action
 ) => {
   switch (action.type) {
-    case GET_BANKS:
-      return { ...state, banks: action.bank };
+    case GET_PAYMENT_URL:
+      return { ...state, url: action.url };
     default:
       return state;
   }
 };
 
-export default charity;
+export default payment;

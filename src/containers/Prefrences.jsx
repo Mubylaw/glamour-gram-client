@@ -1,8 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
 import { connect } from "react-redux";
+import { updateUser } from "../store/actions/user";
 
-const Prefrence = ({}) => {
+const Prefrence = ({ user, updateUser }) => {
+  const [emailNotification, setEmailNotification] = useState(false);
+  const [siteNotification, setSiteNotification] = useState(false);
+  const [smsNotification, setSmsNotification] = useState(false);
+  const [click, setClick] = useState(false);
+
+  useEffect(() => {
+    if (click) {
+      updateUser({ emailNotification, smsNotification, siteNotification });
+    }
+  }, [emailNotification, siteNotification, smsNotification]);
+
+  useEffect(() => {
+    setEmailNotification(user.emailNotification);
+    setSmsNotification(user.smsNotification);
+    setSiteNotification(user.siteNotification);
+  }, [user]);
+
   return (
     <div className="home profile cali">
       <div className="headr">Prefrences</div>
@@ -18,19 +36,43 @@ const Prefrence = ({}) => {
         <div className="line">
           <div className="name">Email</div>
           <div className="btn-group">
-            <div className="btn rem">on</div>
+            <div
+              className={`btn ${emailNotification ? "rem" : ""}`}
+              onClick={() => {
+                setEmailNotification(!emailNotification);
+                setClick(true);
+              }}
+            >
+              {emailNotification ? "on" : "off"}
+            </div>
           </div>
         </div>
         <div className="line">
           <div className="name">Website</div>
           <div className="btn-group">
-            <div className="btn rem">on</div>
+            <div
+              className={`btn ${siteNotification ? "rem" : ""}`}
+              onClick={() => {
+                setSiteNotification(!siteNotification);
+                setClick(true);
+              }}
+            >
+              {siteNotification ? "on" : "off"}
+            </div>
           </div>
         </div>
         <div className="line">
           <div className="name">SMS Messages</div>
           <div className="btn-group">
-            <div className="btn">off</div>
+            <div
+              className={`btn ${smsNotification ? "rem" : ""}`}
+              onClick={() => {
+                setSmsNotification(!smsNotification);
+                setClick(true);
+              }}
+            >
+              {smsNotification ? "on" : "off"}
+            </div>
           </div>
         </div>
       </div>
@@ -44,4 +86,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {})(Prefrence);
+export default connect(mapStateToProps, { updateUser })(Prefrence);

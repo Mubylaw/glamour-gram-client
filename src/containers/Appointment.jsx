@@ -2,8 +2,25 @@ import React, { useState, useEffect } from "react";
 import "../assets/styles/calendar.css";
 import { connect } from "react-redux";
 import Calendar from "../components/Calendar";
+import { getAppointmentsFn } from "../store/actions/appointment";
+import Appoints from "../components/Appointment";
 
-const Appointment = ({}) => {
+const Appointment = ({ getAppointmentsFn, user, appointments }) => {
+  const [dates, setDates] = useState({});
+  useEffect(() => {
+    console.log(user);
+    const date = new Date();
+    getAppointmentsFn(
+      `store=${user.id}&_greatertime=${date}&populate=user&sort=time`
+    );
+  }, []);
+
+  useEffect(() => {
+    var datt = [];
+    appointments.map((app) => datt.push(app.time));
+    setDates(datt);
+  }, [appointments]);
+
   return (
     <div className="home cali">
       <div className="headr">Calendar Integration</div>
@@ -16,30 +33,11 @@ const Appointment = ({}) => {
         </p>
       </div>
       <div className="calend">
-        <Calendar cal={true} time />
+        <Calendar cal={true} time dates={dates} />
       </div>
       <div className="tril">Appointments:</div>
-      <div className="apoint">
-        <div className="top">
-          <div className="date">Thursday 20th July 2023</div>
-          <div className="deet">Ponytail Appointment (Francessca Brander) </div>
-        </div>
-        <div className="time">13:00 PM</div>
-      </div>
-      <div className="apoint">
-        <div className="top">
-          <div className="date">Thursday 20th July 2023</div>
-          <div className="deet">Ponytail Appointment (Francessca Brander) </div>
-        </div>
-        <div className="time">13:00 PM</div>
-      </div>
-      <div className="apoint">
-        <div className="top">
-          <div className="date">Thursday 20th July 2023</div>
-          <div className="deet">Ponytail Appointment (Francessca Brander) </div>
-        </div>
-        <div className="time">13:00 PM</div>
-      </div>
+      {appointments &&
+        appointments.map((app, i) => <Appoints key={i} app={app} />)}
     </div>
   );
 };
@@ -47,7 +45,8 @@ const Appointment = ({}) => {
 function mapStateToProps(state) {
   return {
     errors: state.errors,
+    appointments: state.appointment.all,
   };
 }
 
-export default connect(mapStateToProps, {})(Appointment);
+export default connect(mapStateToProps, { getAppointmentsFn })(Appointment);

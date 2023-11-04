@@ -31,6 +31,7 @@ import ViewAppointment from "./ViewAppointment";
 import Favourite from "./Favourite";
 import Payment from "./Payment";
 import NewBooking from "./NewBooking";
+import Landing from "../components/Landing";
 // import Donation from "./Donation";
 // import Transfer from "./Transfer";
 // import UpdateBank from "./UpdateBank";
@@ -271,20 +272,20 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Ticket}
-              position="zero"
+              position="four"
               {...props}
             />
           }
         />
         <Route
           exact
-          path="/ticket"
+          path="/ticket/:id"
           element={
             <Homepage
               currentUser={currentUser}
               removeError={removeError}
               Page={ShowTicket}
-              position="zero"
+              position="four"
               {...props}
             />
           }
@@ -297,7 +298,8 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Notification}
-              position="one"
+              position="six"
+              exPos="one"
               {...props}
             />
           }
@@ -310,7 +312,8 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Prefrences}
-              position="one"
+              position="six"
+              exPos="two"
               {...props}
             />
           }
@@ -341,6 +344,11 @@ const Main = (props) => {
               {...props}
             />
           }
+        />
+        <Route
+          exact
+          path="/search"
+          element={<Landing currentUser={currentUser} {...props} />}
         />
         <Route exact path="/explore" element={<Explore {...props} />} />
         <Route
@@ -387,9 +395,21 @@ const Main = (props) => {
             />
           }
         /> */}
-        <Route exact path="/:id" element={<Show {...props} />} />
-        <Route exact path="/:id/portfolio" element={<Portfolio {...props} />} />
-        <Route exact path="/:id/:service" element={<Service {...props} />} />
+        <Route
+          exact
+          path="/:id"
+          element={<Show currentUser={currentUser} {...props} />}
+        />
+        <Route
+          exact
+          path="/:id/portfolio"
+          element={<Show portShow {...props} />}
+        />
+        <Route
+          exact
+          path="/:id/service"
+          element={<Show serviceShow {...props} />}
+        />
         <Route
           path="*"
           element={

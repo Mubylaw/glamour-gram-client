@@ -1,23 +1,33 @@
 .xplor {
   display: flex;
+  position: relative;
+}
+
+.close .ex-nav {
+  left: -245px;
+  position: absolute;
 }
 
 .ex-nav {
-  width: 17vw;
   height: 100vh;
   top: 0;
   left: 0;
   transition: all ease 0.5s;
   border-right: 1px solid #000;
   position: sticky;
-  min-width: 235px;
+  width: 245px;
 }
 
 .xplor .main-tab {
-  width: 83vw;
+  width: calc(100% - 245px);
   padding: 65px;
   min-height: 100vh;
   margin-bottom: 40px;
+}
+
+.xplor.close .main-tab {
+  width: 100%;
+  position: relative;
 }
 
 .ex-nav .bord {
@@ -32,10 +42,16 @@
   justify-content: center;
   cursor: pointer;
   transition: all ease 0.5s;
+  z-index: 1;
 }
 
 .ex-nav .bord img {
+  transition: all ease 0.5s;
   height: 22px;
+}
+
+.ex-nav .bord img.rota {
+  transform: rotate(180deg);
 }
 
 .ex-nav .title {
@@ -145,6 +161,19 @@
   border-radius: 10px;
   padding: 10px;
   width: 100%;
+}
+
+.ex-nav .item.cat .input-cover {
+  position: relative;
+}
+
+.ex-nav .item.cat .input-cover img {
+  position: absolute;
+  transform: rotate(135deg);
+  width: 20px;
+  top: 9px;
+  cursor: pointer;
+  right: 9px;
 }
 
 .main-tab .top {
@@ -264,6 +293,10 @@
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+}
+
+.main-tab .res-tab .service-card .service .line.hide {
+  display: none;
 }
 
 .main-tab .res-tab .service-card a {

@@ -1,17 +1,17 @@
 import { apiCall } from "../../services/api";
 import { addError, removeError } from "./errors";
-import { GET_BANKS } from "../actionTypes";
+import { GET_PAYMENT_URL } from "../actionTypes";
 
-export const getBank = (bank) => ({
-  type: GET_BANKS,
-  bank,
+export const getUrl = (url) => ({
+  type: GET_PAYMENT_URL,
+  url,
 });
 
-export const getBankFn = () => {
+export const getPaymentUrl = (pay) => {
   return (dispatch) => {
-    return apiCall("get", `/api/v1/payment/banks`)
+    return apiCall("post", `/api/v1/payment`, pay)
       .then(({ data }) => {
-        dispatch(getBank(data));
+        dispatch(getUrl(data));
         dispatch(removeError());
       })
       .catch((err) => {

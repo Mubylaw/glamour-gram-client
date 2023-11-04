@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import { updateUser } from "../store/actions/user";
+import { uploadAvatar } from "../store/actions/auth";
 
-const Profile = ({ user, updateUser }) => {
+const Profile = ({ user, updateUser, uploadAvatar }) => {
   const [char, setChar] = useState({
     location: "",
     phoneNo: "",
@@ -18,6 +19,7 @@ const Profile = ({ user, updateUser }) => {
     male: false,
     email: "",
     female: true,
+    picture: "",
     // type: "",
   });
   const [view, setView] = useState(false);
@@ -37,6 +39,12 @@ const Profile = ({ user, updateUser }) => {
         top: 0,
         behavior: "smooth",
       });
+      const elementsWithBtnLoad = document.querySelectorAll(".btn-load");
+      if (elementsWithBtnLoad.length > 0) {
+        elementsWithBtnLoad.forEach((element) => {
+          element.classList.remove("btn-load");
+        });
+      }
       for (const key in user) {
         if (key in char) {
           setChar((prevFormData) => ({
@@ -53,11 +61,33 @@ const Profile = ({ user, updateUser }) => {
     updateUser(char);
   };
 
+  const handleFileChange = (e) => {
+    const imgDiv = e.currentTarget.closest(".img");
+    if (imgDiv) {
+      imgDiv.classList.add("btn-load");
+    }
+    if (e.target.files) {
+      var formData = new FormData();
+      formData.append("avatar", e.target.files[0]);
+      uploadAvatar(formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    }
+  };
+
   return (
     <div className="home profile">
       <div className="headr">Profile Settings</div>
       <div className="info nil">
-        <div className="img"></div>
+        <div className="img">
+          <input type="file" onChange={handleFileChange} />
+          {char.picture && char.picture !== "no-user.jpg" && (
+            <img src={char.picture} alt="" />
+          )}
+          <span className="btn_text"></span>
+        </div>
         <div className="name">
           {user.role === "business"
             ? user.name
@@ -236,4 +266,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   updateUser,
+  uploadAvatar,
 })(Profile);

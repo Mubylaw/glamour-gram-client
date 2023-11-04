@@ -1,16 +1,33 @@
 import { apiCall } from "../../services/api";
 import { addError, removeError } from "./errors";
 import { setCurrentUser, setAuthorizationToken } from "./auth";
+import { GET_USERS, GET_USER_TOTAL, GET_USER } from "../actionTypes";
+
+export const getUsers = (user) => ({
+  type: GET_USERS,
+  user,
+});
+
+export const storeUser = (user) => ({
+  type: GET_USER,
+  user,
+});
+
+export const getUserTotal = (total) => ({
+  type: GET_USER_TOTAL,
+  total,
+});
 
 export function getUser(id, params, action) {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
-      return apiCall(
-        "get",
-        `/api/v1/users/${id}${params ? `?select=${params}` : ""}`
-      )
+      return apiCall("get", `/api/v1/users/${id}${params ? `?${params}` : ""}`)
         .then(({ user, data }) => {
-          dispatch(setCurrentUser(data));
+          if (action) {
+            dispatch(storeUser(data));
+          } else {
+            dispatch(setCurrentUser(data));
+          }
           dispatch(removeError());
           resolve(data);
         })
@@ -70,4 +87,23 @@ export const removeTime = (id) => (dispatch) => {
     .catch((err) => {
       dispatch(addError(err));
     });
+};
+
+export const getUsersFn = (params) => {
+  return (dispatch) => {
+    return apiCall("get", `/api/v1/users?${params ? params : ""}`)
+      .then(({ data, total, count, pagination }) => {
+        dispatch(getUsers(data));
+        dispatch(getUserTotal(total));
+        if (count !== 0) {
+          dispatch(paginate(Math.ceil(total / count), pagination));
+        } else {
+          dispatch(paginate(1, pagination));
+        }
+        dispatch(removeError());
+      })
+      .catch((err) => {
+        dispatch(addError(err));
+      });
+  };
 };

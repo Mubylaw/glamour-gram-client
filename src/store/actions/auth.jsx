@@ -115,3 +115,20 @@ export function googleUser(query) {
     });
   };
 }
+
+export function uploadAvatar(data, config) {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      return apiCall("put", `/api/v1/auth/avatar`, data, config)
+        .then(({ data }) => {
+          dispatch(setCurrentUser(data));
+          dispatch(removeError());
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(addError(err));
+          reject();
+        });
+    });
+  };
+}

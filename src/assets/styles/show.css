@@ -2,6 +2,14 @@
   padding: 65px 65px 0;
 }
 
+.show .err {
+  background-color: red;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: white;
+  margin: 30px 0;
+}
+
 .show .name {
   font-size: 35px;
   font-weight: 500;
@@ -81,6 +89,7 @@
   position: absolute;
   top: 15px;
   width: 10px;
+  cursor: pointer;
 }
 
 .calendar img.right {
@@ -95,6 +104,7 @@
 
 .calendar .inner .month {
   width: calc(50% - 20px);
+  min-width: 315px;
 }
 
 .calendar .inner .name {
@@ -118,7 +128,6 @@
 
 .calendar .inner .day-header .dh,
 .calendar .inner .day-body .dm {
-  display: block;
   height: 45px;
   width: 45px;
   display: flex;
@@ -126,11 +135,28 @@
   justify-content: center;
 }
 
+.calendar .inner .day-header,
+.calendar .inner .day-body {
+  min-width: 315px;
+}
+
 .calendar .inner .day-body .dm {
   margin: 5px 0;
   cursor: pointer;
   font-weight: 500;
+  position: relative;
   transition: all ease 0.3s;
+}
+
+.calendar .inner .day-body .dm .cir {
+  width: 5px;
+  height: 5px;
+  background-color: #eb335a;
+  border-radius: 50%;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
 }
 
 .calendar .inner .day-body .dm.fade {
@@ -142,6 +168,7 @@
   background: #006ce4;
 }
 
+.calendar .inner .day-body .dm.activeDate,
 .calendar .inner .day-body .dm:hover {
   color: #fff;
   background: #4f93e0;
@@ -170,6 +197,7 @@
   padding: 20px 40px;
   margin: 30px;
   cursor: pointer;
+  height: 60px;
 }
 
 .show .about {
@@ -372,6 +400,7 @@
   color: white;
   font-size: 12px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .category .inner {
@@ -725,7 +754,7 @@
 
 .checkout .pop .time {
   font-size: 14px;
-  margin: 0 0 20px;
+  margin: 0 15px 20px;
 }
 
 .checkout .pop .back {
