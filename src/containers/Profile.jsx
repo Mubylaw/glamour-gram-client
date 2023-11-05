@@ -20,6 +20,9 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     email: "",
     female: true,
     picture: "",
+    about: "",
+    priceType: "flat",
+    priceAmount: 0,
     // type: "",
   });
   const [view, setView] = useState(false);
@@ -108,12 +111,48 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
               />
             </div>
             <div className="item">
+              <label htmlFor="about">About Business:</label>
+              <textarea
+                type="text"
+                id="about"
+                onChange={handleChange}
+                value={char.about}
+                name="about"
+              />
+            </div>
+            <div className="item">
               <label htmlFor="industry">Industry:</label>
               <input
                 type="text"
                 onChange={handleChange}
                 value={char.industry}
                 name="industry"
+              />
+            </div>
+            <div className="item">
+              <label htmlFor="priceType">How you charge:</label>
+              <select
+                id="priceType"
+                name="priceType"
+                onChange={handleChange}
+                value={char.priceType}
+                type="text"
+                placeholder="Ex: "
+              >
+                <option value="">--Please choose an option--</option>
+                <option value="flat">Flat rate</option>
+                <option value="percent">Percentage of service</option>
+              </select>
+            </div>
+            <div className="item">
+              <label htmlFor="priceAmount">
+                Price ({char.priceType === "flat" ? "£" : "%"}):
+              </label>
+              <input
+                type="number"
+                onChange={handleChange}
+                value={char.priceAmount}
+                name="priceAmount"
               />
             </div>
             <div className="item">

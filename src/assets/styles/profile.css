@@ -61,6 +61,7 @@
   margin-right: 20px;
 }
 
+.profile .form .item select,
 .profile .form .item textarea,
 .profile .form .item input {
   width: calc(100% - 170px);
@@ -68,6 +69,10 @@
   border: 1px solid rgba(0, 0, 0, 0.6);
   height: 40px;
   padding: 20px;
+}
+
+.profile .form .item select {
+  padding: 0 20px;
 }
 
 .profile .form .item .input {

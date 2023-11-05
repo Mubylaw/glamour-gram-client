@@ -3,7 +3,7 @@ import "../assets/styles/calendar.css";
 import { connect } from "react-redux";
 import moment from "moment-timezone";
 import cross from "../assets/svg/cross.svg";
-import { days, generateTimeSlots } from "../utils/calendar";
+import { days, splitTime } from "../utils/calendar";
 import { addTime, removeTime } from "../store/actions/user";
 
 const Availability = ({ addTime, removeTime, user }) => {
@@ -12,9 +12,12 @@ const Availability = ({ addTime, removeTime, user }) => {
     hour: "",
     endhour: "",
     endminute: "",
+    breakhour: "",
+    breakminute: "",
+    breakendhour: "",
+    breakendminute: "",
     minute: "",
     zone: "",
-    duration: "",
   });
   const [zones, setZones] = useState([]);
   const [err, setErr] = useState("");
@@ -59,7 +62,11 @@ const Availability = ({ addTime, removeTime, user }) => {
     var count = 0;
     var emptyFields = "Please add ";
     for (const key in time) {
-      if (time.hasOwnProperty(key) && time[key] === "") {
+      if (
+        time.hasOwnProperty(key) &&
+        time[key] === "" &&
+        !key.startsWith("break")
+      ) {
         count++;
         emptyFields += ` ${key}`;
         var inputElement = document.querySelector(`input[name="${key}"]`);
@@ -71,6 +78,26 @@ const Availability = ({ addTime, removeTime, user }) => {
           selectElement.classList.add("error");
         }
       }
+    }
+
+    let brake = false;
+    if (
+      time.breakendhour ||
+      time.breakendminute ||
+      time.breakhour ||
+      time.breakminute
+    ) {
+      if (
+        time.breakhour > time.breakendhour ||
+        (time.breakhour === time.breakendhour &&
+          time.breakminute > time.breakendminute) ||
+        (time.breakhour === time.breakendhour &&
+          time.breakminute === time.breakendminute)
+      ) {
+        count++;
+        emptyFields = `Break start time cannot be greater than break end time`;
+      }
+      brake = true;
     }
 
     if (
@@ -96,6 +123,7 @@ const Availability = ({ addTime, removeTime, user }) => {
         for (let i = 0; i < 7; i++) {
           times.push({
             day: i,
+            brake,
             ...time,
           });
         }
@@ -104,6 +132,7 @@ const Availability = ({ addTime, removeTime, user }) => {
         for (let i = 1; i < 6; i++) {
           times.push({
             day: i,
+            brake,
             ...time,
           });
         }
@@ -111,18 +140,20 @@ const Availability = ({ addTime, removeTime, user }) => {
         delete time.day;
         times.push({
           day: 0,
+          brake,
           ...time,
         });
         times.push({
           day: 6,
+          brake,
           ...time,
         });
       } else {
-        times.push(time);
+        times.push({ brake, ...time });
       }
       let freeTime = [];
       times.forEach((tim) => {
-        const timeSlots = generateTimeSlots(tim);
+        const timeSlots = splitTime(tim);
         freeTime.push(...timeSlots);
       });
       addTime({ freeTime });
@@ -148,7 +179,6 @@ const Availability = ({ addTime, removeTime, user }) => {
       endhour: "",
       endminute: "",
       minute: "",
-      duration: "",
     }));
   }, [user.freeTime]);
 
@@ -181,7 +211,7 @@ const Availability = ({ addTime, removeTime, user }) => {
         <div className="item">
           <label htmlFor="day">Day(s):</label>
           <select name="day" id="day" value={time.day} onChange={handleChange}>
-            <option value="">Ex: Monday</option>
+            <option value="">--- Choose Day ---</option>
             <option value={1}>Monday</option>
             <option value={2}>Tuesday</option>
             <option value={3}>Wednesday</option>
@@ -203,7 +233,7 @@ const Availability = ({ addTime, removeTime, user }) => {
               value={time.hour}
               onChange={handleChange}
             >
-              <option value="">Ex: 08</option>
+              <option value="">--- Choose Hour ---</option>
               <option value={1}>01</option>
               <option value={2}>02</option>
               <option value={3}>03</option>
@@ -237,7 +267,7 @@ const Availability = ({ addTime, removeTime, user }) => {
               value={time.minute}
               onChange={handleChange}
             >
-              <option value="">Ex: 15</option>
+              <option value="">--- Choose Minute ---</option>
               <option value={0}>00</option>
               <option value={15}>15</option>
               <option value={30}>30</option>
@@ -254,7 +284,7 @@ const Availability = ({ addTime, removeTime, user }) => {
               value={time.endhour}
               onChange={handleChange}
             >
-              <option value="">Ex: 08</option>
+              <option value="">--- Choose Hour ---</option>
               <option value={1}>01</option>
               <option value={2}>02</option>
               <option value={3}>03</option>
@@ -281,14 +311,116 @@ const Availability = ({ addTime, removeTime, user }) => {
             </select>
           </div>
           <div className="item">
-            <label htmlFor="endminute">Start Minute:</label>
+            <label htmlFor="endminute">End Minute:</label>
             <select
               name="endminute"
               id="stopTime"
               value={time.endminute}
               onChange={handleChange}
             >
-              <option value="">Ex: 15</option>
+              <option value="">--- Choose Minute ---</option>
+              <option value={0}>00</option>
+              <option value={15}>15</option>
+              <option value={30}>30</option>
+              <option value={45}>45</option>
+            </select>
+          </div>
+        </div>
+        <div className="duo">
+          <div className="item">
+            <label htmlFor="breakhour">Break Start Hour:</label>
+            <select
+              name="breakhour"
+              id="startTime"
+              value={time.breakhour}
+              onChange={handleChange}
+            >
+              <option value="">--- Choose Hour ---</option>
+              <option value={1}>01</option>
+              <option value={2}>02</option>
+              <option value={3}>03</option>
+              <option value={4}>04</option>
+              <option value={5}>05</option>
+              <option value={6}>06</option>
+              <option value={8}>08</option>
+              <option value={9}>09</option>
+              <option value={10}>10</option>
+              <option value={11}>11</option>
+              <option value={12}>12</option>
+              <option value={13}>13</option>
+              <option value={14}>14</option>
+              <option value={15}>15</option>
+              <option value={16}>16</option>
+              <option value={17}>17</option>
+              <option value={18}>18</option>
+              <option value={19}>19</option>
+              <option value={20}>20</option>
+              <option value={21}>21</option>
+              <option value={22}>22</option>
+              <option value={23}>23</option>
+              <option value={0}>00</option>
+            </select>
+          </div>
+          <div className="item">
+            <label htmlFor="breakminute">Break Start Minute:</label>
+            <select
+              name="breakminute"
+              id="stopTime"
+              value={time.breakminute}
+              onChange={handleChange}
+            >
+              <option value="">--- Choose Minute ---</option>
+              <option value={0}>00</option>
+              <option value={15}>15</option>
+              <option value={30}>30</option>
+              <option value={45}>45</option>
+            </select>
+          </div>
+        </div>
+        <div className="duo">
+          <div className="item">
+            <label htmlFor="breakendhour">Break End Hour:</label>
+            <select
+              name="breakendhour"
+              id="startTime"
+              value={time.breakendhour}
+              onChange={handleChange}
+            >
+              <option value="">--- Choose Hour ---</option>
+              <option value={1}>01</option>
+              <option value={2}>02</option>
+              <option value={3}>03</option>
+              <option value={4}>04</option>
+              <option value={5}>05</option>
+              <option value={6}>06</option>
+              <option value={8}>08</option>
+              <option value={9}>09</option>
+              <option value={10}>10</option>
+              <option value={11}>11</option>
+              <option value={12}>12</option>
+              <option value={13}>13</option>
+              <option value={14}>14</option>
+              <option value={15}>15</option>
+              <option value={16}>16</option>
+              <option value={17}>17</option>
+              <option value={18}>18</option>
+              <option value={19}>19</option>
+              <option value={20}>20</option>
+              <option value={21}>21</option>
+              <option value={22}>22</option>
+              <option value={23}>23</option>
+              <option value={0}>00</option>
+            </select>
+          </div>
+          <div className="item">
+            <label htmlFor="breakendminute">Break End Minute:</label>
+            <select
+              name="breakendminute"
+              id="stopTime"
+              value={time.breakendminute}
+              onChange={handleChange}
+            >
+              <option value="">--- Choose Minute ---</option>
               <option value={0}>00</option>
               <option value={15}>15</option>
               <option value={30}>30</option>
@@ -315,30 +447,6 @@ const Availability = ({ addTime, removeTime, user }) => {
             ))}
           </datalist>
         </div>
-        <div className="item">
-          <label htmlFor="duration">Duration:</label>
-          <select
-            name="duration"
-            id="startTime"
-            value={time.duration}
-            onChange={handleChange}
-          >
-            <option value="">Ex: 1 hour</option>
-            <option value={15}>15 Minutes</option>
-            <option value={30}>30 Minutes</option>
-            <option value={45}>45 Minutes</option>
-            <option value={60}>1 hour</option>
-            <option value={90}>1 hour 30 minutes</option>
-            <option value={120}>2 hours</option>
-            <option value={150}>2 hours 30 minutes</option>
-            <option value={180}>3 hours</option>
-            <option value={240}>4 hours</option>
-            <option value={300}>5 hours</option>
-            <option value={360}>6 hours</option>
-            <option value={420}>7 hours</option>
-            <option value={480}>8 hours</option>
-          </select>
-        </div>
       </div>
       <div className="tril">Free Time:</div>
       <div className="times">
@@ -346,7 +454,8 @@ const Availability = ({ addTime, removeTime, user }) => {
           user.freeTime.map((tm) => (
             <div className="mm" key={tm._id}>
               <span className="btn_text">
-                {days[tm.day]} {setValue(tm.hour)}:{setValue(tm.minute)}
+                {days[tm.day]} {setValue(tm.hour)}:{setValue(tm.minute)} -{" "}
+                {setValue(tm.endhour)}:{setValue(tm.endminute)}
               </span>
               <img
                 src={cross}

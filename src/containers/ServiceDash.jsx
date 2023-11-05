@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import add from "../assets/svg/add.svg";
 import cross from "../assets/svg/cross.svg";
 import { updateUser } from "../store/actions/user";
+import ServiceLine from "../components/ServiceLine";
 
 const ServiceDash = ({ user, updateUser }) => {
   const [pop, setPop] = useState(false);
@@ -12,6 +13,7 @@ const ServiceDash = ({ user, updateUser }) => {
     category: "",
     service: "",
     price: "",
+    time: 0,
   });
 
   const handleChange = (e) => {
@@ -40,6 +42,7 @@ const ServiceDash = ({ user, updateUser }) => {
       category: "",
       service: "",
       price: "",
+      time: 0,
     });
     window.scrollTo({
       top: 0,
@@ -56,6 +59,7 @@ const ServiceDash = ({ user, updateUser }) => {
       category: cat.name,
       service: ser.name,
       price: ser.price,
+      time: ser.time,
       removeService: true,
     });
   };
@@ -65,6 +69,7 @@ const ServiceDash = ({ user, updateUser }) => {
       category: cat.name,
       service: ser.name,
       price: ser.price,
+      time: ser.time,
     });
     setPop(true);
   };
@@ -88,20 +93,13 @@ const ServiceDash = ({ user, updateUser }) => {
         {user.category &&
           user.category.map((cat, i) =>
             cat.service.map((ser, ind) => (
-              <div className="line" key={`${i} ${ind}`}>
-                <div className="name">{ser.name}</div>
-                <div className="btn-group">
-                  <div className="btn" onClick={() => handleEdit(cat, ser)}>
-                    Edit
-                  </div>
-                  <div
-                    className={`btn rem`}
-                    onClick={(e) => handleRemove(e, cat, ser)}
-                  >
-                    <span className="btn_text">Remove</span>
-                  </div>
-                </div>
-              </div>
+              <ServiceLine
+                key={`${i} ${ind}`}
+                ser={ser}
+                cat={cat}
+                handleEdit={handleEdit}
+                handleRemove={handleRemove}
+              />
             ))
           )}
       </div>
@@ -134,12 +132,21 @@ const ServiceDash = ({ user, updateUser }) => {
               />
             </div>
             <div className="item">
-              <label htmlFor="price">Price:</label>
+              <label htmlFor="price">Price (£):</label>
               <input
                 type="text"
                 onChange={handleChange}
                 value={char.price}
                 name="price"
+              />
+            </div>
+            <div className="item">
+              <label htmlFor="time">Time (mins):</label>
+              <input
+                type="number"
+                onChange={handleChange}
+                value={char.time}
+                name="time"
               />
             </div>
           </div>

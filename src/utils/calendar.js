@@ -71,27 +71,96 @@ const generateTimeSlots = (time) => {
     const endMinutes = time.endhour * 60 + time.endminute;
     const timeDifference = endMinutes - startMinutes;
 
-    const minutesToAdd =
-      timeDifference < time.duration ? timeDifference : time.duration;
+    const minutesToAdd = timeDifference < time.duration ? false : time.duration;
+    if (minutesToAdd) {
+      const newEndMinute = (currentMinute + minutesToAdd) % 60;
+      const newEndHour =
+        currentHour + Math.floor((currentMinute + minutesToAdd) / 60);
+      timeSlots.push({
+        hour: currentHour,
+        minute: currentMinute,
+        endhour: newEndHour,
+        endminute: newEndMinute,
+        zone: time.zone,
+        duration: minutesToAdd,
+        day: time.day,
+      });
 
-    const newEndMinute = (currentMinute + minutesToAdd) % 60;
-    const newEndHour =
-      currentHour + Math.floor((currentMinute + minutesToAdd) / 60);
-    timeSlots.push({
-      hour: currentHour,
-      minute: currentMinute,
-      endhour: newEndHour,
-      endminute: newEndMinute,
-      zone: time.zone,
-      duration: minutesToAdd,
-      day: time.day,
-    });
-
-    currentHour = newEndHour;
-    currentMinute = newEndMinute;
+      currentHour = newEndHour;
+      currentMinute = newEndMinute;
+    }
   }
 
   return timeSlots;
 };
 
-export { calendar, months, generateTimeSlots, days };
+function convertTime(minutes) {
+  if (typeof minutes !== "number" || minutes < 0) {
+    return "Invalid input";
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  if (hours === 0) {
+    return `${mins} minute${mins > 1 ? "s" : ""}`;
+  } else if (mins === 0) {
+    return `${hours} hour${hours > 1 ? "s" : ""}`;
+  } else {
+    return `${hours} hour${hours > 1 ? "s" : ""} ${mins} minute${
+      mins > 1 ? "s" : ""
+    }`;
+  }
+}
+
+function splitTime(obj) {
+  if (
+    obj.brake &&
+    (obj.hour < obj.breakhour ||
+      (obj.hour === obj.breakhour && obj.minute > obj.breakminute)) &&
+    (obj.breakendhour < obj.endhour ||
+      (obj.breakendhour === obj.endhour && obj.breakendminute > obj.endminute))
+  ) {
+    const firststartMinutes = obj.hour * 60 + obj.minute;
+    const firstendMinutes = obj.breakhour * 60 + obj.breakminute;
+    const firsttimeDifference = firstendMinutes - firststartMinutes;
+    const startMinutes = obj.breakendhour * 60 + obj.breakendminute;
+    const endMinutes = obj.endhour * 60 + obj.endminute;
+    const timeDifference = endMinutes - startMinutes;
+    const firstPart = {
+      hour: obj.hour,
+      minute: obj.minute,
+      endhour: obj.breakhour,
+      endminute: obj.breakminute,
+      zone: obj.zone,
+      duration: firsttimeDifference,
+      day: obj.day,
+    };
+    const secondPart = {
+      hour: obj.breakendhour,
+      minute: obj.breakendminute,
+      endhour: obj.endhour,
+      endminute: obj.endminute,
+      zone: obj.zone,
+      duration: timeDifference,
+      day: obj.day,
+    };
+    return [firstPart, secondPart];
+  } else {
+    const startMinutes = obj.hour * 60 + obj.minute;
+    const endMinutes = obj.endhour * 60 + obj.endminute;
+    const timeDifference = endMinutes - startMinutes;
+    return [
+      {
+        hour: obj.hour,
+        minute: obj.minute,
+        endhour: obj.endhour,
+        endminute: obj.endminute,
+        zone: obj.zone,
+        duration: timeDifference,
+        day: obj.day,
+      },
+    ];
+  }
+}
+
+export { calendar, months, generateTimeSlots, days, convertTime, splitTime };

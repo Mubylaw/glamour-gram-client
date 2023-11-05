@@ -23,9 +23,9 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
 
   return (
     <div className="header">
-      <div className="logo">
+      <a href="/" className="logo">
         <img src="/assets/logo.png" alt="" />
-      </div>
+      </a>
       <div className="links">
         <div className="nav-link">
           <span>featured Services</span>

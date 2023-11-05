@@ -8,8 +8,6 @@ import { removeError } from "../store/actions/errors";
 import Dashboard from "./Dashboard";
 import Explore from "./Explore";
 import Show from "./Show";
-import Portfolio from "./Portfolio";
-import Service from "./Service";
 import Profile from "./Profile";
 import ServiceDash from "./ServiceDash";
 import Review from "./Review";
