@@ -4,7 +4,17 @@ import arrow from "../assets/svg/sideBlack.svg";
 import { calendar, months } from "../utils/calendar";
 import "../assets/styles/show.css";
 
-const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
+const Calendar = ({
+  cal,
+  time,
+  dates,
+  handleClick,
+  times,
+  handleTime,
+  allTimes,
+  appointments,
+  duration,
+}) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentDay, setCurrentDay] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(false);
@@ -81,6 +91,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
               </div>
               <div className="day-body">
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -92,6 +105,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={0}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -103,6 +119,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={1}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -114,6 +133,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={2}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -125,6 +147,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={3}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -136,6 +161,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={4}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -147,6 +175,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={5}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={year}
@@ -174,6 +205,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
               </div>
               <div className="day-body">
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -185,6 +219,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={0}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -196,6 +233,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={1}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -207,6 +247,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={2}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -218,6 +261,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={3}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -229,6 +275,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={4}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -240,6 +289,9 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
                   max={5}
                 />
                 <DayLine
+                  duration={duration}
+                  appointments={appointments}
+                  allTimes={allTimes}
                   handleClick={handleClick}
                   dates={dates}
                   year={nextYear}
@@ -258,12 +310,8 @@ const Calendar = ({ cal, time, dates, handleClick, times, handleTime }) => {
               {times.length === 0 ? (
                 <div>No free session available</div>
               ) : (
-                times.map((tm) => (
-                  <div
-                    className="time"
-                    key={tm._id}
-                    onClick={() => handleTime(tm)}
-                  >
+                times.map((tm, i) => (
+                  <div className="time" key={i} onClick={() => handleTime(tm)}>
                     {setValue(tm.hour)}:{setValue(tm.minute)}
                   </div>
                 ))

@@ -11,7 +11,7 @@ const Appointment = ({ getAppointmentsFn, user, appointments }) => {
     console.log(user);
     const date = new Date();
     getAppointmentsFn(
-      `store=${user.id}&_greatertime=${date}&populate=user&sort=time`
+      `store=${user.id}&_greatertime=${date}&populate=user&sort=time&_boolstate=true`
     );
   }, []);
 

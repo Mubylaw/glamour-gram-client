@@ -159,8 +159,15 @@
   position: absolute;
 }
 
+.calendar .inner .day-body .dm.green {
+  opacity: 0.5;
+  background: #9fed88;
+}
+
 .calendar .inner .day-body .dm.fade {
   color: #ccc;
+  background: white;
+  opacity: 1;
 }
 
 .calendar .inner .day-body .dm.active {
@@ -761,6 +768,7 @@
   font-size: 14px;
   color: #1b0cc8;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .checkout .pop .total {

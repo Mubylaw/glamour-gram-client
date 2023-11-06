@@ -11,6 +11,9 @@ const DayLine = ({
   year,
   dates,
   handleClick,
+  allTimes,
+  appointments,
+  duration,
 }) => {
   var dayMap = days;
   if (days[0] > max + 1) {
@@ -26,6 +29,9 @@ const DayLine = ({
     <div className="day-line">
       {dayMap.map((dm, i) => (
         <Day
+          duration={duration}
+          appointments={appointments}
+          allTimes={allTimes}
           dm={dm}
           currentDay={currentDay}
           currentMonth={currentMonth}

@@ -88,6 +88,8 @@ const generateTimeSlots = (time) => {
 
       currentHour = newEndHour;
       currentMinute = newEndMinute;
+    } else {
+      break;
     }
   }
 
@@ -114,7 +116,7 @@ function convertTime(minutes) {
 
 function splitTime(obj) {
   if (
-    obj.brake &&
+    (obj.brake || obj.check) &&
     (obj.hour < obj.breakhour ||
       (obj.hour === obj.breakhour && obj.minute > obj.breakminute)) &&
     (obj.breakendhour < obj.endhour ||
@@ -145,6 +147,42 @@ function splitTime(obj) {
       day: obj.day,
     };
     return [firstPart, secondPart];
+  } else if (obj.check) {
+    if (obj.hour > obj.breakhour && obj.breakendhour > obj.endhour) {
+      return [];
+    } else if (obj.hour > obj.breakhour && obj.breakendhour < obj.endhour) {
+      const startMinutes = obj.breakendhour * 60 + obj.breakendminute;
+      const endMinutes = obj.endhour * 60 + obj.endminute;
+      const timeDifference = endMinutes - startMinutes;
+
+      const secondPart = {
+        hour: obj.breakendhour,
+        minute: obj.breakendminute,
+        endhour: obj.endhour,
+        endminute: obj.endminute,
+        zone: obj.zone,
+        duration: timeDifference,
+        day: obj.day,
+      };
+      return [secondPart];
+    } else if (obj.hour < obj.breakhour && obj.breakendhour > obj.endhour) {
+      const firststartMinutes = obj.hour * 60 + obj.minute;
+      const firstendMinutes = obj.breakhour * 60 + obj.breakminute;
+      const firsttimeDifference = firstendMinutes - firststartMinutes;
+      const firstPart = {
+        hour: obj.hour,
+        minute: obj.minute,
+        endhour: obj.breakhour,
+        endminute: obj.breakminute,
+        zone: obj.zone,
+        duration: firsttimeDifference,
+        day: obj.day,
+      };
+
+      return [firstPart];
+    } else {
+      return [];
+    }
   } else {
     const startMinutes = obj.hour * 60 + obj.minute;
     const endMinutes = obj.endhour * 60 + obj.endminute;

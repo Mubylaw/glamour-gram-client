@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import Calendar from "../components/Calendar";
 import { getUser, updateUser } from "../store/actions/user.jsx";
 import { getPaymentUrl } from "../store/actions/payment.jsx";
+import { getAppointmentsFn } from "../store/actions/appointment";
 
 const Show = ({
   getUser,
@@ -26,6 +27,8 @@ const Show = ({
   serviceShow,
   getPaymentUrl,
   url,
+  appointments,
+  getAppointmentsFn,
 }) => {
   const [bookmark, setBookmark] = useState(false);
   const [cal, setCal] = useState(false);
@@ -38,15 +41,18 @@ const Show = ({
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currDate, setCurrDate] = useState(new Date());
   const [times, setTimes] = useState([]);
+  const [allTimes, setAllTimes] = useState([]);
   const [portfolio, setPortfolio] = useState(["", "", "", "", ""]);
   const [booking, setBooking] = useState({});
   const [calen, setCalen] = useState(false);
   const [pay, setPay] = useState(false);
   const [service, setService] = useState("");
   const [price, setPrice] = useState(0);
+  const [payable, setPayable] = useState(0);
   const [selectTime, setSelectTime] = useState(false);
   const [view, setView] = useState(false);
   const [dateString, setDateString] = useState("");
+  const [duration, setDuration] = useState("");
 
   const handlePrice = (e) => {
     const categoryDiv = e.currentTarget.closest(".category");
@@ -59,7 +65,6 @@ const Show = ({
     const path = window.location.pathname;
     const id = path.split("/")[1];
     setId(id);
-    console.log("id", id);
     const day = currentDate.getDay();
     setDateNo(day);
     var search = window.location.search;
@@ -67,8 +72,10 @@ const Show = ({
       search = decodeURIComponent(search);
       var service = search.split("?service=")[1].split("&")[0];
       var price = search.split("&price=")[1];
+      var duration = search.split("&duration=")[1];
       setService(service);
       setPrice(parseInt(price));
+      setDuration(duration ? (parseInt(duration) ? parseInt(duration) : 0) : 0);
     }
   }, []);
 
@@ -76,6 +83,10 @@ const Show = ({
     if (id) {
       const idd = id.replace(/,/g, "");
       getUser(idd, "populate=reviews%20booking", true);
+      const date = new Date();
+      getAppointmentsFn(
+        `store=${idd}&_greatertime=${date}&select=time%20duration&_boolstate=true`
+      );
     }
   }, [id]);
 
@@ -119,18 +130,10 @@ const Show = ({
     }
   };
 
-  useEffect(() => {
-    if (business) {
-      const freeTime = business.freeTime;
-      if (freeTime) {
-        const times = freeTime.filter((ft) => ft.day == dateNo);
-        setTimes(times);
-      }
+  const handleClick = (e, dayNo, day, month, year, times) => {
+    if (e) {
+      var categoryDiv = e.currentTarget.closest(".dm");
     }
-  }, [dateNo, business]);
-
-  const handleClick = (e, dayNo, day, month, year) => {
-    const categoryDiv = e.currentTarget.closest(".dm");
     if (categoryDiv && !categoryDiv.classList.contains("fade")) {
       const elementsWithBtnLoad = document.querySelectorAll(".activeDate");
       if (elementsWithBtnLoad.length > 0) {
@@ -140,10 +143,12 @@ const Show = ({
       }
       categoryDiv.classList.add("activeDate");
       setDateNo(dayNo);
+      const curDat = new Date(year, month, day);
       if (day) {
-        const curDat = new Date(year, month, day);
         setCurrDate(curDat);
       }
+
+      setTimes(times);
     }
   };
 
@@ -169,6 +174,16 @@ const Show = ({
         setBooking(false);
       }
     }
+    if (business.priceType === "flat") {
+      setPayable(business.priceAmount);
+    } else {
+      const perc = business.priceAmount === 0 ? 0 : business.priceAmount / 100;
+      setPayable(price * perc);
+    }
+    const freeTime = business.freeTime;
+    if (freeTime) {
+      setAllTimes(freeTime);
+    }
   }, [business]);
 
   const handleTime = (tim) => {
@@ -186,18 +201,22 @@ const Show = ({
         {
           name: `${service} By ${business.name}`,
           image: portfolio[0],
-          desc: `${service} By ${business.name} on ${dateString} at ${setValue(
+          desc: `${service} By ${business.name} at ${setValue(
             selectTime.hour
           )}:${setValue(selectTime.minute)} - ${setValue(
             selectTime.endhour
           )}: ${setValue(selectTime.endminute)} (${selectTime.duration}mins)`,
-          id: 230183,
-          price,
+          price: payable,
           cartQuantity: 1,
+          selectTime,
+          business,
+          date: currDate,
         },
       ],
     });
   };
+
+  console.log(selectTime);
 
   useEffect(() => {
     if (url) {
@@ -215,8 +234,6 @@ const Show = ({
     const formattedDate = currDate.toLocaleDateString("en-US", options);
     setDateString(formattedDate);
   }, [currDate]);
-
-  console.log(url);
 
   return (
     <div>
@@ -257,7 +274,14 @@ const Show = ({
               onClick={() => setCal(false)}
             />
           </div>
-          <Calendar cal={cal} handleClick={handleClick} times={times} />
+          <Calendar
+            cal={cal}
+            handleClick={handleClick}
+            times={times}
+            allTimes={allTimes}
+            appointments={appointments}
+            duration={duration}
+          />
         </div>
         {portShow ? (
           <div className="portfolio-ex">
@@ -294,6 +318,7 @@ const Show = ({
                   <li>Curly</li>
                 </ul> */}
                 <div className="total">Total: £{price}</div>
+                <div className="total">Booking fee: £{payable}</div>
                 <div className="btn" onClick={() => setCalen(true)}>
                   Book this service
                 </div>
@@ -317,7 +342,7 @@ const Show = ({
                           <div className="name">{ser.name}</div>
                           <div className="cost">£{ser.price}</div>
                           <a
-                            href={`/${business._id}/service?service=${ser.name}&price=${ser.price}`}
+                            href={`/${business._id}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
                             className="book"
                           >
                             Book
@@ -408,7 +433,7 @@ const Show = ({
                           <div className="name">{ser.name}</div>
                           <div className="cost">£{ser.price}</div>
                           <a
-                            href={`/${business._id}/service?service=${ser.name}&price=${ser.price}`}
+                            href={`/${business._id}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
                             className="book"
                           >
                             Book
@@ -528,6 +553,9 @@ const Show = ({
                   handleClick={handleClick}
                   times={times}
                   handleTime={handleTime}
+                  allTimes={allTimes}
+                  appointments={appointments}
+                  duration={duration}
                 />
               </div>
             </div>
@@ -559,7 +587,8 @@ const Show = ({
                 >
                   Choose a different time/date
                 </div>
-                <div className="total">Total to pay: £{price}</div>
+                <div className="total">Total for service: £{price}</div>
+                <div className="total">Total to pay: £{payable}</div>
                 <div className="choice">
                   <div className="item">
                     <div className="str">Easy Breezy Access</div>
@@ -592,7 +621,12 @@ const Show = ({
                   </div>
                   <div className="line bee"></div>
                   <div className="btn-cover">
-                    <div className="btn guest">Guest Checkout</div>
+                    <div
+                      className={`btn guest ${view ? "btn-load" : ""}`}
+                      onClick={handlePay}
+                    >
+                      <span className="btn_text">Guest Checkout</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -610,9 +644,13 @@ function mapStateToProps(state) {
     errors: state.errors,
     business: state.user.one,
     url: state.payment.url,
+    appointments: state.appointment.all,
   };
 }
 
-export default connect(mapStateToProps, { getUser, updateUser, getPaymentUrl })(
-  Show
-);
+export default connect(mapStateToProps, {
+  getUser,
+  updateUser,
+  getPaymentUrl,
+  getAppointmentsFn,
+})(Show);

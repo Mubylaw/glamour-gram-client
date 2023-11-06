@@ -23,7 +23,7 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
 
   return (
     <div className="header">
-      <a href="/" className="logo">
+      <a href={user ? "/explore" : "/"} className="logo">
         <img src="/assets/logo.png" alt="" />
       </a>
       <div className="links">
