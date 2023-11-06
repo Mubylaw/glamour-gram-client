@@ -10,12 +10,14 @@ const Footer = ({ top }) => {
     <div className={`footer ${top ? "br-top" : ""}`}>
       <div className="top">
         <div className="slide">
-          <div className="logo">
+          <div className="logo bg">
             <img src="/assets/logo.png" alt="" />
           </div>
-          <p>contact</p>
-          <div className="no">02031234123</div>
-          <div className="email">info@glamorgram.co.uk</div>
+          <div>
+            <p>contact</p>
+            <div className="no">02031234123</div>
+            <div className="email">info@glamorgram.co.uk</div>
+          </div>
           <div className="social">
             <img src={facebook} alt="" />
             <img src={insta} alt="" />

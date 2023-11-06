@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../assets/styles/landing.css";
 import SectionWrapper from "../hocs/SectionWrapper";
-
 import cross from "../assets/svg/cross.svg";
 import topCrown from "../assets/svg/topCrown.svg";
 import bottomCrown from "../assets/svg/bottomCrown.svg";
@@ -9,11 +8,12 @@ import CurveSvg from "../assets/svg/curve";
 import CircleSvg from "../assets/svg/circle";
 import CapSvg from "../assets/svg/cap";
 import stars from "../assets/svg/stars.svg";
-
 import Header from "./Header";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { comeIn, fadeIn, textVariant, zoomIn } from "../utils/motion";
 
 const Landing = ({ currentUser }) => {
   const [tag, setTag] = useState([]);
@@ -255,7 +255,7 @@ const Landing = ({ currentUser }) => {
               colors and techniques.
             </p>
           </div>
-          <div className="item">
+          <div className="item bg">
             <div className="img">
               <img src="/assets/review%20(2).png" alt="" />
             </div>
@@ -266,7 +266,7 @@ const Landing = ({ currentUser }) => {
               colors and techniques.
             </p>
           </div>
-          <div className="item">
+          <div className="item bg">
             <div className="img">
               <img src="/assets/review%20(3).png" alt="" />
             </div>
@@ -277,7 +277,7 @@ const Landing = ({ currentUser }) => {
               colors and techniques.
             </p>
           </div>
-          <div className="item">
+          <div className="item bg">
             <div className="img">
               <img src="/assets/review%20(4).png" alt="" />
             </div>

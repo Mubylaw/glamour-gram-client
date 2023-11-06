@@ -436,3 +436,160 @@
   font-family: "Open Sans", sans-serif;
   margin-left: 25px;
 }
+
+.sm {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .bg {
+    display: none;
+  }
+
+  .sm {
+    display: block;
+  }
+
+  .landing .form {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .landing .form input:nth-child(2),
+  .landing .form input {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .landing .form img {
+    top: 23px;
+    left: calc(100% - 65px);
+  }
+
+  .footer,
+  .reviews,
+  .categories,
+  .why,
+  .landing .hero {
+    padding: 30px;
+  }
+
+  .landing .hero .results,
+  .landing .hero .tag {
+    width: 90%;
+  }
+
+  .categories {
+    flex-direction: column;
+  }
+
+  .categories .title {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .categories .title img:nth-child(3),
+  .categories .title img {
+    left: calc(50% - 216px);
+  }
+
+  .categories .tile-outer {
+    width: 100%;
+  }
+
+  .reviews img.star {
+    width: 120px;
+    top: 100px;
+  }
+
+  .reviews .title {
+    font-size: 23px;
+    font-weight: 600;
+  }
+
+  .reviews .rev-item .item {
+    width: 100%;
+  }
+
+  .footer .bottom {
+    display: none;
+  }
+
+  .footer .top {
+    flex-direction: column-reverse;
+  }
+
+  .footer .top .info {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer .top .slide {
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 600px) {
+  .landing .hero h1 {
+    font-size: 40px;
+  }
+
+  .why .title {
+    width: 300px;
+  }
+
+  .why .title svg:nth-child(4) {
+    top: 7px;
+    left: 104px;
+    width: 180px;
+  }
+
+  .why .title svg:nth-child(3) {
+    left: -60px;
+    top: -59px;
+    width: 200px;
+  }
+
+  .why .title svg:nth-child(5) {
+    left: 134px;
+    top: -28px;
+    width: 18px;
+  }
+
+  .why .tab-outer .tab {
+    width: calc(50% - 30px);
+    margin: 20px 10px;
+  }
+
+  .categories .tile-outer .tile {
+    width: calc(50% - 10px);
+  }
+
+  .reviews img.star {
+    width: 85px;
+    top: 37px;
+  }
+
+  .reviews .btn-group {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .categories .title {
+    width: 200px;
+    margin: 0 auto 30px;
+  }
+
+  .categories .title img:nth-child(3),
+  .categories .title img {
+    left: calc(50% - 110px);
+  }
+}
