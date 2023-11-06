@@ -5,6 +5,7 @@ import down from "../assets/svg/down.svg";
 import { logout } from "../store/actions/auth";
 import { connect } from "react-redux";
 import menu from "../assets/svg/menu.svg";
+import cancel from "../assets/svg/cancel.svg";
 
 const Header = ({ logout, title, noInfo, obj, user }) => {
   const [mob, setMob] = useState(false);
@@ -24,10 +25,17 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
     navigate("/");
   };
 
+  const handleOpen = (e) => {
+    const categoryDiv = e.currentTarget.closest(".nav-link");
+    if (categoryDiv) {
+      categoryDiv.classList.toggle("hide");
+    }
+  };
+
   return (
     <div className="header">
-      <div className="sm img" onClick={() => setMob(true)}>
-        <img src={menu} alt="" />
+      <div className="sm img" onClick={() => setMob(!mob)}>
+        {mob ? <img src={cancel} alt="" /> : <img src={menu} alt="" />}
       </div>
       <a href={user ? "/explore" : "/"} className="logo">
         <img src="/assets/logo.png" alt="" />
@@ -70,6 +78,38 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <div className="log-in">Log In</div>
           </Link>
         )}
+      </div>
+      <div className={`mob sm ${mob ? "" : "hide"}`}>
+        <div className="nav-link">
+          <div className="tiop" onClick={handleOpen}>
+            <span>featured Services</span>
+            <img src={down} alt="down" />
+          </div>
+          <div className="inner">
+            <div className="line">Hair</div>
+            <div className="line">Hair</div>
+            <div className="line">Hair</div>
+            <div className="line">Hair</div>
+          </div>
+        </div>
+        <div className="nav-link">
+          <div className="tiop" onClick={handleOpen}>
+            <span>Glamor Gram Business</span>
+            <img src={down} alt="down" />
+          </div>
+          <div className="inner">
+            <div className="line">Hair</div>
+            <div className="line">Hair</div>
+            <div className="line">Hair</div>
+            <div className="line">Hair</div>
+          </div>
+        </div>
+        <div className="nav-link">
+          <span>About Us</span>
+        </div>
+        <div className="nav-link">
+          <span>Contact Us</span>
+        </div>
       </div>
     </div>
   );

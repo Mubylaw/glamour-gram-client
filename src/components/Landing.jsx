@@ -8,6 +8,7 @@ import CurveSvg from "../assets/svg/curve";
 import CircleSvg from "../assets/svg/circle";
 import CapSvg from "../assets/svg/cap";
 import stars from "../assets/svg/stars.svg";
+import carousel from "../assets/svg/carousel.svg";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +25,7 @@ const Landing = ({ currentUser }) => {
     location: "",
     serivce: "",
   });
+  const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -70,6 +72,14 @@ const Landing = ({ currentUser }) => {
       const tagStr = tag.join("-");
       navigate(`/explore?service=${tagStr}&location=${char.location}`);
     }
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % 4);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + 4) % 4);
   };
 
   return (
@@ -159,39 +169,24 @@ const Landing = ({ currentUser }) => {
             </p>
           </div>
           <div className="tab">
-            <div className="subtitle">Endless Options</div>
-            <p>
-              Discover hundreds of extraordinary beauty professionals in one
-              place.
-            </p>
+            <div className="subtitle">Easy Booking</div>
+            <p>Schedule your next appointment with a simple click.</p>
           </div>
           <div className="tab">
-            <div className="subtitle">Endless Options</div>
-            <p>
-              Discover hundreds of extraordinary beauty professionals in one
-              place.
-            </p>
+            <div className="subtitle">Quality Assurance</div>
+            <p>Vetted beauty experts for top-notch experiences.</p>
           </div>
           <div className="tab">
-            <div className="subtitle">Endless Options</div>
-            <p>
-              Discover hundreds of extraordinary beauty professionals in one
-              place.
-            </p>
+            <div className="subtitle">Personalised Experience</div>
+            <p>Discover exclusive deals that cater to your needs.</p>
           </div>
           <div className="tab">
-            <div className="subtitle">Endless Options</div>
-            <p>
-              Discover hundreds of extraordinary beauty professionals in one
-              place.
-            </p>
+            <div className="subtitle">Effortless Payments</div>
+            <p>Secure and seamless transactions for your peace of mind.</p>
           </div>
           <div className="tab">
-            <div className="subtitle">Endless Options</div>
-            <p>
-              Discover hundreds of extraordinary beauty professionals in one
-              place.
-            </p>
+            <div className="subtitle">One Stop Shop</div>
+            <p>Manage all of your beauty and business needs in one place</p>
           </div>
         </div>
       </div>
@@ -244,50 +239,63 @@ const Landing = ({ currentUser }) => {
           Discover the latest trends. Book with Ease. Showcase your talent.
         </div>
         <div className="rev-item">
-          <div className="item">
-            <div className="img">
-              <img src="/assets/review%20(1).png" alt="" />
+          <img
+            src={carousel}
+            className="left sm btn"
+            alt=""
+            onClick={handlePrev}
+          />
+          <div className="inner">
+            <div className={`item ${currentIndex === 0 ? "active" : ""}`}>
+              <div className="img">
+                <img src="/assets/review%20(1).png" alt="" />
+              </div>
+              <div className="title">Discover Expert Eyeshadow Artists</div>
+              <p>
+                Elevate your look with expert eyeshadow stylists. Let skilled
+                professionals bring out the beauty of your eyes with stunning
+                colors and techniques.
+              </p>
             </div>
-            <div className="title">Discover Expert Eyeshadow Artists</div>
-            <p>
-              Elevate your look with expert eyeshadow stylists. Let skilled
-              professionals bring out the beauty of your eyes with stunning
-              colors and techniques.
-            </p>
-          </div>
-          <div className="item bg">
-            <div className="img">
-              <img src="/assets/review%20(2).png" alt="" />
+            <div className={`item ${currentIndex === 1 ? "active" : ""}`}>
+              <div className="img">
+                <img src="/assets/review%20(2).png" alt="" />
+              </div>
+              <div className="title">Try Sugar Waxing Today</div>
+              <p>
+                Experience Gentle Sugar Waxing with Skilled Professionals.
+                Connect with experts who use sugar wax for a kinder hair removal
+                experience.
+              </p>
             </div>
-            <div className="title">Discover Expert Eyeshadow Artists</div>
-            <p>
-              Elevate your look with expert eyeshadow stylists. Let skilled
-              professionals bring out the beauty of your eyes with stunning
-              colors and techniques.
-            </p>
-          </div>
-          <div className="item bg">
-            <div className="img">
-              <img src="/assets/review%20(3).png" alt="" />
+            <div className={`item ${currentIndex === 2 ? "active" : ""}`}>
+              <div className="img">
+                <img src="/assets/review%20(3).png" alt="" />
+              </div>
+              <div className="title">Discover BIAB Nail Artists</div>
+              <p>
+                Enhance Your Nails with BIAB Specialists. Transform your nails
+                without extensions, and enjoy stronger nails. Connect with
+                experts skilled in Builder in a Bottle techniques.
+              </p>
             </div>
-            <div className="title">Discover Expert Eyeshadow Artists</div>
-            <p>
-              Elevate your look with expert eyeshadow stylists. Let skilled
-              professionals bring out the beauty of your eyes with stunning
-              colors and techniques.
-            </p>
-          </div>
-          <div className="item bg">
-            <div className="img">
-              <img src="/assets/review%20(4).png" alt="" />
+            <div className={`item ${currentIndex === 3 ? "active" : ""}`}>
+              <div className="img">
+                <img src="/assets/review%20(4).png" alt="" />
+              </div>
+              <div className="title">Find Your Afro Hair Expert</div>
+              <p>
+                Embrace Vibrant Afro Hair with Specialized Stylists. Get the
+                perfect highlights that complement your unique style
+              </p>
             </div>
-            <div className="title">Discover Expert Eyeshadow Artists</div>
-            <p>
-              Elevate your look with expert eyeshadow stylists. Let skilled
-              professionals bring out the beauty of your eyes with stunning
-              colors and techniques.
-            </p>
           </div>
+          <img
+            src={carousel}
+            className="right sm btn"
+            alt=""
+            onClick={handleNext}
+          />
         </div>
         <div className="btn-group">
           <Link to="/explore" className="btn">
