@@ -11,6 +11,7 @@ import MarketingSvg from "../assets/nav/marketing";
 import arrow from "../assets/svg/sideBlack.svg";
 import { getTicketsFn } from "../store/actions/ticket";
 import TicketNav from "../components/TicketNav";
+import StarSvg from "../assets/nav/star";
 
 const Nav = ({
   logout,
@@ -55,59 +56,101 @@ const Nav = ({
         </div>
         <div
           className={`nav-item ${position === "two" ? "active" : ""}`}
-          onClick={() => handleSide("/calendar")}
+          onClick={() =>
+            handleSide(role === "business" ? "/calendar" : "/appointment")
+          }
           onMouseOver={() => setHov("two")}
         >
           <div className="icon">
             <CalendarSvg fill={position === "two" ? "black" : "white"} />
           </div>
-          <div className="text">My Calendar</div>
-        </div>
-        <div
-          className={`nav-item ${position === "three" ? "active" : ""}`}
-          onClick={() => handleSide("/performance")}
-          onMouseOver={() => setHov("three")}
-        >
-          <div className="icon">
-            <AnalyticsSvg fill={position === "three" ? "black" : "white"} />
+          <div className="text">
+            {role === "business" ? "My Calendar" : "My appointment"}
           </div>
-          <div className="text">My Analytics</div>
         </div>
-        <div
-          className={`nav-item ${position === "four" ? "active" : ""}`}
-          onClick={() => handleSide("/ticket/new")}
-          onMouseOver={() => setHov("four")}
-        >
-          <div className="icon">
-            <AccountSvg fill={position === "four" ? "black" : "white"} />
-          </div>
-          <div className="text">Account Settings</div>
-        </div>
-        <div
-          className={`nav-item ${position === "five" ? "active" : ""}`}
-          onClick={() => handleSide("/earning")}
-          onMouseOver={() => setHov("five")}
-        >
-          <div className="icon">
-            <PaymentSvg fill={position === "five" ? "black" : "white"} />
-          </div>
-          <div className="text">Payments</div>
-        </div>
-        <div
-          className={`nav-item ${position === "six" ? "active" : ""}`}
-          onClick={() => handleSide("/notification")}
-          onMouseOver={() => setHov("six")}
-        >
-          <div className="icon">
-            <MarketingSvg fill={position === "six" ? "black" : "white"} />
-          </div>
-          <div className="text">Notification</div>
-        </div>
+        {role === "business" ? (
+          <>
+            <div
+              className={`nav-item ${position === "three" ? "active" : ""}`}
+              onClick={() => handleSide("/performance")}
+              onMouseOver={() => setHov("three")}
+            >
+              <div className="icon">
+                <AnalyticsSvg fill={position === "three" ? "black" : "white"} />
+              </div>
+              <div className="text">My Analytics</div>
+            </div>
+            <div
+              className={`nav-item ${position === "four" ? "active" : ""}`}
+              onClick={() => handleSide("/")}
+              onMouseOver={() => setHov("four")}
+            >
+              <div className="icon">
+                <AccountSvg fill={position === "four" ? "black" : "white"} />
+              </div>
+              <div className="text">Account Settings</div>
+            </div>
+            <div
+              className={`nav-item ${position === "five" ? "active" : ""}`}
+              onClick={() => handleSide("/earning")}
+              onMouseOver={() => setHov("five")}
+            >
+              <div className="icon">
+                <PaymentSvg fill={position === "five" ? "black" : "white"} />
+              </div>
+              <div className="text">Payments</div>
+            </div>
+            <div
+              className={`nav-item ${position === "six" ? "active" : ""}`}
+              onClick={() => handleSide("/notification")}
+              onMouseOver={() => setHov("six")}
+            >
+              <div className="icon">
+                <MarketingSvg fill={position === "six" ? "black" : "white"} />
+              </div>
+              <div className="text">Notification</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              className={`nav-item ${position === "zero" ? "active" : ""}`}
+              onClick={() => handleSide("/favorite")}
+              onMouseOver={() => setHov("zero")}
+            >
+              <div className="icon">
+                <StarSvg fill={position === "zero" ? "black" : "white"} />
+              </div>
+              <div className="text">Favourite</div>
+            </div>
+            <div
+              className={`nav-item ${position === "four" ? "active" : ""}`}
+              onClick={() => handleSide("/")}
+              onMouseOver={() => setHov("four")}
+            >
+              <div className="icon">
+                <PaymentSvg fill={position === "four" ? "black" : "white"} />
+              </div>
+              <div className="text">Payments</div>
+            </div>
+            <div
+              className={`nav-item ${position === "five" ? "active" : ""}`}
+              onClick={() => handleSide("/")}
+              onMouseOver={() => setHov("five")}
+            >
+              <div className="icon">
+                <MarketingSvg fill={position === "five" ? "black" : "white"} />
+              </div>
+              <div className="text">Rewards</div>
+            </div>
+          </>
+        )}
+
         <div className={`tag over ${hov}`}></div>
         <div className={`tag ${position}`}></div>
       </div>
       {!noSide && (
-        <div className="side">
+        <div className={`side ${position === "zero" ? "hide" : ""}`}>
           <div className={`extr ${position === "one" ? "active" : ""}`}>
             <div className="title">My Profile</div>
             <div
@@ -118,65 +161,85 @@ const Nav = ({
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
-            <div
-              onClick={() => handleSide("/service")}
-              className={`side-item ${exPos === "two" ? "active" : ""}`}
-            >
-              <div className="hedr">My Services</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
-            </div>
-            <div
-              onClick={() => handleSide("/review")}
-              className={`side-item ${exPos === "three" ? "active" : ""}`}
-            >
-              <div className="hedr">My Reviews</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
-            </div>
-            <div
-              onClick={() => handleSide("/portfolio")}
-              className={`side-item ${exPos === "four" ? "active" : ""}`}
-            >
-              <div className="hedr">My Portfolio</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
-            </div>
-            <div
-              onClick={() => handleSide("/booking")}
-              className={`side-item ${exPos === "five" ? "active" : ""}`}
-            >
-              <div className="hedr">Booking Information</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
-            </div>
+            {role === "business" && (
+              <>
+                <div
+                  onClick={() => handleSide("/service")}
+                  className={`side-item ${exPos === "two" ? "active" : ""}`}
+                >
+                  <div className="hedr">My Services</div>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  </p>
+                  <img src={arrow} alt="" />
+                </div>
+                <div
+                  onClick={() => handleSide("/review")}
+                  className={`side-item ${exPos === "three" ? "active" : ""}`}
+                >
+                  <div className="hedr">My Reviews</div>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  </p>
+                  <img src={arrow} alt="" />
+                </div>
+                <div
+                  onClick={() => handleSide("/portfolio")}
+                  className={`side-item ${exPos === "four" ? "active" : ""}`}
+                >
+                  <div className="hedr">My Portfolio</div>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  </p>
+                  <img src={arrow} alt="" />
+                </div>
+                <div
+                  onClick={() => handleSide("/booking")}
+                  className={`side-item ${exPos === "five" ? "active" : ""}`}
+                >
+                  <div className="hedr">Booking Information</div>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  </p>
+                  <img src={arrow} alt="" />
+                </div>
+              </>
+            )}
           </div>
           <div className={`extr ${position === "two" ? "active" : ""}`}>
-            <div className="title">My Calendar</div>
-            <div
-              onClick={() => handleSide("/calendar")}
-              className={`side-item ${exPos === "one" ? "active" : ""}`}
-            >
-              <div className="hedr">Calendar Integration</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
+            <div className="title">
+              {role === "business" ? "My Calendar" : "My appointment"}
             </div>
+            {role === "business" && (
+              <div
+                onClick={() => handleSide("/calendar")}
+                className={`side-item ${exPos === "one" ? "active" : ""}`}
+              >
+                <div className="hedr">Calendar Integration</div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <img src={arrow} alt="" />
+              </div>
+            )}
             <div
               onClick={() => handleSide("/appointment")}
               className={`side-item ${exPos === "two" ? "active" : ""}`}
             >
-              <div className="hedr">Calendar View</div>
+              <div className="hedr">
+                {role === "business" ? "Calendar view" : "Upcoming appointment"}
+              </div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
-            <div
-              onClick={() => handleSide("/availability")}
-              className={`side-item ${exPos === "three" ? "active" : ""}`}
-            >
-              <div className="hedr">Availability Management</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
-            </div>
+            {role === "business" && (
+              <div
+                onClick={() => handleSide("/availability")}
+                className={`side-item ${exPos === "three" ? "active" : ""}`}
+              >
+                <div className="hedr">Availability Management</div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <img src={arrow} alt="" />
+              </div>
+            )}
           </div>
           <div className={`extr ${position === "three" ? "active" : ""}`}>
             <div className="title">My Calendar</div>

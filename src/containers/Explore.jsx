@@ -6,15 +6,13 @@ import Down from "../assets/svg/downNav.jsx";
 import leftStars from "../assets/svg/leftStars.svg";
 import rightStars from "../assets/svg/rightStars.svg";
 import cross from "../assets/svg/cross.svg";
-import revStars from "../assets/svg/revStars.svg";
-import leftArrow from "../assets/svg/leftArrow.svg";
 import side from "../assets/svg/side.svg";
 import Footer from "../components/Footer";
 import MultiRangeSlider from "../components/MultiSlider";
 import { getUsersFn } from "../store/actions/user.jsx";
 import ServiceCard from "../components/serviceCard.jsx";
 
-const Explore = ({ getUsersFn, users, total }) => {
+const Explore = ({ getUsersFn, users, total, currentUser }) => {
   const [loc, setLoc] = useState(false);
   const [price, setPrice] = useState(false);
   const [ava, setAva] = useState(false);
@@ -52,7 +50,7 @@ const Explore = ({ getUsersFn, users, total }) => {
 
   return (
     <div>
-      <Header />
+      <Header user={currentUser.isAuthenticated} />
       <div className={`xplor ${close ? "close" : ""}`}>
         <div className="ex-nav">
           <div className="bord" onClick={() => setClose(!close)}>

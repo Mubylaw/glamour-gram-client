@@ -5,7 +5,6 @@ import AuthForm from "../components/AuthForm";
 import Homepage from "./Homepage";
 import { authUser, forgotPassword, resetPassword } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
-import Dashboard from "./Dashboard";
 import Explore from "./Explore";
 import Show from "./Show";
 import Profile from "./Profile";
@@ -30,14 +29,7 @@ import Favourite from "./Favourite";
 import Payment from "./Payment";
 import NewBooking from "./NewBooking";
 import Landing from "../components/Landing";
-// import Donation from "./Donation";
-// import Transfer from "./Transfer";
-// import UpdateBank from "./UpdateBank";
-// import Analytics from "./Analytics";
-// import Onboarding from "./Onboarding";
-// import Haqadas from "../components/Haqadas";
-// import Charity from "./Charity";
-// import SingleCharity from "./SingleCharity";
+import Favorite from "./Favorite";
 
 const Main = (props) => {
   const {
@@ -160,6 +152,19 @@ const Main = (props) => {
               Page={Calendar}
               position="two"
               exPos="one"
+              {...props}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/favorite"
+          element={
+            <Homepage
+              currentUser={currentUser}
+              removeError={removeError}
+              Page={Favorite}
+              position="zero"
               {...props}
             />
           }

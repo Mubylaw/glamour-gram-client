@@ -3,7 +3,11 @@ import { useState } from "react";
 import revStars from "../assets/svg/revStars.svg";
 import leftArrow from "../assets/svg/leftArrow.svg";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, locs }) => {
+  if (!service.name) {
+    return null;
+  }
+  console.log(service.rating);
   let rating = 0;
   rating = Math.floor(service.rating / 100);
   let count = 0;
@@ -21,19 +25,32 @@ const ServiceCard = ({ service }) => {
           ))}
         </div>
       </div>
-      <div className="service">
-        {service.category.map((cat) => {
-          return cat.service.map((ser) => {
-            count++;
-            return (
-              <div className={`line ${count > 3 ? "hide" : ""}`} key={count}>
-                <span>{ser.name}</span>
-                <div className="price">£{ser.price}</div>
-              </div>
-            );
-          });
-        })}
-      </div>
+      {locs ? (
+        <>
+          <div className="address">
+            <p>{service.location}</p>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="service">
+            {service.category.map((cat) => {
+              return cat.service.map((ser) => {
+                count++;
+                return (
+                  <div
+                    className={`line ${count > 3 ? "hide" : ""}`}
+                    key={count}
+                  >
+                    <span>{ser.name}</span>
+                    <div className="price">£{ser.price}</div>
+                  </div>
+                );
+              });
+            })}
+          </div>
+        </>
+      )}
       <a href={`/${service._id}`}>
         View More <img src={leftArrow} alt="" />
       </a>

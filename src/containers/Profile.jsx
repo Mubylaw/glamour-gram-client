@@ -80,6 +80,14 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     }
   };
 
+  const handleCheck = (e) => {
+    const { name, checked } = e.target;
+    setChar((prevFormData) => ({
+      ...prevFormData,
+      [name]: checked,
+    }));
+  };
+
   return (
     <div className="home profile">
       <div className="headr">Profile Settings</div>
@@ -266,8 +274,8 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
                   <input
                     type="checkbox"
                     id="type"
-                    onChange={handleChange}
-                    value={char.female}
+                    onChange={handleCheck}
+                    checked={char.female}
                     name="female"
                   />
                   <label htmlFor="">Women</label>
@@ -276,8 +284,8 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
                   <input
                     type="checkbox"
                     id="type"
-                    onChange={handleChange}
-                    value={char.male}
+                    onChange={handleCheck}
+                    checked={char.male}
                     name="male"
                   />
                   <label htmlFor="">Men</label>

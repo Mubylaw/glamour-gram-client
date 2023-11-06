@@ -23,19 +23,27 @@ const Appointment = ({ getAppointmentsFn, user, appointments }) => {
 
   return (
     <div className="home cali">
-      <div className="headr">Calendar Integration</div>
-      <div className="info ser">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam
-          nobis ex ad. Perspiciatis illo neque impedit quasi unde sunt
-          obcaecati. Deserunt quo aliquid ab, ipsa esse beatae ratione rerum
-          libero.
-        </p>
+      <div className="headr">
+        {user.role === "business"
+          ? "Calendar Integration"
+          : "Upcoming Appointments"}
       </div>
-      <div className="calend">
-        <Calendar cal={true} time dates={dates} />
-      </div>
-      <div className="tril">Appointments:</div>
+      {user.role === "business" && (
+        <>
+          <div className="info ser">
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam
+              nobis ex ad. Perspiciatis illo neque impedit quasi unde sunt
+              obcaecati. Deserunt quo aliquid ab, ipsa esse beatae ratione rerum
+              libero.
+            </p>
+          </div>
+          <div className="calend">
+            <Calendar cal={true} time dates={dates} />
+          </div>
+          <div className="tril">Appointments:</div>
+        </>
+      )}
       {appointments &&
         appointments.map((app, i) => <Appoints key={i} app={app} />)}
     </div>

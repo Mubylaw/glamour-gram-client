@@ -39,6 +39,27 @@
   align-items: center;
 }
 
+.cali .apoint.smg {
+  display: block;
+}
+
+.cali .apoint .ins {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.cali .apoint .img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cali .apoint .img.hide {
+  display: none;
+}
+
 .cali .apoint .date {
   font-weight: 700;
   margin-bottom: 20px;

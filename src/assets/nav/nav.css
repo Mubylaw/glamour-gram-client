@@ -60,6 +60,7 @@
   top: 116px;
 }
 
+.nav .main .tag.zero,
 .nav .main .tag.three {
   top: 185px;
 }
@@ -81,6 +82,10 @@
   border-right: 1px solid black;
   padding: 25px;
   overflow: scroll;
+}
+
+.nav .side.hide {
+  display: none;
 }
 
 .nav .side .extr {
