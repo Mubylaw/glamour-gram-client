@@ -20,5 +20,5 @@ export function apiCall(method, path, data, config) {
   });
 }
 
-// export const baseUrl = "https://haqadas-server.onrender.com";
-export const baseUrl = "http://localhost:5000";
+export const baseUrl = "https://glamor-gram-server.onrender.com";
+// export const baseUrl = "http://localhost:5000";
