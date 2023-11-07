@@ -441,6 +441,11 @@
   display: none;
 }
 
+.reviews .rev-item .inner {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 960px) {
   .bg {
     display: none;
@@ -536,7 +541,7 @@
 
   .header .mob {
     position: fixed;
-    top: 74px;
+    top: 60px;
     background: #232324;
     height: 100vh;
     left: 0;
@@ -600,11 +605,11 @@
   }
 
   .reviews .rev-item img.btn.left {
-    left: -18px;
+    left: -9px;
   }
 
   .reviews .rev-item img.btn.right {
-    right: -18px;
+    right: -9px;
     top: calc(50% - 20px);
     transform: rotate(180deg);
   }
@@ -614,8 +619,21 @@
   }
 
   .reviews .rev-item .item.active {
-    display: block;
+    display: flex;
     width: 100%;
+  }
+
+  .reviews .rev-item .item.active .ins {
+    margin-left: 10px;
+  }
+
+  .reviews .rev-item .item.active .ins .title {
+    margin: 0 0 10px;
+    font-size: 9px;
+  }
+
+  .reviews .rev-item .item.active .ins p {
+    font-size: 9px;
   }
 
   .reviews .rev-item .inner {
@@ -694,6 +712,71 @@
   }
 }
 
+@media (max-width: 480px) {
+  .header .logo img {
+    width: 25px;
+  }
+
+  .header .links .nav-link:nth-child(5) {
+    width: 80px;
+  }
+
+  .header .links .nav-link .log-in {
+    padding: 3px 24px;
+    font-size: 11px;
+  }
+
+  .reviews,
+  .categories,
+  .why {
+    padding: 10px;
+    margin: 30px 0;
+  }
+
+  .landing .hero {
+    padding: 10px;
+    margin: 0;
+  }
+
+  .footer {
+    padding: 30px;
+    margin: 0;
+  }
+
+  .header .links {
+    width: 50px;
+  }
+
+  .why .tab-outer .tab {
+    width: calc(50% - 10px);
+    margin: 15px 5px;
+  }
+
+  .reviews .title {
+    font-size: 15px;
+  }
+
+  .reviews .subtitle {
+    margin: 0 auto;
+    font-size: 11px;
+    width: 200px;
+  }
+
+  .reviews img.star {
+    width: 62px;
+    top: 20px;
+  }
+
+  .footer .social {
+    margin: 20px 0 0 20px;
+  }
+
+  .footer .social img {
+    margin: 5px 5px 5px 0;
+    width: 25px;
+  }
+}
+
 @media (max-width: 400px) {
   .categories .title {
     width: 200px;
@@ -707,11 +790,17 @@
 }
 
 @media (max-width: 350px) {
+  .reviews .btn-group .btn {
+    width: 200px;
+  }
+}
+
+@media (max-width: 300px) {
   .why .title svg:nth-child(4) {
     display: none;
   }
 
-  .reviews .btn-group .btn {
-    width: 200px;
+  .reviews img.star {
+    display: none;
   }
 }

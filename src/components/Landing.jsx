@@ -250,44 +250,52 @@ const Landing = ({ currentUser }) => {
               <div className="img">
                 <img src="/assets/review%20(1).png" alt="" />
               </div>
-              <div className="title">Discover Expert Eyeshadow Artists</div>
-              <p>
-                Elevate your look with expert eyeshadow stylists. Let skilled
-                professionals bring out the beauty of your eyes with stunning
-                colors and techniques.
-              </p>
+              <div className="ins">
+                <div className="title">Discover Expert Eyeshadow Artists</div>
+                <p>
+                  Elevate your look with expert eyeshadow stylists. Let skilled
+                  professionals bring out the beauty of your eyes with stunning
+                  colors and techniques.
+                </p>
+              </div>
             </div>
             <div className={`item ${currentIndex === 1 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(2).png" alt="" />
               </div>
-              <div className="title">Try Sugar Waxing Today</div>
-              <p>
-                Experience Gentle Sugar Waxing with Skilled Professionals.
-                Connect with experts who use sugar wax for a kinder hair removal
-                experience.
-              </p>
+              <div className="ins">
+                <div className="title">Try Sugar Waxing Today</div>
+                <p>
+                  Experience Gentle Sugar Waxing with Skilled Professionals.
+                  Connect with experts who use sugar wax for a kinder hair
+                  removal experience.
+                </p>
+              </div>
             </div>
             <div className={`item ${currentIndex === 2 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(3).png" alt="" />
               </div>
-              <div className="title">Discover BIAB Nail Artists</div>
-              <p>
-                Enhance Your Nails with BIAB Specialists. Transform your nails
-                without extensions, and enjoy stronger nails. Connect with
-                experts skilled in Builder in a Bottle techniques.
-              </p>
+              <div className="ins">
+                <div className="title">Discover BIAB Nail Artists</div>
+                <p>
+                  Enhance Your Nails with BIAB Specialists. Transform your nails
+                  without extensions, and enjoy stronger nails. Connect with
+                  experts skilled in Builder in a Bottle techniques.
+                </p>
+              </div>
             </div>
             <div className={`item ${currentIndex === 3 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(4).png" alt="" />
               </div>
-              <div className="title">Find Your Afro Hair Expert</div>
-              <p>
-                Embrace Vibrant Afro Hair with Specialized Stylists. Get the
-                perfect highlights that complement your unique style
-              </p>
+              <div className="ins">
+                <div className="title">Find Your Afro Hair Expert</div>
+                <p>
+                  Embrace Vibrant Afro Hair with Specialized Stylists. Get the
+                  perfect highlights that complement your unique style
+                </p>
+              </div>
             </div>
           </div>
           <img
