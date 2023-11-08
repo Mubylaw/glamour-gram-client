@@ -624,16 +624,16 @@
   }
 
   .reviews .rev-item .item.active .ins {
-    margin-left: 10px;
+    margin-left: 25px;
   }
 
   .reviews .rev-item .item.active .ins .title {
     margin: 0 0 10px;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .reviews .rev-item .item.active .ins p {
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .reviews .rev-item .inner {
@@ -682,7 +682,16 @@
   }
 
   .categories .tile-outer .tile {
-    width: calc(50% - 10px);
+    width: calc(25% - 4px);
+    margin: 5px 2px;
+  }
+
+  .categories .tile-outer .tile p {
+    font-size: 11px;
+    top: 13px;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .reviews img.star {
@@ -708,7 +717,32 @@
   }
 
   .reviews .btn-group .btn {
-    width: 300px;
+    width: 220px;
+    font-size: 12px;
+  }
+
+  .reviews .rev-item {
+    margin: 40px 10px;
+  }
+
+  .reviews .rev-item .inner {
+    margin: 0 10px;
+  }
+
+  .footer .top .slide .line {
+    width: 45%;
+  }
+
+  .footer .top .slide {
+    font-size: 10px;
+  }
+
+  .footer .top .slide .conr {
+    /* width: 30%; */
+  }
+
+  .footer .top .info .item {
+    margin: 0 0 15px 0px;
   }
 }
 
@@ -748,17 +782,17 @@
   }
 
   .why .tab-outer .tab {
-    width: calc(50% - 10px);
+    width: calc(50% - 20px);
     margin: 15px 5px;
   }
 
   .reviews .title {
-    font-size: 15px;
+    font-size: 19px;
   }
 
   .reviews .subtitle {
     margin: 0 auto;
-    font-size: 11px;
+    font-size: 12px;
     width: 200px;
   }
 
@@ -775,6 +809,28 @@
     margin: 5px 5px 5px 0;
     width: 25px;
   }
+
+  .landing .form .search {
+    margin-top: 15px;
+  }
+
+  .why .tab-outer .tab .subtitle {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+
+  .why .tab-outer .tab p {
+    font-size: 13px;
+  }
+
+  .categories .title {
+    font-size: 22px;
+  }
+
+  .categories .title img:nth-child(3),
+  .categories .title img {
+    left: calc(50% - 173px);
+  }
 }
 
 @media (max-width: 400px) {
@@ -786,6 +842,15 @@
   .categories .title img:nth-child(3),
   .categories .title img {
     left: calc(50% - 110px);
+  }
+
+  .why .tab-outer .tab .subtitle {
+    min-height: 46px;
+  }
+
+  .why .tab-outer .tab:nth-child(2) .subtitle,
+  .why .tab-outer .tab:nth-child(1) .subtitle {
+    min-height: unset;
   }
 }
 

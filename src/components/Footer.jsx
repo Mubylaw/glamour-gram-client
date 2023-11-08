@@ -13,7 +13,7 @@ const Footer = ({ top }) => {
           <div className="logo bg">
             <img src="/assets/logo.png" alt="" />
           </div>
-          <div>
+          <div className="conr">
             <p>contact</p>
             <div className="no">02031234123</div>
             <div className="email">info@glamorgram.co.uk</div>

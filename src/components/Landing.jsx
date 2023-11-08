@@ -198,35 +198,43 @@ const Landing = ({ currentUser }) => {
         </div>
         <div className="tile-outer">
           <div className="tile">
-            <img src="/assets/nails.png" alt="" />
+            <img className="sm" src="/assets/nails-mob.png" alt="" />
+            <img className="bg" src="/assets/nails.png" alt="" />
             <p>Nails</p>
           </div>
           <div className="tile">
-            <img src="/assets/makeup.png" alt="" />
+            <img className="sm" src="/assets/makeup-mob.png" alt="" />
+            <img className="bg" src="/assets/makeup.png" alt="" />
             <p>Makeup</p>
           </div>
           <div className="tile">
-            <img src="/assets/skincare.png" alt="" />
+            <img className="sm" src="/assets/skincare-mob.png" alt="" />
+            <img className="bg" src="/assets/skincare.png" alt="" />
             <p>Skincare</p>
           </div>
           <div className="tile">
-            <img src="/assets/massage.png" alt="" />
+            <img className="sm" src="/assets/massage-mob.png" alt="" />
+            <img className="bg" src="/assets/massage.png" alt="" />
             <p>Massage</p>
           </div>
           <div className="tile">
-            <img src="/assets/hair-removal.png" alt="" />
+            <img className="sm" src="/assets/hair-removal-mob.png" alt="" />
+            <img className="bg" src="/assets/hair-removal.png" alt="" />
             <p>Hair Removal</p>
           </div>
           <div className="tile">
-            <img src="/assets/barber.png" alt="" />
+            <img className="sm" src="/assets/barber-mob.png" alt="" />
+            <img className="bg" src="/assets/barber.png" alt="" />
             <p>Barber</p>
           </div>
           <div className="tile">
-            <img src="/assets/aesthetics.png" alt="" />
+            <img className="sm" src="/assets/aesthetics-mob.png" alt="" />
+            <img className="bg" src="/assets/aesthetics.png" alt="" />
             <p>Aesthetics</p>
           </div>
           <div className="tile">
-            <img src="/assets/hair.png" alt="" />
+            <img className="sm" src="/assets/hair-mob.png" alt="" />
+            <img className="bg" src="/assets/hair.png" alt="" />
             <p>Hair</p>
           </div>
         </div>
