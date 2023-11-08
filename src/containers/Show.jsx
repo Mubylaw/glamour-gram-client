@@ -216,8 +216,6 @@ const Show = ({
     });
   };
 
-  console.log(selectTime);
-
   useEffect(() => {
     if (url) {
       window.location = url;

@@ -2,7 +2,6 @@ import { convertTime } from "../utils/calendar";
 
 const ServiceLine = ({ ser, handleEdit, handleRemove, cat }) => {
   const time = convertTime(ser.time);
-  console.log(time);
   return (
     <div className="line">
       <div className="name">

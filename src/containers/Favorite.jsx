@@ -10,7 +10,6 @@ const Favorite = ({ getUser, user }) => {
     getUser(user.id, "populate=favorite");
   }, []);
 
-  console.log(user.favorite);
   return (
     <div className="home profile full">
       <div className="headr">Favorite</div>

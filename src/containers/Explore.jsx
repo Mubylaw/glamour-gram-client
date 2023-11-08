@@ -46,8 +46,6 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
     }
   };
 
-  console.log(users);
-
   return (
     <div>
       <Header user={currentUser.isAuthenticated} />
@@ -183,7 +181,6 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     errors: state.errors,
     users: state.user.all,

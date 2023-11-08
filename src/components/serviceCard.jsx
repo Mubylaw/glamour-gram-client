@@ -7,7 +7,6 @@ const ServiceCard = ({ service, locs }) => {
   if (!service.name) {
     return null;
   }
-  console.log(service.rating);
   let rating = 0;
   rating = Math.floor(service.rating / 100);
   let count = 0;

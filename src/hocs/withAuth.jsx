@@ -8,7 +8,6 @@ const withAuth = (Component) => {
     if (!isAuthenticated) {
       return <Navigate to="/signin" />;
     }
-    console.log("here");
     return <Component {...props} />;
   };
 

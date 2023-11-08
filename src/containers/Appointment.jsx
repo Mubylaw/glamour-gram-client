@@ -8,7 +8,6 @@ import Appoints from "../components/Appointment";
 const Appointment = ({ getAppointmentsFn, user, appointments }) => {
   const [dates, setDates] = useState({});
   useEffect(() => {
-    console.log(user);
     const date = new Date();
     getAppointmentsFn(
       `store=${user.id}&_greatertime=${date}&populate=user&sort=time&_boolstate=true`

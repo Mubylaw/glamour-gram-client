@@ -117,9 +117,7 @@ const Day = ({
     let tol = [];
     allTee.forEach((tm) => {
       const updatedTm = { ...tm, duration: duration };
-      console.log(updatedTm);
       const newTimes = generateTimeSlots(updatedTm);
-      console.log("newTimes", newTimes);
       tol.push(...newTimes);
     });
     allTee = tol;
