@@ -394,6 +394,18 @@
     margin: 30px 30px 0;
   }
 
+  .profile .res-tab {
+    margin: 30px 0 0;
+  }
+
+  .profile .res-tab .service-card .info-tab {
+    flex-direction: column;
+  }
+
+  .profile .res-tab .service-card .info-tab .up {
+    margin-bottom: 10px;
+  }
+
   .main-tab .top .title {
     font-size: 22px;
     margin: 7px 0 5px;
@@ -565,6 +577,10 @@
   .main-tab .top .mob .tags-over.slii {
     width: calc(100% - 290px);
   }
+
+  .profile .res-tab .service-card {
+    width: calc(50% - 10px);
+  }
 }
 
 @media (max-width: 480px) {
@@ -579,5 +595,13 @@
   .main-tab .top .star {
     top: 20px;
     width: 60px;
+  }
+
+  .profile .res-tab .service-card .info-tab {
+    font-size: 13px;
+  }
+
+  .profile .res-tab .service-card {
+    width: 100%;
   }
 }

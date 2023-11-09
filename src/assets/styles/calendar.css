@@ -238,3 +238,95 @@
   padding: 15px 20px;
   color: white;
 }
+
+@media (max-width: 1200px) {
+  .cali .form .duo {
+    flex-direction: column;
+  }
+
+  .cali .form .duo .item {
+    width: 100%;
+  }
+
+  .cali .form .duo .item:nth-child(1) {
+    margin: 0 0 40px;
+  }
+
+  .cali .perfo img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .cali .apoint .time {
+    font-size: 14px;
+    min-width: 65px;
+  }
+
+  .cali .apoint {
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+  }
+
+  .cali .apoint .deet {
+    font-size: 13px;
+  }
+
+  .cali .apoint .date {
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+
+  .cali .calend {
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin: 35px 0;
+  }
+
+  .cali .apoint .top {
+    margin-right: 10px;
+  }
+
+  .cali .form .duo .item:nth-child(1) {
+    margin: 0 0 10px;
+  }
+
+  .cali .form .duo,
+  .cali .form .item {
+    margin: 10px 0;
+  }
+
+  .cali .form .item label {
+    width: 100%;
+  }
+
+  .cali .form .item select,
+  .cali .form .item input {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .profile .info p.space {
+    display: none;
+  }
+
+  .profile .info .new {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .cali .times .mm {
+    font-size: 13px;
+  }
+
+  .cali .perfo .ana {
+    flex-direction: column;
+    margin: 20px 0;
+  }
+
+  .cali .perfo .ana .item {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

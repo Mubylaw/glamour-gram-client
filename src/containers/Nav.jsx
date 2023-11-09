@@ -115,7 +115,6 @@ const Nav = ({
             </div>
             <div
               className={`nav-item ${position === "four" ? "active" : ""}`}
-              onClick={() => handleSide("/", "main")}
               onMouseOver={() => setHov("four")}
             >
               <div className="icon bg">
@@ -174,7 +173,6 @@ const Nav = ({
             </div>
             <div
               className={`nav-item ${position === "four" ? "active" : ""}`}
-              onClick={() => handleSide("/", "main")}
               onMouseOver={() => setHov("four")}
             >
               <div className="icon bg">
@@ -188,7 +186,6 @@ const Nav = ({
             </div>
             <div
               className={`nav-item ${position === "five" ? "active" : ""}`}
-              onClick={() => handleSide("/", "main")}
               onMouseOver={() => setHov("five")}
             >
               <div className="icon bg">
@@ -208,7 +205,7 @@ const Nav = ({
       </div>
       {!noSide && (
         <div
-          className={`side ${sate ? "" : "hide"} ${
+          className={`side ${sate ? "" : "hied"} ${
             position === "zero" ? "hide" : ""
           }`}
         >
@@ -356,14 +353,6 @@ const Nav = ({
               className={`side-item ${exPos === "three" ? "active" : ""}`}
             >
               <div className="hedr">Invoicing</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-              <img src={arrow} alt="" />
-            </div>
-            <div
-              onClick={() => handleSide("/earning")}
-              className={`side-item ${exPos === "three" ? "active" : ""}`}
-            >
-              <div className="hedr">Tax & Financial Information</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>

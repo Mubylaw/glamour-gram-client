@@ -233,7 +233,7 @@
   }
 
   .nav .main.hide,
-  .nav .side.hide {
+  .nav .side.hied {
     left: -1000px;
     display: block;
   }
@@ -311,7 +311,7 @@
   .nav .ops {
     position: absolute;
     width: 10px;
-    top: 29px;
+    top: 25px;
     left: 20px;
   }
 }

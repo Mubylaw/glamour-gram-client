@@ -444,3 +444,127 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+@media (max-width: 960px) {
+  .profile .pop .inner {
+    width: 90%;
+  }
+
+  .profile .booking .policy {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .cali .headr,
+  .profile .headr {
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .profile .info .name {
+    font-size: 15px;
+  }
+
+  .profile .form .item {
+    flex-direction: column;
+    margin: 20px 0;
+  }
+
+  .profile .form .item label {
+    width: 100%;
+    margin: 0 0 10px;
+    font-size: 12px;
+  }
+
+  .profile .form .item select,
+  .profile .form .item textarea,
+  .profile .form .item input {
+    width: 100%;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+
+  .profile .btn {
+    padding: 9px 30px;
+    font-size: 12px;
+  }
+
+  .profile .form .item img {
+    top: 39px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cali .hr,
+  .profile .hr {
+    margin: 85px -25px 20px;
+  }
+
+  .profile.cali p,
+  .profile .info p.space {
+    display: none;
+  }
+
+  .profile .info .new {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .profile .service {
+    margin: 35px 0;
+  }
+
+  .profile .line {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .profile .line .name {
+    font-size: 13px;
+    width: 100%;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+
+  .profile .line .btn-group .btn {
+    font-size: 12px;
+  }
+
+  .profile .portfolio .img-cover {
+    width: calc(50% - 10px);
+  }
+
+  .profile .booking .policy {
+    padding: 20px;
+    margin: 25px 0;
+    font-size: 13px;
+  }
+
+  .profile .booking .policy .tab {
+    margin-right: 15px;
+  }
+
+  .profile .booking .policy .arrow {
+    width: 9px;
+  }
+
+  .profile .booking .policy .top .note {
+    margin-right: 15px;
+    width: 23px;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile .btn-cover {
+    flex-direction: column;
+  }
+
+  .profile .btn.acv {
+    margin: 0 0 10px;
+  }
+
+  .profile .btn {
+    text-align: center;
+  }
+}
