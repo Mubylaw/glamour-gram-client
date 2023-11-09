@@ -733,11 +733,14 @@
     width: 45%;
   }
 
+  .footer .top .no,
+  .footer .top .email .footer .top p,
   .footer .top .slide {
     font-size: 10px;
   }
 
   .footer .top .slide .conr {
+    font-size: 10px;
     /* width: 30%; */
   }
 
@@ -815,7 +818,7 @@
   }
 
   .why .tab-outer .tab .subtitle {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 15px;
   }
 
@@ -844,12 +847,8 @@
     left: calc(50% - 110px);
   }
 
-  .why .tab-outer .tab .subtitle {
+  .why .tab-outer .tab:nth-child(3) .subtitle {
     min-height: 46px;
-  }
-
-  .why .tab-outer .tab:nth-child(2) .subtitle,
-  .why .tab-outer .tab:nth-child(1) .subtitle {
     min-height: unset;
   }
 }
@@ -857,6 +856,15 @@
 @media (max-width: 350px) {
   .reviews .btn-group .btn {
     width: 200px;
+  }
+
+  .why .tab-outer .tab .subtitle {
+    min-height: 46px;
+  }
+
+  .why .tab-outer .tab:nth-child(2) .subtitle,
+  .why .tab-outer .tab:nth-child(1) .subtitle {
+    min-height: unset;
   }
 }
 

@@ -19,6 +19,7 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
   const [close, setClose] = useState(false);
   const [service, setService] = useState([]);
   const [location, setLocation] = useState(false);
+  const [select, setSelect] = useState(false);
   const [temp, setTemp] = useState("");
 
   useEffect(() => {
@@ -32,6 +33,9 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
       setLocation(location);
     }
     getUsersFn(`role=business`);
+    if (window.innerWidth < 960) {
+      setClose(true);
+    }
   }, []);
 
   const handleFilter = (ser) => {
@@ -56,6 +60,12 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
           </div>
           <div className="inner">
             <div className="title">Filters</div>
+            <img
+              src={cross}
+              alt=""
+              className="sm"
+              onClick={() => setClose(true)}
+            />
             <div className="item">
               <div className="t-nav" onClick={() => setPrice(!price)}>
                 <span>Price</span>
@@ -158,8 +168,45 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
               <input type="text" placeholder="search service" />
               <img src={cross} alt="" />
             </div>
+            <div className="mob sm">
+              <div className={`tags-over ${select ? "slii" : ""}`}>
+                <div className="ins">
+                  <span>Category Tags:</span>
+                  <span className="tags">
+                    {service.map((ser, i) => (
+                      <span className="iem" key={i}>
+                        <span className="tag-name">#{ser}</span>
+                        <img
+                          src={cross}
+                          alt=""
+                          onClick={() => handleFilter(ser)}
+                        />
+                      </span>
+                    ))}
+                  </span>
+                </div>
+              </div>
+              <div className="down">
+                <div className="filter" onClick={() => setSelect(!select)}>
+                  <span>Sort By</span>
+                  <Down fill={"#000"} rota={!select ? false : true} />
+                </div>
+                {select && (
+                  <select type="text" id="sort">
+                    <option value="">Choose option</option>
+                    <option value="rated">Highest Rated</option>
+                    <option value="price">Most Expensive</option>
+                    <option value="location">Closest Option</option>
+                  </select>
+                )}
+                <div className="filter" onClick={() => setClose(!close)}>
+                  <span>Filter By</span>
+                  <Down fill={"#000"} rota={close ? false : true} />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="sort">
+          <div className="sort bg">
             <label for="sort">Sort By:</label>
             <select type="text" id="sort">
               <option value="">Choose option</option>

@@ -13,46 +13,48 @@ const ServiceCard = ({ service, locs }) => {
   return (
     <div className="service-card">
       <img className="ser" src={service.picture} alt="" />
-      <div className="info-tab">
-        <div className="up">
-          <div className="name">{service.name} -</div>
-          <div className="desc">{service.location}</div>
+      <div className="inf">
+        <div className="info-tab">
+          <div className="up">
+            <div className="name">{service.name} -</div>
+            <div className="desc">{service.location}</div>
+          </div>
+          <div className="rev">
+            {Array.from({ length: rating }, (_, i) => (
+              <img src={revStars} alt="" key={i} />
+            ))}
+          </div>
         </div>
-        <div className="rev">
-          {Array.from({ length: rating }, (_, i) => (
-            <img src={revStars} alt="" key={i} />
-          ))}
-        </div>
+        {locs ? (
+          <>
+            <div className="address">
+              <p>{service.location}</p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="service">
+              {service.category.map((cat) => {
+                return cat.service.map((ser) => {
+                  count++;
+                  return (
+                    <div
+                      className={`line ${count > 3 ? "hide" : ""}`}
+                      key={count}
+                    >
+                      <span>{ser.name}</span>
+                      <div className="price">£{ser.price}</div>
+                    </div>
+                  );
+                });
+              })}
+            </div>
+          </>
+        )}
+        <a href={`/${service._id}`}>
+          View More <img src={leftArrow} alt="" />
+        </a>
       </div>
-      {locs ? (
-        <>
-          <div className="address">
-            <p>{service.location}</p>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="service">
-            {service.category.map((cat) => {
-              return cat.service.map((ser) => {
-                count++;
-                return (
-                  <div
-                    className={`line ${count > 3 ? "hide" : ""}`}
-                    key={count}
-                  >
-                    <span>{ser.name}</span>
-                    <div className="price">£{ser.price}</div>
-                  </div>
-                );
-              });
-            })}
-          </div>
-        </>
-      )}
-      <a href={`/${service._id}`}>
-        View More <img src={leftArrow} alt="" />
-      </a>
     </div>
   );
 };

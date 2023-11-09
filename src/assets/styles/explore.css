@@ -136,20 +136,20 @@
   gap: 3px;
 }
 
-.ex-nav .item .tags .iem {
+.xplor .iem {
   border-radius: 10px;
   background: #47bbec;
   margin: 5px 0;
   padding: 2px 10px;
 }
 
-.ex-nav .item .tags .iem .tag-name {
+.xplor .iem .tag-name {
   font-size: 13px;
   font-weight: 400;
   margin-right: 5px;
 }
 
-.ex-nav .item .tags .iem img {
+.xplor .iem img {
   position: relative;
   top: 1px;
   cursor: pointer;
@@ -304,4 +304,280 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .ex-nav {
+    position: absolute;
+    background: white;
+    z-index: 10;
+  }
+
+  .xplor .main-tab {
+    width: 100%;
+  }
+
+  .main-tab .top .star:nth-child(2) {
+    right: 3%;
+  }
+
+  .main-tab .top .star:nth-child(1) {
+    left: 3%;
+  }
+
+  .main-tab .top .star {
+    top: 4px;
+    width: 105px;
+  }
+
+  .main-tab .top .mob {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 40px 0 0;
+    align-items: center;
+  }
+
+  .main-tab .top .mob .down {
+    align-items: center;
+    display: flex;
+  }
+
+  .main-tab .top .mob .down .filter:nth-child(2) {
+    margin-left: 20px;
+  }
+
+  .main-tab .top .mob .down svg {
+    width: 15px;
+    margin-left: 10px;
+    top: 2px;
+    position: relative;
+    transition: all ease 0.5s;
+  }
+
+  .main-tab .top .mob .tags-over {
+    font-weight: 600;
+  }
+
+  .xplor .main-tab .top .mob .iem {
+    margin: 0 10px;
+  }
+
+  .main-tab .top .mob .down svg.rota {
+    transform: rotate(180deg);
+  }
+
+  .main-tab .mob select {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 4px;
+    font-size: 12px;
+    margin: 0 20px;
+  }
+
+  .ex-nav .bord,
+  .main-tab .sort.bg {
+    display: none;
+  }
+
+  .xplor .main-tab {
+    padding: 0;
+  }
+
+  .main-tab .top {
+    margin: 0;
+    padding: 20px 20px 30px;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .res-tab {
+    margin: 30px 30px 0;
+  }
+
+  .main-tab .top .title {
+    font-size: 22px;
+    margin: 7px 0 5px;
+    font-weight: 500;
+  }
+
+  .main-tab .top .subtitle {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .main-tab .top .input-cov {
+    max-width: 400px;
+    margin: 20px auto 10px;
+    width: 90%;
+  }
+
+  .main-tab .top input {
+    padding: 3px 20px 3px;
+    height: 35px;
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .main-tab .top .input-cov img {
+    right: 35px;
+    top: 8px;
+    width: 18px;
+  }
+
+  .main-tab .res-tab .service-card {
+    width: calc(50% - 10px);
+  }
+
+  .ex-nav img.sm {
+    position: absolute;
+    top: 36px;
+    right: 22px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-tab .top .star:nth-child(2) {
+    right: 3%;
+  }
+
+  .main-tab .top .star:nth-child(1) {
+    left: 3%;
+  }
+
+  .main-tab .top .star {
+    position: absolute;
+    top: 4px;
+    width: 105px;
+  }
+
+  .main-tab .top .title {
+    font-size: 21px;
+  }
+
+  .main-tab .top .subtitle {
+    font-size: 12px;
+  }
+
+  .main-tab .top .mob {
+    margin: 30px 0 0;
+    font-size: 11px;
+  }
+
+  .main-tab .top .mob .down svg {
+    width: 11px;
+    margin-left: 5px;
+    top: 4px;
+  }
+
+  .main-tab .top .mob .down .filter:nth-child(2) {
+    margin-left: 12px;
+  }
+
+  .main-tab .top .mob .tags-over {
+    width: calc(100% - 150px);
+    overflow: scroll;
+  }
+
+  .main-tab .top .mob .tags-over::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-tab .top .mob .tags-over .ins {
+    width: max-content;
+  }
+
+  .main-tab .res-tab .service-card {
+    width: 100%;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    padding: 10px 30px 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  .main-tab .res-tab .service-card:nth-last-child(1) {
+    border: none;
+  }
+
+  .res-tab {
+    margin: 30px 0 0;
+  }
+
+  .main-tab .res-tab .service-card img.ser {
+    width: 45%;
+  }
+
+  .main-tab .res-tab .service-card .inf {
+    width: 45%;
+  }
+
+  .main-tab .res-tab .service-card .info-tab {
+    flex-direction: column;
+  }
+
+  .main-tab .res-tab .service-card .info-tab .rev {
+    margin-top: 12px;
+  }
+
+  .main-tab .res-tab .service-card a {
+    font-size: 13px;
+  }
+
+  .main-tab .res-tab .service-card .service .line {
+    margin: 15px 0;
+  }
+
+  .ex-nav .title {
+    font-size: 21px;
+  }
+
+  .ex-nav .item span {
+    font-size: 13px;
+  }
+
+  .ex-nav .item svg {
+    width: 13px;
+  }
+
+  .ex-nav .filer .rad label {
+    font-size: 13px;
+  }
+
+  .xplor .iem .tag-name {
+    font-size: 11px;
+  }
+
+  .ex-nav {
+    position: fixed;
+    top: 75px;
+  }
+
+  .close .ex-nav {
+    position: fixed;
+  }
+
+  .main-tab .top .mob .tags-over.slii {
+    width: calc(100% - 290px);
+  }
+}
+
+@media (max-width: 480px) {
+  .main-tab .top .star:nth-child(2) {
+    right: 3%;
+  }
+
+  .main-tab .top .star:nth-child(1) {
+    left: 3%;
+  }
+
+  .main-tab .top .star {
+    top: 20px;
+    width: 60px;
+  }
 }
