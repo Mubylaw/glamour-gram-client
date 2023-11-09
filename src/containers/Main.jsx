@@ -410,6 +410,11 @@ const Main = (props) => {
         />
         <Route
           exact
+          path="/:id/availability"
+          element={<Show availShow {...props} />}
+        />
+        <Route
+          exact
           path="/:id/service"
           element={<Show serviceShow {...props} />}
         />

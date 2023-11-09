@@ -24,6 +24,7 @@ const Show = ({
   currentUser,
   updateUser,
   portShow,
+  availShow,
   serviceShow,
   getPaymentUrl,
   url,
@@ -76,6 +77,9 @@ const Show = ({
       setService(service);
       setPrice(parseInt(price));
       setDuration(duration ? (parseInt(duration) ? parseInt(duration) : 0) : 0);
+    }
+    if (availShow) {
+      setCal(true);
     }
   }, []);
 
@@ -255,7 +259,33 @@ const Show = ({
           </div>
         </div>
         {err && <div className="err">{err}</div>}
-        <div className="avail">
+        <div className="guid sm">
+          <Link
+            to={`/${id}`}
+            className={`list ${!availShow && !portShow ? "active" : ""}`}
+          >
+            Profile
+          </Link>
+          <Link
+            to={`/${id}/availability`}
+            className={`list ${availShow ? "active" : ""}`}
+            onClick={() => setCal(true)}
+          >
+            Availability
+          </Link>
+          <Link
+            to={`/${id}/portfolio`}
+            className={`list ${portShow ? "active" : ""}`}
+          >
+            Portfolio
+          </Link>
+          <div
+            className={`shadow ${availShow ? "ava" : ""} ${
+              portShow ? "port" : ""
+            }`}
+          ></div>
+        </div>
+        <div className={`avail ${availShow ? "" : "hide"}`}>
           <div className="heading">
             <span onClick={() => setCal(true)}>View Availability</span>
             <img
@@ -354,7 +384,7 @@ const Show = ({
           </>
         ) : (
           <>
-            <div className="about">
+            <div className={`about ${availShow ? "hide" : ""}`}>
               <div className="title">About Us</div>
               <div className="text">
                 {business.about && (
@@ -388,7 +418,7 @@ const Show = ({
                 </a>
               </div>
             </div>
-            <div className="portfolio">
+            <div className={`portfolio ${!portShow ? "hide" : ""}`}>
               <div className="title">Portfolio</div>
               <div className="img-group">
                 <div className="img big">
@@ -413,7 +443,7 @@ const Show = ({
                 <span>View More</span> <img src={leftArrow} alt="" />
               </Link>
             </div>
-            <div className="price">
+            <div className={`price ${availShow ? "hide" : ""}`}>
               <div className="title">Price List</div>
               {business.category &&
                 business.category.map((cat, i) => (
@@ -442,7 +472,7 @@ const Show = ({
                   </div>
                 ))}
             </div>
-            <div className="popular">
+            <div className={`popular ${availShow ? "hide" : ""}`}>
               <div className="title">Popular Services</div>
               <div className="frame">
                 <div className="item">
@@ -475,22 +505,23 @@ const Show = ({
                 </div>
               </div>
             </div>
+            <div className={`faq ${availShow ? "hide" : ""}`}>
+              <div className="name">
+                Want to find out more about the services provided by Hair by
+                xyz?
+              </div>
+              <div className="btn-group">
+                <div className="btn" onClick={() => setChat(true)}>
+                  Ask a Question
+                </div>
+                <div className="btn canc" onClick={() => setBook(true)}>
+                  Read Booking Policy
+                </div>
+              </div>
+            </div>
           </>
         )}
 
-        <div className="faq">
-          <div className="name">
-            Want to find out more about the services provided by Hair by xyz?
-          </div>
-          <div className="btn-group">
-            <div className="btn" onClick={() => setChat(true)}>
-              Ask a Question
-            </div>
-            <div className="btn canc" onClick={() => setBook(true)}>
-              Read Booking Policy
-            </div>
-          </div>
-        </div>
         <div className="chat">
           <div className="head" onClick={() => setChat(!chat)}>
             Chat with us ...
@@ -560,70 +591,116 @@ const Show = ({
             <div className={`checkout pay ${pay ? "" : "hide"}`}>
               <div className="inn" onClick={() => setPay(false)}></div>
               <div className="pop">
-                <img
-                  src={cross}
-                  className="cross"
-                  alt=""
-                  onClick={() => setPay(false)}
-                />
-                <img className="star" src={leftStars} alt="" />
-                <img className="star" src={rightStars} alt="" />
-                <div className="title">{business.name}</div>
-                <div className="servi">({service})</div>
-                <div className="date">{dateString}</div>
-                <div className="time">
-                  {setValue(selectTime.hour)}:{setValue(selectTime.minute)} -{" "}
-                  {setValue(selectTime.endhour)}:
-                  {setValue(selectTime.endminute)} ({selectTime.duration}mins)
-                </div>
-                <div
-                  className="back"
-                  onClick={() => {
-                    setPay(false);
-                    setCalen(true);
-                  }}
-                >
-                  Choose a different time/date
-                </div>
-                <div className="total">Total for service: £{price}</div>
-                <div className="total">Total to pay: £{payable}</div>
-                <div className="choice">
-                  <div className="item">
-                    <div className="str">Easy Breezy Access</div>
-                    <p>
-                      If you have an account, log in to breeze through the
-                      process. New to us? Register and get benefits like booking
-                      history and loyalty rewards. Let's complete your booking!
-                    </p>
+                <div className="ins">
+                  <img
+                    src={cross}
+                    className="cross"
+                    alt=""
+                    onClick={() => setPay(false)}
+                  />
+                  <img className="star" src={leftStars} alt="" />
+                  <img className="star" src={rightStars} alt="" />
+                  <div className="title">{business.name}</div>
+                  <div className="servi">({service})</div>
+                  <div className="date">{dateString}</div>
+                  <div className="time">
+                    {setValue(selectTime.hour)}:{setValue(selectTime.minute)} -{" "}
+                    {setValue(selectTime.endhour)}:
+                    {setValue(selectTime.endminute)} ({selectTime.duration}mins)
                   </div>
-                  <div className="line"></div>
-                  <div className="item">
-                    <div className="str">In a rush ?</div>
-                    <p>
-                      Book your beauty service hassle-free by juat entering your
-                      information for booking confirmation. Want to save time on
-                      future bookings? Create an account later. Let's get you
-                      booked!
-                    </p>
+                  <div
+                    className="back"
+                    onClick={() => {
+                      setPay(false);
+                      setCalen(true);
+                    }}
+                  >
+                    Choose a different time/date
                   </div>
-                </div>
-                <div className="or">OR</div>
-                <div className="choice">
-                  <div className="btn-cover">
-                    <div
-                      className={`btn ${view ? "btn-load" : ""}`}
-                      onClick={handlePay}
-                    >
-                      <span className="btn_text">Pay</span>
+                  <div className="total">Total for service: £{price}</div>
+                  <div className="total">Total to pay: £{payable}</div>
+                  <div className="choice">
+                    <div className="item">
+                      <div className="str">Easy Breezy Access</div>
+                      <p>
+                        If you have an account, log in to breeze through the
+                        process. New to us? Register and get benefits like
+                        booking history and loyalty rewards. Let's complete your
+                        booking!
+                      </p>
+                      {currentUser.isAuthenticated ? (
+                        <div className="btn-cover ex-sm">
+                          <div
+                            className={`btn ${view ? "btn-load" : ""}`}
+                            onClick={handlePay}
+                          >
+                            <span className="btn_text">Pay</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="btn-cover ex-sm">
+                          <Link
+                            to="/signin"
+                            className={`btn ${view ? "btn-load" : ""}`}
+                          >
+                            <span className="btn_text">Log in</span>
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                    <div className="line"></div>
+                    <div className="ora ex-sm">
+                      <div className="rea"></div>
+                      <div className="rea"></div>
+                    </div>
+                    <div className="item">
+                      <div className="str">In a rush ?</div>
+                      <p>
+                        Book your beauty service hassle-free by juat entering
+                        your information for booking confirmation. Want to save
+                        time on future bookings? Create an account later. Let's
+                        get you booked!
+                      </p>
+                      <div className="btn-cover ex-sm">
+                        <div
+                          className={`btn guest ${view ? "btn-load" : ""}`}
+                          onClick={handlePay}
+                        >
+                          <span className="btn_text">Guest Checkout</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="line bee"></div>
-                  <div className="btn-cover">
-                    <div
-                      className={`btn guest ${view ? "btn-load" : ""}`}
-                      onClick={handlePay}
-                    >
-                      <span className="btn_text">Guest Checkout</span>
+                  <div className="or">OR</div>
+                  <div className="choice ex-bg">
+                    {currentUser.isAuthenticated ? (
+                      <div className="btn-cover">
+                        <div
+                          className={`btn ${view ? "btn-load" : ""}`}
+                          onClick={handlePay}
+                        >
+                          <span className="btn_text">Pay</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="btn-cover">
+                        <Link
+                          to="/signin"
+                          className={`btn ${view ? "btn-load" : ""}`}
+                        >
+                          <span className="btn_text">Log in</span>
+                        </Link>
+                      </div>
+                    )}
+
+                    <div className="line bee"></div>
+                    <div className="btn-cover">
+                      <div
+                        className={`btn guest ${view ? "btn-load" : ""}`}
+                        onClick={handlePay}
+                      >
+                        <span className="btn_text">Guest Checkout</span>
+                      </div>
                     </div>
                   </div>
                 </div>

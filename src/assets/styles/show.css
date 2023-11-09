@@ -286,6 +286,7 @@
 
 .portfolio .img-group .img.big {
   width: 30%;
+  height: calc((100vw - 130px) * 0.3);
 }
 
 .portfolio .img-group .img.big img {
@@ -295,6 +296,7 @@
 .portfolio .img-group .img.long,
 .portfolio .img-group .duo {
   width: 20%;
+  height: calc((100vw - 130px) * 0.3);
 }
 
 .portfolio .img-group .duo {
@@ -595,6 +597,7 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  z-index: 12;
 }
 
 .show .checkout .pop,
@@ -738,6 +741,7 @@
 .checkout .pop .star {
   position: absolute;
   left: 10%;
+  width: 210px;
 }
 
 .checkout .pop .star:nth-child(3) {
@@ -807,6 +811,8 @@
   background-color: #47bbec;
   cursor: pointer;
   padding: 14px 40px;
+  color: black;
+  text-decoration: none;
 }
 
 .checkout .choice .btn-cover .btn.guest {
@@ -832,4 +838,378 @@
 
 .checkout .or {
   margin-top: 20px;
+}
+
+.checkout .choice .btn-cover.ex-sm,
+.ex-sm {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .show {
+    padding: 30px;
+  }
+
+  .show .chat {
+    display: none;
+  }
+
+  .faq .name {
+    max-width: 100%;
+  }
+
+  .portfolio .img-group .duo .img {
+    height: calc((30vw - 50px) / 2);
+  }
+
+  .calendar .inner .month {
+    width: 100%;
+    min-width: 315px;
+  }
+
+  .calendar .inner .month:nth-child(2) {
+    display: none;
+  }
+
+  .guid.sm {
+    display: none;
+  }
+
+  .show .checkout .pop {
+    overflow: scroll;
+  }
+
+  .show .checkout .pop::-webkit-scrollbar {
+    display: none;
+  }
+
+  .checkout .pop .cross,
+  .booking .pop .cross {
+    right: 20px;
+    width: 20px;
+    top: 20px;
+  }
+
+  .checkout .pop .star {
+    position: absolute;
+    left: 0%;
+    width: 110px;
+  }
+
+  .checkout .pop .star:nth-child(3) {
+    right: 0%;
+    left: unset;
+  }
+}
+
+@media (max-width: 600px) {
+  .guid.sm {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .guid.sm .shadow {
+    width: 33%;
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    border-radius: 10px;
+    background: #eb335a;
+    transition: all ease 0.5s;
+    left: 0;
+  }
+
+  .guid.sm .shadow.ava {
+    left: calc(50% - (33vw / 2));
+  }
+
+  .guid.sm .shadow.port {
+    left: calc(100% - 33vw);
+  }
+
+  .guid.sm .list {
+    width: 33%;
+    text-align: center;
+    font-size: 16px;
+    color: #828282;
+    text-decoration: none;
+  }
+
+  .show {
+    padding: 30px 0;
+  }
+
+  .show .top {
+    padding: 0 20px;
+  }
+
+  .show .name {
+    font-size: 22px;
+    margin: 10px 0;
+  }
+
+  .show .top .img img {
+    border-radius: 20px;
+  }
+
+  .show .top .info {
+    font-size: 11px;
+    margin: 10px auto 20px;
+    width: 100%;
+  }
+
+  .avail .heading,
+  .show .about.hide,
+  .show .faq.hide,
+  .show .portfolio.hide,
+  .show .price.hide,
+  .show .popular.hide,
+  .show .avail.hide {
+    display: none;
+  }
+
+  .show .about,
+  .show .portfolio,
+  .show .price {
+    margin: 30px 0;
+    border-bottom: 1px solid black;
+    padding: 0 30px 30px;
+  }
+
+  .show .popular {
+    margin: 30px 0;
+    padding: 0 30px 30px;
+  }
+
+  .popular .title,
+  .price .title,
+  .portfolio .title,
+  .about .title {
+    font-size: 21px;
+  }
+
+  .about .social,
+  .about .certs,
+  .about .text {
+    font-size: 12px;
+  }
+
+  .text .more {
+    font-size: 11px;
+  }
+
+  .guid.sm .list.active {
+    color: #eb335a;
+  }
+
+  .social img {
+    width: 17px;
+  }
+
+  .frame .item .info img {
+    width: 17px;
+    margin: 0;
+  }
+
+  .category .item .name,
+  .price .category {
+    font-size: 13px;
+  }
+
+  .category .head-line .tag svg {
+    width: 12px;
+    position: relative;
+    top: 3px;
+  }
+
+  .popular .frame {
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+
+  .frame .item {
+    width: calc(50% - 10px);
+    margin: 10px 0;
+  }
+
+  .faq {
+    margin: 30px;
+  }
+
+  .frame .item .info .desc {
+    font-size: 13px;
+    width: 100px;
+  }
+
+  .show .portfolio-ex {
+    margin: 30px;
+  }
+
+  .show .avail {
+    border-radius: 30px;
+    padding: 25px;
+    margin: 30px;
+  }
+
+  .calendar {
+    margin: 0;
+    height: unset;
+  }
+
+  .calendar .times .time {
+    font-size: 13px;
+    padding: 5px 25px;
+    margin: 7px;
+    height: 29px;
+  }
+
+  .calendar .times {
+    min-height: unset;
+    margin: 20px 0 10px;
+  }
+
+  .faq .btn-group .btn {
+    font-size: 12px;
+  }
+
+  .faq .btn-group {
+    margin: 35px 0;
+  }
+
+  .faq .btn-group .btn {
+    height: 40px;
+  }
+
+  .show .service .main {
+    max-width: unset;
+    width: 90%;
+  }
+
+  .show .service {
+    margin: 30px 0;
+  }
+
+  .show .service .title {
+    font-size: 22px;
+  }
+
+  .service .add-on .total {
+    font-size: 15px;
+    margin: 10px 0;
+  }
+
+  .service .btn {
+    font-size: 13px;
+  }
+
+  .checkout .pop .choice {
+    flex-direction: column;
+  }
+
+  .checkout .or,
+  .checkout .pop .choice.ex-bg,
+  .checkout .choice .line {
+    display: none;
+  }
+
+  .checkout .choice .item {
+    width: 100%;
+  }
+
+  .checkout .choice .btn-cover.ex-sm,
+  .ex-sm {
+    display: block;
+  }
+
+  .checkout .choice .btn-cover {
+    margin: 20px auto;
+    width: unset;
+  }
+
+  .checkout .choice .btn-cover .btn {
+    font-size: 13px;
+  }
+
+  .checkout .choice .ora {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+  }
+
+  .checkout .choice .ora .rea {
+    width: 45%;
+    background: #000;
+    height: 2px;
+    display: block;
+  }
+
+  .checkout .pop .star {
+    width: 62px;
+  }
+
+  .checkout .choice .item .str {
+    font-size: 16px;
+  }
+
+  .checkout .choice .item p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar .inner .month {
+    min-width: unset;
+  }
+
+  .calendar .inner .day-header,
+  .calendar .inner .day-body {
+    width: 100%;
+    min-width: unset;
+    margin: 20px 0;
+  }
+
+  .calendar .inner .day-header .dh,
+  .calendar .inner .day-body .dm {
+    height: calc((100vw - 160px) / 7);
+    width: calc((100vw - 160px) / 7);
+    font-size: 12px;
+  }
+
+  .calendar .inner .day-header,
+  .calendar .inner .day-body {
+    margin: 10px 0;
+  }
+
+  .calendar .inner .name {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .faq .btn-group {
+    flex-direction: column;
+  }
+
+  .faq .btn-group .btn {
+    margin: 5px 0;
+  }
+
+  .frame .item .info .desc {
+    margin-right: 5px;
+  }
+
+  .frame .item .info img {
+    width: 12px;
+  }
+
+  .calendar .inner .day-header .dh,
+  .calendar .inner .day-body .dm {
+    height: calc((100vw - 130px) / 7);
+    width: calc((100vw - 130px) / 7);
+  }
 }
