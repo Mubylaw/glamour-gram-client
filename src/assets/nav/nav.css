@@ -205,3 +205,125 @@
   font-size: 11px;
   color: #646060;
 }
+
+.sm {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .sm {
+    display: block;
+  }
+
+  .nav {
+    position: fixed;
+    top: 75px;
+    z-index: 10;
+  }
+
+  .nav .main,
+  .nav .side {
+    position: absolute;
+    min-height: 100vh;
+    transition: all ease 0.5s;
+    left: 0;
+    background: white;
+    color: black;
+    padding: 0;
+  }
+
+  .nav .main.hide,
+  .nav .side.hide {
+    left: -1000px;
+    display: block;
+  }
+
+  .nav .side {
+    padding: 20px 0;
+  }
+
+  .nav .main {
+    border-right: 1px solid black;
+  }
+
+  .nav .side .side-item,
+  .nav .main .nav-item {
+    margin: 0;
+    border-bottom: 1px solid black;
+    position: relative;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .nav .side .side-item {
+    padding: 20px;
+  }
+
+  .nav .side .side-item .hedr {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .nav .side .side-item p {
+    font-size: 12px;
+  }
+
+  .nav .side .side-item img {
+    top: 30px;
+    right: 15px;
+  }
+
+  .nav .main .nav-item.active {
+    background: rgb(217, 217, 217, 0.6);
+  }
+
+  .nav .main .nav-item .icon img {
+    position: absolute;
+    right: 13px;
+    width: 10px;
+    top: calc(50% - 8px);
+    transform: rotate(180deg);
+  }
+
+  .nav .main .tag {
+    display: none;
+  }
+
+  .nav .side .back {
+    position: absolute;
+    top: 23px;
+    width: 8px;
+    left: 15px;
+  }
+
+  .nav .side .title {
+    text-align: center;
+    font-size: 15px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    margin: 0;
+  }
+
+  .nav .main svg {
+    width: 18px;
+  }
+
+  .nav .ops {
+    position: absolute;
+    width: 10px;
+    top: 29px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    top: 60px;
+  }
+
+  .nav .main,
+  .nav .side {
+    width: 100vw;
+    border: none;
+  }
+}

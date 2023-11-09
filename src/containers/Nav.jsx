@@ -27,6 +27,8 @@ const Nav = ({
 }) => {
   const [hov, setHov] = useState("");
   const [id, setId] = useState(false);
+  const [nave, setNave] = useState(true);
+  const [sate, setSate] = useState(false);
 
   useEffect(() => {
     setHov(position);
@@ -38,31 +40,58 @@ const Nav = ({
     }
   }, [position]);
 
-  const handleSide = (loc) => {
+  const handleSide = (loc, pos) => {
     navigate(loc);
+    if (pos === "main") {
+      setSate(true);
+      setNave(false);
+    } else {
+      setNave(false);
+      setSate(false);
+    }
+  };
+
+  const handleBack = () => {
+    setNave(true);
+    setSate(false);
   };
   return (
     <div className="nav">
-      <div className="main" onMouseLeave={() => setHov(position)}>
+      <img className="ops sm" src={arrow} alt="" onClick={handleBack} />
+      <div
+        className={`main ${nave ? "" : "hide"}`}
+        onMouseLeave={() => setHov(position)}
+      >
         <div
           className={`nav-item ${position === "one" ? "active" : ""}`}
-          onClick={() => handleSide("/")}
+          onClick={() => handleSide("/", "main")}
           onMouseOver={() => setHov("one")}
         >
-          <div className="icon">
+          <div className="icon bg">
             <ProfileSvg fill={position === "one" ? "black" : "white"} />
+          </div>
+          <div className="icon sm">
+            <img src={arrow} alt="" />
+            <ProfileSvg fill="black" />
           </div>
           <div className="text">My Profile</div>
         </div>
         <div
           className={`nav-item ${position === "two" ? "active" : ""}`}
           onClick={() =>
-            handleSide(role === "business" ? "/calendar" : "/appointment")
+            handleSide(
+              role === "business" ? "/calendar" : "/appointment",
+              "main"
+            )
           }
           onMouseOver={() => setHov("two")}
         >
-          <div className="icon">
+          <div className="icon bg">
             <CalendarSvg fill={position === "two" ? "black" : "white"} />
+          </div>
+          <div className="icon sm">
+            <img src={arrow} alt="" />
+            <CalendarSvg fill="black" />
           </div>
           <div className="text">
             {role === "business" ? "My Calendar" : "My appointment"}
@@ -72,41 +101,57 @@ const Nav = ({
           <>
             <div
               className={`nav-item ${position === "three" ? "active" : ""}`}
-              onClick={() => handleSide("/performance")}
+              onClick={() => handleSide("/performance", "main")}
               onMouseOver={() => setHov("three")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <AnalyticsSvg fill={position === "three" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <AnalyticsSvg fill="black" />
               </div>
               <div className="text">My Analytics</div>
             </div>
             <div
               className={`nav-item ${position === "four" ? "active" : ""}`}
-              onClick={() => handleSide("/")}
+              onClick={() => handleSide("/", "main")}
               onMouseOver={() => setHov("four")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <AccountSvg fill={position === "four" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <AccountSvg fill="black" />
               </div>
               <div className="text">Account Settings</div>
             </div>
             <div
               className={`nav-item ${position === "five" ? "active" : ""}`}
-              onClick={() => handleSide("/earning")}
+              onClick={() => handleSide("/earning", "main")}
               onMouseOver={() => setHov("five")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <PaymentSvg fill={position === "five" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <PaymentSvg fill="black" />
               </div>
               <div className="text">Payments</div>
             </div>
             <div
               className={`nav-item ${position === "six" ? "active" : ""}`}
-              onClick={() => handleSide("/notification")}
+              onClick={() => handleSide("/notification", "main")}
               onMouseOver={() => setHov("six")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <MarketingSvg fill={position === "six" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <MarketingSvg className="sm" fill="black" />
               </div>
               <div className="text">Notification</div>
             </div>
@@ -115,31 +160,43 @@ const Nav = ({
           <>
             <div
               className={`nav-item ${position === "zero" ? "active" : ""}`}
-              onClick={() => handleSide("/favorite")}
+              onClick={() => handleSide("/favorite", "main")}
               onMouseOver={() => setHov("zero")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <StarSvg fill={position === "zero" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <StarSvg className="sm" fill="black" />
               </div>
               <div className="text">Favourite</div>
             </div>
             <div
               className={`nav-item ${position === "four" ? "active" : ""}`}
-              onClick={() => handleSide("/")}
+              onClick={() => handleSide("/", "main")}
               onMouseOver={() => setHov("four")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <PaymentSvg fill={position === "four" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <PaymentSvg className="sm" fill="black" />
               </div>
               <div className="text">Payments</div>
             </div>
             <div
               className={`nav-item ${position === "five" ? "active" : ""}`}
-              onClick={() => handleSide("/")}
+              onClick={() => handleSide("/", "main")}
               onMouseOver={() => setHov("five")}
             >
-              <div className="icon">
+              <div className="icon bg">
                 <MarketingSvg fill={position === "five" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <MarketingSvg className="sm" fill="black" />
               </div>
               <div className="text">Rewards</div>
             </div>
@@ -150,9 +207,14 @@ const Nav = ({
         <div className={`tag ${position}`}></div>
       </div>
       {!noSide && (
-        <div className={`side ${position === "zero" ? "hide" : ""}`}>
+        <div
+          className={`side ${sate ? "" : "hide"} ${
+            position === "zero" ? "hide" : ""
+          }`}
+        >
           <div className={`extr ${position === "one" ? "active" : ""}`}>
             <div className="title">My Profile</div>
+            <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div
               onClick={() => handleSide("/")}
               className={`side-item ${exPos === "one" ? "active" : ""}`}
@@ -210,6 +272,7 @@ const Nav = ({
             <div className="title">
               {role === "business" ? "My Calendar" : "My appointment"}
             </div>
+            <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             {role === "business" && (
               <div
                 onClick={() => handleSide("/calendar")}
@@ -243,6 +306,7 @@ const Nav = ({
           </div>
           <div className={`extr ${position === "three" ? "active" : ""}`}>
             <div className="title">My Calendar</div>
+            <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div
               onClick={() => handleSide("/performance")}
               className={`side-item ${exPos === "one" ? "active" : ""}`}
@@ -270,6 +334,7 @@ const Nav = ({
           </div>
           <div className={`extr ${position === "five" ? "active" : ""}`}>
             <div className="title">Payments</div>
+            <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div
               onClick={() => handleSide("/earning")}
               className={`side-item ${exPos === "one" ? "active" : ""}`}
@@ -320,6 +385,7 @@ const Nav = ({
           </div>
           <div className={`extr ${position === "six" ? "active" : ""}`}>
             <div className="title">Notifications</div>
+            <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div
               onClick={() => handleSide("/notification")}
               className={`side-item ${exPos === "one" ? "active" : ""}`}
