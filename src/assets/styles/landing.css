@@ -650,11 +650,11 @@
 
   .reviews .rev-item .item.active .ins .title {
     margin: 0 0 10px;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .reviews .rev-item .item.active .ins p {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .reviews .rev-item .inner {
@@ -811,7 +811,7 @@
   }
 
   .reviews .title {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .reviews .subtitle {
