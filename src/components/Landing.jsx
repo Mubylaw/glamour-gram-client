@@ -94,7 +94,7 @@ const Landing = ({ currentUser }) => {
       </motion.div>
       <div className="hero">
         <motion.div
-          variants={fadeIn("up", "spring", 0.5, 1.75, 30)}
+          variants={fadeIn("up", "spring", 0.75, 1.75, 30)}
           initial="hidden"
           animate="show"
         >
@@ -102,7 +102,7 @@ const Landing = ({ currentUser }) => {
         </motion.div>
         <div className="form">
           <motion.div
-            variants={textVariant(0.75, 1.75)}
+            variants={textVariant(1.25, 1.75)}
             initial="hidden"
             animate="show"
             className="inpo"
@@ -116,7 +116,7 @@ const Landing = ({ currentUser }) => {
             />
           </motion.div>
           <motion.div
-            variants={textVariant(1.5, 1.75)}
+            variants={textVariant(1.75, 1.75)}
             initial="hidden"
             animate="show"
             className="inpo"
@@ -139,7 +139,7 @@ const Landing = ({ currentUser }) => {
             </div>
           </motion.div>
           <motion.div
-            variants={comeIn(0.75, 1.75)}
+            variants={comeIn(1.75, 1.75)}
             initial="hidden"
             animate="show"
           >

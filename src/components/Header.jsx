@@ -46,22 +46,18 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
           <img src={down} alt="down" />
           <div className="in"></div>
           <div className="inner">
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
+            <div className="line">Nails</div>
+            <div className="line">Makeup</div>
+            <div className="line">Skincare</div>
+            <div className="line">Massage</div>
+            <div className="line">Hair Removal</div>
+            <div className="line">Barber</div>
+            <div className="line">Aesthetics</div>
             <div className="line">Hair</div>
           </div>
         </div>
         <div className="nav-link bg">
           <span>Glamor Gram Business</span>
-          <img src={down} alt="down" />
-          <div className="in"></div>
-          <div className="inner">
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-          </div>
         </div>
         <div className="nav-link bg">
           <span>About Us</span>
@@ -82,27 +78,22 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
       <div className={`mob sm ${mob ? "" : "hide"}`}>
         <div className="nav-link">
           <div className="tiop" onClick={handleOpen}>
-            <span>featured Services</span>
+            <span>Featured Services</span>
             <img src={down} alt="down" />
           </div>
           <div className="inner">
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
+            <div className="line">Nails</div>
+            <div className="line">Makeup</div>
+            <div className="line">Skincare</div>
+            <div className="line">Massage</div>
+            <div className="line">Hair Removal</div>
+            <div className="line">Barber</div>
+            <div className="line">Aesthetics</div>
             <div className="line">Hair</div>
           </div>
         </div>
         <div className="nav-link">
-          <div className="tiop" onClick={handleOpen}>
-            <span>Glamor Gram Business</span>
-            <img src={down} alt="down" />
-          </div>
-          <div className="inner">
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-            <div className="line">Hair</div>
-          </div>
+          <span>Glamor Gram Business</span>
         </div>
         <div className="nav-link">
           <span>About Us</span>

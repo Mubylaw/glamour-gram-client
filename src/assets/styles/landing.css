@@ -50,6 +50,11 @@
   transition: all ease 0.3s;
 }
 
+.header .links .nav-link .inner .line {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
 .header .links .nav-link img {
   position: relative;
   top: 6px;
@@ -121,6 +126,10 @@
   height: 25px;
   padding: 23px 20px;
   width: 100%;
+}
+
+.landing .form input::placeholder {
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .landing .form .inpo {
@@ -571,8 +580,8 @@
   }
 
   .header .mob .inner .line {
-    margin: 5px 0;
-    font-size: 15px;
+    margin: 7px 0;
+    font-size: 14px;
   }
 
   .header .mob .nav-link {
