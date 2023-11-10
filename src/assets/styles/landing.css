@@ -650,11 +650,11 @@
 
   .reviews .rev-item .item.active .ins .title {
     margin: 0 0 10px;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .reviews .rev-item .item.active .ins p {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .reviews .rev-item .inner {
@@ -739,7 +739,7 @@
 
   .reviews .btn-group .btn {
     width: 220px;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .reviews .rev-item {
@@ -811,13 +811,13 @@
   }
 
   .reviews .title {
-    font-size: 19px;
+    font-size: 22px;
   }
 
   .reviews .subtitle {
     margin: 0 auto;
-    font-size: 12px;
-    width: 200px;
+    font-size: 15px;
+    width: 260px;
   }
 
   .reviews img.star {
@@ -855,17 +855,20 @@
   .categories .title img {
     left: calc(50% - 173px);
   }
+
+  .categories .title img {
+    top: -40px;
+    width: 49px;
+  }
+
+  .reviews .rev-item .item .img {
+    width: 150%;
+  }
 }
 
 @media (max-width: 400px) {
   .categories .title {
-    width: 200px;
     margin: 0 auto 30px;
-  }
-
-  .categories .title img:nth-child(3),
-  .categories .title img {
-    left: calc(50% - 110px);
   }
 
   .why .tab-outer .tab:nth-child(3) .subtitle {
@@ -896,5 +899,15 @@
 
   .reviews img.star {
     display: none;
+  }
+
+  .categories .title {
+    width: 200px;
+    margin: 0 auto 30px;
+  }
+
+  .categories .title img:nth-child(3),
+  .categories .title img {
+    left: calc(50% - 110px);
   }
 }
