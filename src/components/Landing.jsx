@@ -397,10 +397,13 @@ const Landing = ({ currentUser }) => {
               </div>
               <div className="ins">
                 <div className="title">Discover Expert Eyeshadow Artists</div>
-                <p>
+                <p className="ex-bg">
                   Elevate your look with expert eyeshadow stylists. Let skilled
                   professionals bring out the beauty of your eyes with stunning
                   colors and techniques.
+                </p>
+                <p className="ex-sm">
+                  Elevate your look with expert eyeshadow stylists.
                 </p>
               </div>
             </div>
@@ -410,10 +413,13 @@ const Landing = ({ currentUser }) => {
               </div>
               <div className="ins">
                 <div className="title">Try Sugar Waxing Today</div>
-                <p>
+                <p className="ex-bg">
                   Experience Gentle Sugar Waxing with Skilled Professionals.
                   Connect with experts who use sugar wax for a kinder hair
                   removal experience.
+                </p>
+                <p className="ex-sm">
+                  Experience Gentle Sugar Waxing with Skilled Professionals.
                 </p>
               </div>
             </div>
@@ -423,10 +429,14 @@ const Landing = ({ currentUser }) => {
               </div>
               <div className="ins">
                 <div className="title">Discover BIAB Nail Artists</div>
-                <p>
+                <p className="ex-bg">
                   Enhance Your Nails with BIAB Specialists. Transform your nails
                   without extensions, and enjoy stronger nails. Connect with
                   experts skilled in Builder in a Bottle techniques.
+                </p>
+                <p className="ex-sm">
+                  Transform your nails without extensions, and enjoy stronger
+                  nails.
                 </p>
               </div>
             </div>
@@ -436,9 +446,12 @@ const Landing = ({ currentUser }) => {
               </div>
               <div className="ins">
                 <div className="title">Find Your Afro Hair Expert</div>
-                <p>
+                <p className="ex-bg">
                   Embrace Vibrant Afro Hair with Specialized Stylists. Get the
                   perfect highlights that complement your unique style
+                </p>
+                <p className="ex-sm">
+                  Embrace Vibrant Afro Hair with Specialized Stylists.
                 </p>
               </div>
             </div>
