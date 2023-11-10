@@ -641,7 +641,7 @@
 
   .reviews .rev-item .item.active {
     display: flex;
-    width: 100%;
+    width: calc(100vw - 120px);
   }
 
   .reviews .rev-item .item.active .ins {
@@ -661,6 +661,14 @@
     padding: 0 30px;
     display: flex;
     width: 500vw;
+  }
+
+  .reviews .rev-item .item.active .ins {
+    width: 60%;
+  }
+
+  .reviews .rev-item .item.active .img {
+    width: 40%;
   }
 }
 
@@ -860,10 +868,6 @@
   .categories .title img {
     top: -40px;
     width: 49px;
-  }
-
-  .reviews .rev-item .item .img {
-    width: 150%;
   }
 }
 
