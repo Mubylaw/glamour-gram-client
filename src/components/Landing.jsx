@@ -204,7 +204,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tab"
           >
             <div className="subtitle">Endless Options</div>
@@ -217,7 +217,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0.25, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tab"
           >
             <div className="subtitle">Easy Booking</div>
@@ -227,7 +227,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0.5, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tab"
           >
             <div className="subtitle">Quality Assurance</div>
@@ -237,7 +237,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0.75, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tab"
           >
             <div className="subtitle">Personalised Experience</div>
@@ -247,7 +247,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(1, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tab"
           >
             <div className="subtitle">Effortless Payments</div>
@@ -257,7 +257,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(1.25, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tab"
           >
             <div className="subtitle">One Stop Shop</div>
@@ -270,7 +270,7 @@ const Landing = ({ currentUser }) => {
           variants={fadeIn("down", "spring", 0, 1.5, 100)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 1 }}
           className="title"
         >
           <span>Glamor at your fingertips</span>
@@ -282,7 +282,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/nails-mob.png" alt="" />
@@ -293,7 +293,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0.25, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/makeup-mob.png" alt="" />
@@ -304,7 +304,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0.5, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/skincare-mob.png" alt="" />
@@ -315,7 +315,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(0.75, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/massage-mob.png" alt="" />
@@ -326,7 +326,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(1, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/hair-removal-mob.png" alt="" />
@@ -337,7 +337,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(1.25, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/barber-mob.png" alt="" />
@@ -348,7 +348,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(1.5, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/aesthetics-mob.png" alt="" />
@@ -359,7 +359,7 @@ const Landing = ({ currentUser }) => {
             variants={comeIn(1.75, 1.75)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
             className="tile"
           >
             <img className="sm" src="/assets/hair-mob.png" alt="" />
@@ -375,7 +375,7 @@ const Landing = ({ currentUser }) => {
           variants={fadeIn("down", "spring", 0, 1.5, 100)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 1 }}
           className="title"
         >
           You saw it here first ...
