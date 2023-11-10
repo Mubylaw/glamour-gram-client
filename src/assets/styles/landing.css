@@ -755,7 +755,8 @@
   }
 
   .footer .top .no,
-  .footer .top .email .footer .top p,
+  .footer .top .email,
+  .footer .top p,
   .footer .top .slide {
     font-size: 10px;
   }
