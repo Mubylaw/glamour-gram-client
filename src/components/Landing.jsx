@@ -391,13 +391,7 @@ const Landing = ({ currentUser }) => {
             onClick={handlePrev}
           />
           <div className="inner">
-            <motion.div
-              variants={comeIn(currentIndex === 0 ? 0 : 0, 1.75)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-              className={`item ${currentIndex === 0 ? "active" : ""}`}
-            >
+            <div className={`item ${currentIndex === 0 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(1).png" alt="" />
               </div>
@@ -409,14 +403,8 @@ const Landing = ({ currentUser }) => {
                   colors and techniques.
                 </p>
               </div>
-            </motion.div>
-            <motion.div
-              variants={comeIn(currentIndex === 0 ? 0.25 : 0, 1.75)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-              className={`item ${currentIndex === 0 ? "active" : ""}`}
-            >
+            </div>
+            <div className={`item ${currentIndex === 1 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(2).png" alt="" />
               </div>
@@ -428,14 +416,8 @@ const Landing = ({ currentUser }) => {
                   removal experience.
                 </p>
               </div>
-            </motion.div>
-            <motion.div
-              variants={comeIn(currentIndex === 0 ? 0.5 : 0, 1.75)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-              className={`item ${currentIndex === 0 ? "active" : ""}`}
-            >
+            </div>
+            <div className={`item ${currentIndex === 2 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(3).png" alt="" />
               </div>
@@ -447,14 +429,8 @@ const Landing = ({ currentUser }) => {
                   experts skilled in Builder in a Bottle techniques.
                 </p>
               </div>
-            </motion.div>
-            <motion.div
-              variants={comeIn(currentIndex === 0 ? 0.75 : 0, 1.75)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-              className={`item ${currentIndex === 0 ? "active" : ""}`}
-            >
+            </div>
+            <div className={`item ${currentIndex === 3 ? "active" : ""}`}>
               <div className="img">
                 <img src="/assets/review%20(4).png" alt="" />
               </div>
@@ -465,7 +441,7 @@ const Landing = ({ currentUser }) => {
                   perfect highlights that complement your unique style
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
           <img
             src={carousel}
