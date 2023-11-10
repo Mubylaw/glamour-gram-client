@@ -14,7 +14,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { comeIn, fadeIn, textVariant, zoomIn } from "../utils/motion";
+import { comeIn, fadeIn, textVariant, drawStroke } from "../utils/motion";
 
 const Landing = ({ currentUser }) => {
   const [tag, setTag] = useState([]);
@@ -84,28 +84,67 @@ const Landing = ({ currentUser }) => {
 
   return (
     <div className="landing">
-      <Header user={userMan} />
+      <motion.div
+        variants={fadeIn("down", "spring", 0, 1.75, 100)}
+        initial="hidden"
+        animate="show"
+        className="alt-head"
+      >
+        <Header user={userMan} />
+      </motion.div>
       <div className="hero">
-        <h1>Discover Beauty. Book with Confidence.</h1>
+        <motion.div
+          variants={fadeIn("up", "spring", 0.5, 1.75, 30)}
+          initial="hidden"
+          animate="show"
+        >
+          <h1>Discover Beauty. Book with Confidence.</h1>
+        </motion.div>
         <div className="form">
-          <input
-            type="text"
-            placeholder="What Service?"
-            value={char.serivce}
-            name="serivce"
-            onChange={handleSearch}
-          />
-          <input
-            type="text"
-            placeholder="Which Location?"
-            value={char.location}
-            name="location"
-            onChange={handleSearch}
-          />
-          <div className="search" onClick={handleSubmit}>
-            Search
-          </div>
-          <img src={cross} alt="" onClick={handleService} />
+          <motion.div
+            variants={textVariant(0.75, 1.75)}
+            initial="hidden"
+            animate="show"
+            className="inpo"
+          >
+            <input
+              type="text"
+              placeholder="What Service?"
+              value={char.serivce}
+              name="serivce"
+              onChange={handleSearch}
+            />
+          </motion.div>
+          <motion.div
+            variants={textVariant(1.5, 1.75)}
+            initial="hidden"
+            animate="show"
+            className="inpo"
+          >
+            <input
+              type="text"
+              placeholder="Which Location?"
+              value={char.location}
+              name="location"
+              onChange={handleSearch}
+            />
+          </motion.div>
+          <motion.div
+            variants={fadeIn("up", "spring", 2.25, 1.25, 50)}
+            initial="hidden"
+            animate="show"
+          >
+            <div className="search" onClick={handleSubmit}>
+              Search
+            </div>
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.75, 1.75)}
+            initial="hidden"
+            animate="show"
+          >
+            <img src={cross} alt="" onClick={handleService} />
+          </motion.div>
         </div>
         <div className="tag">
           {tag.map((tg, i) => (
@@ -161,88 +200,186 @@ const Landing = ({ currentUser }) => {
           <CapSvg />
         </div>
         <div className="tab-outer">
-          <div className="tab">
+          <motion.div
+            variants={comeIn(0, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tab"
+          >
             <div className="subtitle">Endless Options</div>
             <p>
               Discover hundreds of extraordinary beauty professionals in one
               place.
             </p>
-          </div>
-          <div className="tab">
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.25, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tab"
+          >
             <div className="subtitle">Easy Booking</div>
             <p>Schedule your next appointment with a simple click.</p>
-          </div>
-          <div className="tab">
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.5, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tab"
+          >
             <div className="subtitle">Quality Assurance</div>
             <p>Vetted beauty experts for top-notch experiences.</p>
-          </div>
-          <div className="tab">
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.75, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tab"
+          >
             <div className="subtitle">Personalised Experience</div>
             <p>Discover exclusive deals that cater to your needs.</p>
-          </div>
-          <div className="tab">
+          </motion.div>
+          <motion.div
+            variants={comeIn(1, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tab"
+          >
             <div className="subtitle">Effortless Payments</div>
             <p>Secure and seamless transactions for your peace of mind.</p>
-          </div>
-          <div className="tab">
+          </motion.div>
+          <motion.div
+            variants={comeIn(1.25, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tab"
+          >
             <div className="subtitle">One Stop Shop</div>
             <p>Manage all of your beauty and business needs in one place</p>
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className="categories">
-        <div className="title">
+        <motion.div
+          variants={fadeIn("down", "spring", 0, 1.5, 100)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.5 }}
+          className="title"
+        >
           <span>Glamor at your fingertips</span>
           <img src={topCrown} alt="" />
           <img src={bottomCrown} alt="" />
-        </div>
+        </motion.div>
         <div className="tile-outer">
-          <div className="tile">
+          <motion.div
+            variants={comeIn(0, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/nails-mob.png" alt="" />
             <img className="bg" src="/assets/nails.png" alt="" />
             <p>Nails</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.25, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/makeup-mob.png" alt="" />
             <img className="bg" src="/assets/makeup.png" alt="" />
             <p>Makeup</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.5, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/skincare-mob.png" alt="" />
             <img className="bg" src="/assets/skincare.png" alt="" />
             <p>Skincare</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(0.75, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/massage-mob.png" alt="" />
             <img className="bg" src="/assets/massage.png" alt="" />
             <p>Massage</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(1, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/hair-removal-mob.png" alt="" />
             <img className="bg" src="/assets/hair-removal.png" alt="" />
             <p>Hair Removal</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(1.25, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/barber-mob.png" alt="" />
             <img className="bg" src="/assets/barber.png" alt="" />
             <p>Barber</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(1.5, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/aesthetics-mob.png" alt="" />
             <img className="bg" src="/assets/aesthetics.png" alt="" />
             <p>Aesthetics</p>
-          </div>
-          <div className="tile">
+          </motion.div>
+          <motion.div
+            variants={comeIn(1.75, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            className="tile"
+          >
             <img className="sm" src="/assets/hair-mob.png" alt="" />
             <img className="bg" src="/assets/hair.png" alt="" />
             <p>Hair</p>
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className="reviews">
         <img className="star" src={stars} alt="" />
         <img className="star" src={stars} alt="" />
-        <div className="title">You saw it here first ...</div>
+        <motion.div
+          variants={fadeIn("down", "spring", 0, 1.5, 100)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.5 }}
+          className="title"
+        >
+          You saw it here first ...
+        </motion.div>
         <div className="subtitle">
           Discover the latest trends. Book with Ease. Showcase your talent.
         </div>
@@ -254,7 +391,13 @@ const Landing = ({ currentUser }) => {
             onClick={handlePrev}
           />
           <div className="inner">
-            <div className={`item ${currentIndex === 0 ? "active" : ""}`}>
+            <motion.div
+              variants={comeIn(currentIndex === 0 ? 0 : 0, 1.75)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className={`item ${currentIndex === 0 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(1).png" alt="" />
               </div>
@@ -266,8 +409,14 @@ const Landing = ({ currentUser }) => {
                   colors and techniques.
                 </p>
               </div>
-            </div>
-            <div className={`item ${currentIndex === 1 ? "active" : ""}`}>
+            </motion.div>
+            <motion.div
+              variants={comeIn(currentIndex === 0 ? 0.25 : 0, 1.75)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className={`item ${currentIndex === 0 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(2).png" alt="" />
               </div>
@@ -279,8 +428,14 @@ const Landing = ({ currentUser }) => {
                   removal experience.
                 </p>
               </div>
-            </div>
-            <div className={`item ${currentIndex === 2 ? "active" : ""}`}>
+            </motion.div>
+            <motion.div
+              variants={comeIn(currentIndex === 0 ? 0.5 : 0, 1.75)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className={`item ${currentIndex === 0 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(3).png" alt="" />
               </div>
@@ -292,8 +447,14 @@ const Landing = ({ currentUser }) => {
                   experts skilled in Builder in a Bottle techniques.
                 </p>
               </div>
-            </div>
-            <div className={`item ${currentIndex === 3 ? "active" : ""}`}>
+            </motion.div>
+            <motion.div
+              variants={comeIn(currentIndex === 0 ? 0.75 : 0, 1.75)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className={`item ${currentIndex === 0 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(4).png" alt="" />
               </div>
@@ -304,7 +465,7 @@ const Landing = ({ currentUser }) => {
                   perfect highlights that complement your unique style
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
           <img
             src={carousel}

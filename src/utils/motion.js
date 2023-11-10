@@ -122,3 +122,20 @@ export const staggerContainer = (staggerChildren, delayChildren) => {
     },
   };
 };
+
+export const drawStroke = (duration, delay) => {
+  return {
+    hidden: {
+      strokeDasharray: 1000,
+      strokeDashoffset: 1000,
+    },
+    show: {
+      strokeDashoffset: 0,
+      transition: {
+        duration: duration,
+        delay: delay,
+        ease: "linear",
+      },
+    },
+  };
+};
