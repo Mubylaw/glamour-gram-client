@@ -46,25 +46,41 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
           <img src={down} alt="down" />
           <div className="in"></div>
           <div className="inner">
-            <div className="line">Nails</div>
-            <div className="line">Makeup</div>
-            <div className="line">Skincare</div>
-            <div className="line">Massage</div>
-            <div className="line">Hair Removal</div>
-            <div className="line">Barber</div>
-            <div className="line">Aesthetics</div>
-            <div className="line">Hair</div>
+            <Link to="/explore" className="line">
+              Nails
+            </Link>
+            <Link to="/explore" className="line">
+              Makeup
+            </Link>
+            <Link to="/explore" className="line">
+              Skincare
+            </Link>
+            <Link to="/explore" className="line">
+              Massage
+            </Link>
+            <Link to="/explore" className="line">
+              Hair Removal
+            </Link>
+            <Link to="/explore" className="line">
+              Barber
+            </Link>
+            <Link to="/explore" className="line">
+              Aesthetics
+            </Link>
+            <Link to="/explore" className="line">
+              Hair
+            </Link>
           </div>
         </div>
         <Link to="/signin" className="nav-link bg">
           <span>Glamor Gram Business</span>
         </Link>
-        <div className="nav-link bg">
+        <Link to="/blog" className="nav-link bg">
           <span>About Us</span>
-        </div>
-        <div className="nav-link bg">
+        </Link>
+        <Link to="/blog" className="nav-link bg">
           <span>Contact Us</span>
-        </div>
+        </Link>
         {user ? (
           <div className="nav-link" onClick={logoutFn}>
             <div className="log-in">Log Out</div>
@@ -82,25 +98,41 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <img src={down} alt="down" />
           </div>
           <div className="inner">
-            <div className="line">Nails</div>
-            <div className="line">Makeup</div>
-            <div className="line">Skincare</div>
-            <div className="line">Massage</div>
-            <div className="line">Hair Removal</div>
-            <div className="line">Barber</div>
-            <div className="line">Aesthetics</div>
-            <div className="line">Hair</div>
+            <Link to="/explore" className="line">
+              Nails
+            </Link>
+            <Link to="/explore" className="line">
+              Makeup
+            </Link>
+            <Link to="/explore" className="line">
+              Skincare
+            </Link>
+            <Link to="/explore" className="line">
+              Massage
+            </Link>
+            <Link to="/explore" className="line">
+              Hair Removal
+            </Link>
+            <Link to="/explore" className="line">
+              Barber
+            </Link>
+            <Link to="/explore" className="line">
+              Aesthetics
+            </Link>
+            <Link to="/explore" className="line">
+              Hair
+            </Link>
           </div>
         </div>
         <Link to="/signin" className="nav-link">
           <span>Glamor Gram Business</span>
         </Link>
-        <div className="nav-link">
+        <Link to="/blog" className="nav-link">
           <span>About Us</span>
-        </div>
-        <div className="nav-link">
+        </Link>
+        <Link to="/blog" className="nav-link">
           <span>Contact Us</span>
-        </div>
+        </Link>
       </div>
     </div>
   );

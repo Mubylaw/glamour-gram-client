@@ -12,6 +12,7 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     certs: "",
     portfolio: "",
     insta: "",
+    username: "",
     facebook: "",
     twitter: "",
     firstName: "",
@@ -103,8 +104,8 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
         </div>
         <div className="name">
           {user.role === "business"
-            ? user.name
-            : `${user.firstName} ${user.lastName}`}
+            ? char.name
+            : `${char.firstName} ${char.lastName}`}
         </div>
       </div>
       <div className="form">
@@ -118,6 +119,16 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
                 onChange={handleChange}
                 value={char.location}
                 name="location"
+              />
+            </div>
+            <div className="item">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                onChange={handleChange}
+                value={char.username}
+                name="username"
               />
             </div>
             <div className="item">

@@ -30,6 +30,7 @@ import Payment from "./Payment";
 import NewBooking from "./NewBooking";
 import Landing from "../components/Landing";
 import Favorite from "./Favorite";
+import Empty from "./Empty";
 
 const Main = (props) => {
   const {
@@ -398,6 +399,11 @@ const Main = (props) => {
             />
           }
         /> */}
+        <Route
+          exact
+          path="/blog"
+          element={<Empty currentUser={currentUser} {...props} />}
+        />
         <Route
           exact
           path="/:id"

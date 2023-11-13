@@ -84,22 +84,10 @@ const Landing = ({ currentUser }) => {
 
   return (
     <div className="landing">
-      <motion.div
-        variants={fadeIn("down", "spring", 0, 1.75, 100)}
-        initial="hidden"
-        animate="show"
-        className="alt-head"
-      >
-        <Header user={userMan} />
-      </motion.div>
+      <Header user={userMan} />
       <div className="hero">
-        <motion.div
-          variants={fadeIn("up", "spring", 0.75, 1.75, 30)}
-          initial="hidden"
-          animate="show"
-        >
-          <h1>Discover Beauty. Book with Confidence.</h1>
-        </motion.div>
+        <h1>Discover Beauty. Book with Confidence.</h1>
+
         <div className="form">
           <motion.div
             variants={textVariant(1.25, 1.75)}
@@ -278,108 +266,108 @@ const Landing = ({ currentUser }) => {
           <img src={bottomCrown} alt="" />
         </motion.div>
         <div className="tile-outer">
-          <motion.div
+          <motion.a
             variants={comeIn(0, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/nails-mob.png" alt="" />
             <img className="bg" src="/assets/nails.png" alt="" />
             <p>Nails</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(0.25, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/makeup-mob.png" alt="" />
             <img className="bg" src="/assets/makeup.png" alt="" />
             <p>Makeup</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(0.5, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/skincare-mob.png" alt="" />
             <img className="bg" src="/assets/skincare.png" alt="" />
             <p>Skincare</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(0.75, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/massage-mob.png" alt="" />
             <img className="bg" src="/assets/massage.png" alt="" />
             <p>Massage</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(1, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/hair-removal-mob.png" alt="" />
             <img className="bg" src="/assets/hair-removal.png" alt="" />
             <p>Hair Removal</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(1.25, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/barber-mob.png" alt="" />
             <img className="bg" src="/assets/barber.png" alt="" />
             <p>Barber</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(1.5, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/aesthetics-mob.png" alt="" />
             <img className="bg" src="/assets/aesthetics.png" alt="" />
             <p>Aesthetics</p>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             variants={comeIn(1.75, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
+            href="/explore"
           >
             <img className="sm" src="/assets/hair-mob.png" alt="" />
             <img className="bg" src="/assets/hair.png" alt="" />
             <p>Hair</p>
-          </motion.div>
+          </motion.a>
         </div>
       </div>
       <div className="reviews">
         <img className="star" src={stars} alt="" />
         <img className="star" src={stars} alt="" />
-        <motion.div
-          variants={fadeIn("down", "spring", 0, 1.5, 100)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 1 }}
-          className="title"
-        >
-          You saw it here first ...
-        </motion.div>
+        <div className="title">You saw it here first ...</div>
         <div className="subtitle">
           Discover the latest trends. Book with Ease. Showcase your talent.
         </div>
@@ -391,7 +379,10 @@ const Landing = ({ currentUser }) => {
             onClick={handlePrev}
           />
           <div className="inner">
-            <div className={`item ${currentIndex === 0 ? "active" : ""}`}>
+            <a
+              href="/blog"
+              className={`item ${currentIndex === 0 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(1).png" alt="" />
               </div>
@@ -406,8 +397,11 @@ const Landing = ({ currentUser }) => {
                   Elevate your look with expert eyeshadow stylists.
                 </p>
               </div>
-            </div>
-            <div className={`item ${currentIndex === 1 ? "active" : ""}`}>
+            </a>
+            <a
+              href="/blog"
+              className={`item ${currentIndex === 1 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(2).png" alt="" />
               </div>
@@ -422,8 +416,11 @@ const Landing = ({ currentUser }) => {
                   Experience Gentle Sugar Waxing with Skilled Professionals.
                 </p>
               </div>
-            </div>
-            <div className={`item ${currentIndex === 2 ? "active" : ""}`}>
+            </a>
+            <a
+              href="/blog"
+              className={`item ${currentIndex === 2 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(3).png" alt="" />
               </div>
@@ -439,8 +436,11 @@ const Landing = ({ currentUser }) => {
                   nails.
                 </p>
               </div>
-            </div>
-            <div className={`item ${currentIndex === 3 ? "active" : ""}`}>
+            </a>
+            <a
+              href="/blog"
+              className={`item ${currentIndex === 3 ? "active" : ""}`}
+            >
               <div className="img">
                 <img src="/assets/review%20(4).png" alt="" />
               </div>
@@ -454,7 +454,7 @@ const Landing = ({ currentUser }) => {
                   Embrace Vibrant Afro Hair with Specialized Stylists.
                 </p>
               </div>
-            </div>
+            </a>
           </div>
           <img
             src={carousel}

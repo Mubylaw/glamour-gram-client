@@ -53,6 +53,9 @@
 .header .links .nav-link .inner .line {
   font-size: 14px;
   margin: 10px 0;
+  display: block;
+  color: black;
+  text-decoration: none;
 }
 
 .header .links .nav-link img {
@@ -308,6 +311,9 @@
   font-weight: 600;
   width: 100%;
   text-align: center;
+  display: block;
+  color: black;
+  text-decoration: none;
 }
 
 .reviews {
@@ -349,6 +355,7 @@
 
 .reviews .rev-item .item {
   width: calc(25% - 10px);
+  text-decoration: none;
 }
 
 .reviews .rev-item .item img {
@@ -360,11 +367,17 @@
   font-weight: 600;
   text-align: left;
   margin: 15px 0 10px;
+  display: block;
+  color: black;
+  text-decoration: none;
 }
 
 .reviews .rev-item .item .subtitle {
   font-size: 15px;
   font-weight: 500;
+  display: block;
+  color: black;
+  text-decoration: none;
 }
 
 .reviews .btn-group {
@@ -453,6 +466,7 @@
   color: white;
   font-family: "Open Sans", sans-serif;
   margin-left: 25px;
+  display: inline-block;
 }
 
 .sm {
@@ -466,6 +480,18 @@
 
 .reviews .rev-item .item.active .ins p.ex-sm {
   display: none;
+  color: black;
+  text-decoration: none;
+}
+
+.landing .empty {
+  min-height: 100vh;
+}
+
+.footer a {
+  display: block;
+  color: white;
+  text-decoration: none;
 }
 
 @media (max-width: 960px) {
@@ -586,10 +612,16 @@
   .header .mob .inner .line {
     margin: 7px 0;
     font-size: 14px;
+    display: block;
+    color: white;
+    text-decoration: none;
   }
 
   .header .mob .nav-link {
     margin: 15px 0;
+    display: block;
+    color: white;
+    text-decoration: none;
   }
 
   .header .mob .nav-link img {

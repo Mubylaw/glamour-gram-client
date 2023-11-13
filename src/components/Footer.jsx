@@ -15,8 +15,12 @@ const Footer = ({ top }) => {
           </div>
           <div className="conr">
             <p>contact</p>
-            <div className="no">02031234123</div>
-            <div className="email">info@glamorgram.co.uk</div>
+            <a href="tel:+2347081741484" className="no">
+              02031234123
+            </a>
+            <a href="mailto:info@glamorgram.co.uk" className="email">
+              info@glamorgram.co.uk
+            </a>
           </div>
           <div className="social">
             <img src={facebook} alt="" />
@@ -28,23 +32,35 @@ const Footer = ({ top }) => {
         </div>
         <div className="slide info">
           <div className="line">
-            <div className="item">FAQs</div>
-            <div className="item">Blogs</div>
-            <div className="item">Help and Support</div>
+            <a href="/blog" className="item">
+              FAQs
+            </a>
+            <a href="/blog" className="item">
+              Blogs
+            </a>
+            <a href="/blog" className="item">
+              Help and Support
+            </a>
           </div>
           <div className="line">
-            <div className="item">Pricing</div>
-            <div className="item">Sign up to our newsletter</div>
-            <div className="item">Testimonials</div>
+            <a href="/blog" className="item">
+              Pricing
+            </a>
+            <a href="/blog" className="item">
+              Sign up to our newsletter
+            </a>
+            <a href="/blog" className="item">
+              Testimonials
+            </a>
           </div>
         </div>
       </div>
       <div className="bottom">
         <div className="copy">© 2023 Glamor Gram. All rights reserved.</div>
         <div className="terms">
-          <a href="">Privacy Policy</a>
-          <a href="">Terms of Service</a>
-          <a href="">Cookie Settings</a>
+          <a href="/blog">Privacy Policy</a>
+          <a href="/blog">Terms of Service</a>
+          <a href="/blog">Cookie Settings</a>
         </div>
       </div>
     </div>
