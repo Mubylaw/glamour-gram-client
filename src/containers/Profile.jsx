@@ -3,6 +3,7 @@ import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import { updateUser } from "../store/actions/user";
 import { uploadAvatar } from "../store/actions/auth";
+import slugify from "slugify";
 
 const Profile = ({ user, updateUser, uploadAvatar }) => {
   const [char, setChar] = useState({
@@ -29,7 +30,10 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
   const [view, setView] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    var { name, value } = e.target;
+    if (name === "username") {
+      value = slugify(value, { lower: true });
+    }
     setChar((prevFormData) => ({
       ...prevFormData,
       [name]: value,

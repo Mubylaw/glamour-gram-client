@@ -51,7 +51,7 @@ const ServiceCard = ({ service, locs }) => {
             </div>
           </>
         )}
-        <a href={`/${service._id}`}>
+        <a href={`/${service.username}`}>
           View More <img src={leftArrow} alt="" />
         </a>
       </div>

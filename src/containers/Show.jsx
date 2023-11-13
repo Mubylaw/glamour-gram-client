@@ -14,12 +14,13 @@ import leftArrowBlack from "../assets/svg/leftArrowBlack.svg";
 import Down from "../assets/svg/downNav";
 import { Link } from "react-router-dom";
 import Calendar from "../components/Calendar";
-import { getUser, updateUser } from "../store/actions/user.jsx";
+import { getUser, getUsersFn, updateUser } from "../store/actions/user.jsx";
 import { getPaymentUrl } from "../store/actions/payment.jsx";
 import { getAppointmentsFn } from "../store/actions/appointment";
 
 const Show = ({
   getUser,
+  getUsersFn,
   business,
   currentUser,
   updateUser,
@@ -36,7 +37,7 @@ const Show = ({
   const [trunc, setTrunc] = useState(false);
   const [chat, setChat] = useState(false);
   const [book, setBook] = useState(false);
-  const [id, setId] = useState(false);
+  const [username, setUsername] = useState(false);
   const [err, setErr] = useState("");
   const [dateNo, setDateNo] = useState("");
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -64,8 +65,8 @@ const Show = ({
 
   useEffect(() => {
     const path = window.location.pathname;
-    const id = path.split("/")[1];
-    setId(id);
+    const username = path.split("/")[1];
+    setUsername(username);
     const day = currentDate.getDay();
     setDateNo(day);
     var search = window.location.search;
@@ -84,15 +85,11 @@ const Show = ({
   }, []);
 
   useEffect(() => {
-    if (id) {
-      const idd = id.replace(/,/g, "");
-      getUser(idd, "populate=reviews%20booking", true);
-      const date = new Date();
-      getAppointmentsFn(
-        `store=${idd}&_greatertime=${date}&select=time%20duration&_boolstate=true`
-      );
+    if (username) {
+      const userna = username.replace(/,/g, "");
+      getUsersFn(`populate=reviews%20booking&username=${userna}`);
     }
-  }, [id]);
+  }, [username]);
 
   let rating = 5;
   if (business.rating) {
@@ -188,6 +185,12 @@ const Show = ({
     if (freeTime) {
       setAllTimes(freeTime);
     }
+    if (business._id) {
+      const date = new Date();
+      getAppointmentsFn(
+        `store=${business._id}&_greatertime=${date}&select=time%20duration&_boolstate=true`
+      );
+    }
   }, [business]);
 
   const handleTime = (tim) => {
@@ -263,20 +266,20 @@ const Show = ({
         {err && <div className="err">{err}</div>}
         <div className="guid sm">
           <Link
-            to={`/${id}`}
+            to={`/${business.username}`}
             className={`list ${!availShow && !portShow ? "active" : ""}`}
           >
             Profile
           </Link>
           <Link
-            to={`/${id}/availability`}
+            to={`/${business.username}/availability`}
             className={`list ${availShow ? "active" : ""}`}
             onClick={() => setCal(true)}
           >
             Availability
           </Link>
           <Link
-            to={`/${id}/portfolio`}
+            to={`/${business.username}/portfolio`}
             className={`list ${portShow ? "active" : ""}`}
           >
             Portfolio
@@ -372,7 +375,7 @@ const Show = ({
                           <div className="name">{ser.name}</div>
                           <div className="cost">£{ser.price}</div>
                           <a
-                            href={`/${business._id}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
+                            href={`/${business.username}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
                             className="book"
                           >
                             Book
@@ -441,7 +444,7 @@ const Show = ({
                   <img src={portfolio[4]} alt="" />
                 </div>
               </div>
-              <Link to={`/${id}/portfolio`} className="more">
+              <Link to={`/${business.username}/portfolio`} className="more">
                 <span>View More</span> <img src={leftArrow} alt="" />
               </Link>
             </div>
@@ -463,7 +466,7 @@ const Show = ({
                           <div className="name">{ser.name}</div>
                           <div className="cost">£{ser.price}</div>
                           <a
-                            href={`/${business._id}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
+                            href={`/${business.username}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
                             className="book"
                           >
                             Book
@@ -719,7 +722,7 @@ const Show = ({
 function mapStateToProps(state) {
   return {
     errors: state.errors,
-    business: state.user.one,
+    business: state.user.all.length > 0 ? state.user.all[0] : {},
     url: state.payment.url,
     appointments: state.appointment.all,
   };
@@ -727,6 +730,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   getUser,
+  getUsersFn,
   updateUser,
   getPaymentUrl,
   getAppointmentsFn,
