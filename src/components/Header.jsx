@@ -56,9 +56,9 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <div className="line">Hair</div>
           </div>
         </div>
-        <div className="nav-link bg">
+        <Link to="/signin" className="nav-link bg">
           <span>Glamor Gram Business</span>
-        </div>
+        </Link>
         <div className="nav-link bg">
           <span>About Us</span>
         </div>
@@ -92,9 +92,9 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <div className="line">Hair</div>
           </div>
         </div>
-        <div className="nav-link">
+        <Link to="/signin" className="nav-link">
           <span>Glamor Gram Business</span>
-        </div>
+        </Link>
         <div className="nav-link">
           <span>About Us</span>
         </div>

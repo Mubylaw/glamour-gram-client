@@ -158,4 +158,9 @@
   .auth-container .form {
     width: 100%;
   }
+
+  .auth-container p.create {
+    position: unset;
+    margin-top: 30px;
+  }
 }
