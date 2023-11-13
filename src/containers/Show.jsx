@@ -199,25 +199,27 @@ const Show = ({
   let setValue = (val) => (val > 9 ? "" : "0") + val;
 
   const handlePay = () => {
-    setView(true);
-    getPaymentUrl({
-      cartItems: [
-        {
-          name: `${service} By ${business.name}`,
-          image: portfolio[0],
-          desc: `${service} By ${business.name} at ${setValue(
-            selectTime.hour
-          )}:${setValue(selectTime.minute)} - ${setValue(
-            selectTime.endhour
-          )}: ${setValue(selectTime.endminute)} (${selectTime.duration}mins)`,
-          price: payable,
-          cartQuantity: 1,
-          selectTime,
-          business,
-          date: currDate,
-        },
-      ],
-    });
+    if (!view) {
+      setView(true);
+      getPaymentUrl({
+        cartItems: [
+          {
+            name: `${service} By ${business.name}`,
+            image: portfolio[0],
+            desc: `${service} By ${business.name} at ${setValue(
+              selectTime.hour
+            )}:${setValue(selectTime.minute)} - ${setValue(
+              selectTime.endhour
+            )}: ${setValue(selectTime.endminute)} (${selectTime.duration}mins)`,
+            price: payable,
+            cartQuantity: 1,
+            selectTime,
+            business,
+            date: currDate,
+          },
+        ],
+      });
+    }
   };
 
   useEffect(() => {

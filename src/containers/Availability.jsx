@@ -58,105 +58,107 @@ const Availability = ({ addTime, removeTime, user }) => {
   }, []);
 
   const handleSubmit = () => {
-    setView(true);
-    var count = 0;
-    var emptyFields = "Please add ";
-    for (const key in time) {
-      if (
-        time.hasOwnProperty(key) &&
-        time[key] === "" &&
-        !key.startsWith("break")
-      ) {
-        count++;
-        emptyFields += ` ${key}`;
-        var inputElement = document.querySelector(`input[name="${key}"]`);
-        var selectElement = document.querySelector(`select[name="${key}"]`);
-        if (inputElement) {
-          inputElement.classList.add("error");
-        }
-        if (selectElement) {
-          selectElement.classList.add("error");
+    if (!view) {
+      setView(true);
+      var count = 0;
+      var emptyFields = "Please add ";
+      for (const key in time) {
+        if (
+          time.hasOwnProperty(key) &&
+          time[key] === "" &&
+          !key.startsWith("break")
+        ) {
+          count++;
+          emptyFields += ` ${key}`;
+          var inputElement = document.querySelector(`input[name="${key}"]`);
+          var selectElement = document.querySelector(`select[name="${key}"]`);
+          if (inputElement) {
+            inputElement.classList.add("error");
+          }
+          if (selectElement) {
+            selectElement.classList.add("error");
+          }
         }
       }
-    }
 
-    let brake = false;
-    if (
-      time.breakendhour ||
-      time.breakendminute ||
-      time.breakhour ||
-      time.breakminute
-    ) {
+      let brake = false;
       if (
-        time.breakhour > time.breakendhour ||
-        (time.breakhour === time.breakendhour &&
-          time.breakminute > time.breakendminute) ||
-        (time.breakhour === time.breakendhour &&
-          time.breakminute === time.breakendminute)
+        time.breakendhour ||
+        time.breakendminute ||
+        time.breakhour ||
+        time.breakminute
+      ) {
+        if (
+          time.breakhour > time.breakendhour ||
+          (time.breakhour === time.breakendhour &&
+            time.breakminute > time.breakendminute) ||
+          (time.breakhour === time.breakendhour &&
+            time.breakminute === time.breakendminute)
+        ) {
+          count++;
+          emptyFields = `Break start time cannot be greater than break end time`;
+        }
+        brake = true;
+      }
+
+      if (
+        time.hour > time.endhour ||
+        (time.hour === time.endhour && time.minute > time.endminute) ||
+        (time.hour === time.endhour && time.minute === time.endminute)
       ) {
         count++;
-        emptyFields = `Break start time cannot be greater than break end time`;
+        emptyFields = `Start time cannot be greater than end time`;
       }
-      brake = true;
-    }
 
-    if (
-      time.hour > time.endhour ||
-      (time.hour === time.endhour && time.minute > time.endminute) ||
-      (time.hour === time.endhour && time.minute === time.endminute)
-    ) {
-      count++;
-      emptyFields = `Start time cannot be greater than end time`;
-    }
-
-    if (count > 0) {
-      setErr(emptyFields);
-      setView(false);
-      document.body.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } else {
-      var times = [];
-      if (time.day === "all") {
-        delete time.day;
-        for (let i = 0; i < 7; i++) {
-          times.push({
-            day: i,
-            brake,
-            ...time,
-          });
-        }
-      } else if (time.day === "weekday") {
-        delete time.day;
-        for (let i = 1; i < 6; i++) {
-          times.push({
-            day: i,
-            brake,
-            ...time,
-          });
-        }
-      } else if (time.day === "weekend") {
-        delete time.day;
-        times.push({
-          day: 0,
-          brake,
-          ...time,
-        });
-        times.push({
-          day: 6,
-          brake,
-          ...time,
+      if (count > 0) {
+        setErr(emptyFields);
+        setView(false);
+        document.body.scrollTo({
+          top: 0,
+          behavior: "smooth",
         });
       } else {
-        times.push({ brake, ...time });
+        var times = [];
+        if (time.day === "all") {
+          delete time.day;
+          for (let i = 0; i < 7; i++) {
+            times.push({
+              day: i,
+              brake,
+              ...time,
+            });
+          }
+        } else if (time.day === "weekday") {
+          delete time.day;
+          for (let i = 1; i < 6; i++) {
+            times.push({
+              day: i,
+              brake,
+              ...time,
+            });
+          }
+        } else if (time.day === "weekend") {
+          delete time.day;
+          times.push({
+            day: 0,
+            brake,
+            ...time,
+          });
+          times.push({
+            day: 6,
+            brake,
+            ...time,
+          });
+        } else {
+          times.push({ brake, ...time });
+        }
+        let freeTime = [];
+        times.forEach((tim) => {
+          const timeSlots = splitTime(tim);
+          freeTime.push(...timeSlots);
+        });
+        addTime({ freeTime });
       }
-      let freeTime = [];
-      times.forEach((tim) => {
-        const timeSlots = splitTime(tim);
-        freeTime.push(...timeSlots);
-      });
-      addTime({ freeTime });
     }
   };
 

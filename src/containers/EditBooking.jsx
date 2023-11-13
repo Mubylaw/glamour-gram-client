@@ -69,9 +69,11 @@ const Booking = ({ total, booking, getBookingFn, updateBookingFn, update }) => {
   }, [update]);
 
   const handleSubmit = () => {
-    setView(true);
-    setClick(true);
-    updateBookingFn(char, id);
+    if (!view) {
+      setView(true);
+      setClick(true);
+      updateBookingFn(char, id);
+    }
   };
 
   return (

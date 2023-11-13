@@ -25,8 +25,10 @@ const Calendar = ({ googleUrl, url, googleUser, user, updateUser }) => {
   }, []);
 
   const handleSubmit = () => {
-    setView(true);
-    updateUser({ refreshToken: undefined });
+    if (!view) {
+      setView(true);
+      updateUser({ refreshToken: undefined });
+    }
   };
 
   return (

@@ -60,8 +60,10 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
   }, [user]);
 
   const handleSubmit = () => {
-    setView(true);
-    updateUser(char);
+    if (!view) {
+      setView(true);
+      updateUser(char);
+    }
   };
 
   const handleFileChange = (e) => {

@@ -36,26 +36,27 @@ export default class AuthForm extends Component {
     e.preventDefault();
     if (this.state.view === false) {
       this.setState({ view: true });
-    }
-    const authType = this.props.signUp ? "register" : "login";
-    const { email, password, firstName, lastName, role, name } = this.state;
 
-    this.props
-      .onAuth(authType, {
-        firstName,
-        lastName,
-        role,
-        name,
-        email,
-        password,
-      })
-      .then(() => {
-        this.setState({ dashboard: true });
-      })
-      .catch(() => {
-        this.setState({ view: false });
-        return;
-      });
+      const authType = this.props.signUp ? "register" : "login";
+      const { email, password, firstName, lastName, role, name } = this.state;
+
+      this.props
+        .onAuth(authType, {
+          firstName,
+          lastName,
+          role,
+          name,
+          email,
+          password,
+        })
+        .then(() => {
+          this.setState({ dashboard: true });
+        })
+        .catch(() => {
+          this.setState({ view: false });
+          return;
+        });
+    }
     // setTimeout(() => {
     //   this.setState({
     //     tempErr:

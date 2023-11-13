@@ -25,8 +25,10 @@ const ServiceDash = ({ user, updateUser }) => {
   };
 
   const handleSubmit = () => {
-    setView(true);
-    updateUser(char);
+    if (!view) {
+      setView(true);
+      updateUser(char);
+    }
   };
 
   useEffect(() => {

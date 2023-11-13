@@ -29,8 +29,10 @@ const NewBooking = ({ total, addBookingFn, booking }) => {
   };
 
   const handleSubmit = () => {
-    setView(true);
-    addBookingFn(char);
+    if (!view) {
+      setView(true);
+      addBookingFn(char);
+    }
   };
 
   useEffect(() => {

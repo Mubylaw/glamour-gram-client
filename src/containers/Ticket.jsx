@@ -24,9 +24,11 @@ const Ticket = ({ addTicketFn, ticket }) => {
   };
 
   const handleSubmit = () => {
-    setView(true);
-    setClick(true);
-    addTicketFn(char);
+    if (!view) {
+      setView(true);
+      setClick(true);
+      addTicketFn(char);
+    }
   };
 
   useEffect(() => {
