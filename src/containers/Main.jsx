@@ -81,8 +81,8 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Review}
-              position="one"
-              exPos="three"
+              position="four"
+              exPos="four"
               {...props}
             />
           }
@@ -152,7 +152,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={Calendar}
               position="two"
-              exPos="one"
+              exPos="three"
               {...props}
             />
           }
@@ -179,7 +179,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={Appointment}
               position="two"
-              exPos="two"
+              exPos="one"
               {...props}
             />
           }
@@ -193,7 +193,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={ViewAppointment}
               position="two"
-              exPos="two"
+              exPos="one"
               {...props}
             />
           }
@@ -207,7 +207,7 @@ const Main = (props) => {
               removeError={removeError}
               Page={Availability}
               position="two"
-              exPos="three"
+              exPos="two"
               {...props}
             />
           }
@@ -220,7 +220,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Performance}
-              position="three"
+              position="four"
               exPos="one"
               {...props}
             />
@@ -234,7 +234,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={BookingInsights}
-              position="three"
+              position="four"
               exPos="two"
               {...props}
             />
@@ -248,7 +248,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Client}
-              position="three"
+              position="four"
               exPos="three"
               {...props}
             />
@@ -262,7 +262,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Earning}
-              position="five"
+              position="three"
               exPos="one"
               {...props}
             />
@@ -302,7 +302,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Notification}
-              position="six"
+              position="five"
               exPos="one"
               {...props}
             />
@@ -316,7 +316,7 @@ const Main = (props) => {
               currentUser={currentUser}
               removeError={removeError}
               Page={Prefrences}
-              position="six"
+              position="five"
               exPos="two"
               {...props}
             />

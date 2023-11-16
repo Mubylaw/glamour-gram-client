@@ -62,6 +62,12 @@ const Landing = ({ currentUser }) => {
     }
   };
 
+  const handleKeyUp = (e) => {
+    if (e.key === "Enter") {
+      handleService();
+    }
+  };
+
   const handleFilter = (tg) => {
     const newTag = tag.filter((taag) => tg !== taag);
     setTag(newTag);
@@ -101,6 +107,7 @@ const Landing = ({ currentUser }) => {
               value={char.serivce}
               name="serivce"
               onChange={handleSearch}
+              onKeyUp={handleKeyUp}
             />
           </motion.div>
           <motion.div
@@ -182,7 +189,7 @@ const Landing = ({ currentUser }) => {
       <div className="why">
         <div className="title">
           <span>Why choose </span>
-          <span className="alt">Glamor Gram?</span>
+          <span className="alt">GlamorGram?</span>
           <CurveSvg />
           <CircleSvg />
           <CapSvg />
@@ -465,7 +472,7 @@ const Landing = ({ currentUser }) => {
         </div>
         <div className="btn-group">
           <Link to="/explore" className="btn">
-            Explore Glamor Gram
+            Explore GlamorGram
           </Link>
           <Link to="/signin" className="btn join">
             Join Now

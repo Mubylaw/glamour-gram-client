@@ -3,9 +3,22 @@ import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import add from "../assets/svg/add.svg";
 import pin from "../assets/svg/pin.svg";
+import { useDrag, useDrop } from "react-dnd";
 import { updateUser } from "../store/actions/user";
+import ImgCov from "../components/ImgCover";
 
 const PorfolioDash = ({ updateUser, user }) => {
+  const [images, setImages] = useState([]);
+  const moveImage = React.useCallback((dragIndex, hoverIndex) => {
+    setImages((prevCards) => {
+      const clonedCards = [...prevCards];
+      const removedItem = clonedCards.splice(dragIndex, 1)[0];
+      clonedCards.splice(hoverIndex, 0, removedItem);
+      localStorage.setItem("imagesOrder", JSON.stringify(clonedCards));
+      return clonedCards;
+    });
+  }, []);
+
   const handleChange = (e) => {
     const imgDiv = e.currentTarget.closest(".new");
     if (imgDiv) {
@@ -33,6 +46,30 @@ const PorfolioDash = ({ updateUser, user }) => {
       top: 0,
       behavior: "smooth",
     });
+    var img = [];
+    if (user.pin) {
+      user.pin.forEach((p, i) => {
+        img.push({ url: p, pin: true, id: `pin-${i}` });
+      });
+    }
+    if (user.portfolio) {
+      user.portfolio.forEach((p, i) => {
+        img.push({ url: p, pin: false, id: `portfolio-${i}` });
+      });
+    }
+    const storedImagesOrder = localStorage.getItem("imagesOrder");
+    if (storedImagesOrder) {
+      console.log("jere?");
+      const parsedOrder = JSON.parse(storedImagesOrder);
+      if (img.length > parsedOrder.length) {
+        setImages(img);
+      } else {
+        console.log(parsedOrder);
+        setImages(parsedOrder);
+      }
+    } else {
+      setImages(img);
+    }
   }, [user.portfolio, user.pin]);
 
   const handlePin = (e, pin, state) => {
@@ -64,29 +101,18 @@ const PorfolioDash = ({ updateUser, user }) => {
         </div>
       </div>
       <div className="portfolio">
-        {user.pin &&
-          user.pin.map((p, i) => (
-            <div
-              className="img-cover"
+        {images &&
+          images.map((p, i) => (
+            <ImgCov
+              p={p.url}
+              pin={pin}
+              handlePin={handlePin}
+              moveImage={moveImage}
+              index={i}
+              val={p.pin}
+              id={p.id}
               key={i}
-              onClick={(e) => handlePin(e, p, false)}
-            >
-              <img className="main" src={p} alt="" />
-              <img src={pin} className="pin active" alt="" />
-              <span className="btn_text"></span>
-            </div>
-          ))}
-        {user.portfolio &&
-          user.portfolio.map((p, i) => (
-            <div
-              className="img-cover "
-              key={i}
-              onClick={(e) => handlePin(e, p, true)}
-            >
-              <img className="main" src={p} alt="" />
-              <img src={pin} className="pin" alt="" />
-              <span className="btn_text"></span>
-            </div>
+            />
           ))}
       </div>
     </div>

@@ -36,7 +36,18 @@ const Day = ({
 
   let allTee = [];
   if (allTimes) {
-    const timees = allTimes.filter((ft) => ft.day == dayNo);
+    const timees = allTimes.filter((ft) => {
+      if (
+        ft.date &&
+        (ft.date !== dm || ft.month !== month || ft.year !== year)
+      ) {
+        return false;
+      } else if (ft.day == dayNo) {
+        return true;
+      } else {
+        return false;
+      }
+    });
     if (timees.length > 0) {
       if (appointments) {
         appointments.forEach((aps) => {

@@ -75,8 +75,23 @@
   padding: 0 20px;
 }
 
+.profile .form .item .tos,
 .profile .form .item .input {
   width: calc(100% - 170px);
+}
+
+.profile .form .item .tos input {
+  width: 100%;
+}
+
+.profile .form .item .tos .err {
+  font-size: 15px;
+  color: red;
+  margin-bottom: 5px;
+}
+
+.profile .form .item .tos .err-inp {
+  border: 1px solid red;
 }
 
 .profile .form .item .input .box {
@@ -443,6 +458,29 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
+}
+
+.profile .form .tag .inner {
+  border-radius: 10px;
+  background: #47bbec;
+  font-size: 14px;
+  padding: 2px 10px;
+  margin-right: 10px;
+  width: unset;
+}
+
+.profile .form .tag {
+  display: flex;
+  width: 800px;
+  margin: auto;
+}
+
+.profile .form .tag .inner img {
+  position: relative;
+  left: 2px;
+  top: 2px;
+  cursor: pointer;
+  width: 13px;
 }
 
 @media (max-width: 960px) {

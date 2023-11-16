@@ -11,7 +11,6 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     phoneNo: "",
     industry: "",
     certs: "",
-    portfolio: "",
     insta: "",
     username: "",
     facebook: "",
@@ -25,15 +24,29 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     about: "",
     priceType: "flat",
     priceAmount: 0,
+    currency: "euros",
+    address: "",
+    homeService: "",
     // type: "",
   });
   const [view, setView] = useState(false);
+  const [err, setErr] = useState("");
 
   const handleChange = (e) => {
     var { name, value } = e.target;
     if (name === "username") {
       value = slugify(value, { lower: true });
     }
+    if (name === "phoneNo") {
+      const pattern = /^(?:\+44|\+353|44|353)/;
+      if (value.length > 4 && !pattern.test(value)) {
+        value = "";
+        setErr("Phone No should start with either +353 or +44");
+      } else {
+        setErr(false);
+      }
+    }
+
     setChar((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -155,7 +168,16 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
               />
             </div>
             <div className="item">
-              <label htmlFor="priceType">How you charge:</label>
+              <label htmlFor="address">Address:</label>
+              <input
+                type="text"
+                onChange={handleChange}
+                value={char.address}
+                name="address"
+              />
+            </div>
+            <div className="item">
+              <label htmlFor="priceType">Booking Fee:</label>
               <select
                 id="priceType"
                 name="priceType"
@@ -170,8 +192,29 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
               </select>
             </div>
             <div className="item">
+              <label htmlFor="currency">Currency:</label>
+              <select
+                id="currency"
+                name="currency"
+                onChange={handleChange}
+                value={char.currency}
+                type="text"
+                placeholder="Ex: "
+              >
+                <option value="">--Please choose an option--</option>
+                <option value="euros">€</option>
+                <option value="pounds">£</option>
+              </select>
+            </div>
+            <div className="item">
               <label htmlFor="priceAmount">
-                Price ({char.priceType === "flat" ? "£" : "%"}):
+                Price (
+                {char.priceType === "flat"
+                  ? char.currency === "pounds"
+                    ? "£"
+                    : "€"
+                  : "%"}
+                ):
               </label>
               <input
                 type="number"
@@ -182,12 +225,16 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
             </div>
             <div className="item">
               <label htmlFor="phoneNo">Phone Number:</label>
-              <input
-                type="text"
-                onChange={handleChange}
-                value={char.phoneNo}
-                name="phoneNo"
-              />
+              <div className="tos">
+                {err && <div className="err">{err}</div>}
+                <input
+                  type="text"
+                  onChange={handleChange}
+                  value={char.phoneNo}
+                  name="phoneNo"
+                  className={err ? "err-inp" : ""}
+                />
+              </div>
             </div>
             <div className="item">
               <label htmlFor="email">Email Address:</label>
@@ -206,15 +253,6 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
                 onChange={handleChange}
                 value={char.certs}
                 name="certs"
-              />
-            </div>
-            <div className="item">
-              <label htmlFor="portfolio">Porfolio Link:</label>
-              <input
-                type="text"
-                onChange={handleChange}
-                value={char.portfolio}
-                name="portfolio"
               />
             </div>
             <div className="item">
@@ -243,6 +281,20 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
                 value={char.facebook}
                 name="facebook"
               />
+            </div>
+            <div className="item">
+              <label htmlFor="homeService">Home Service:</label>
+              <div className="input">
+                <div className="box">
+                  <input
+                    type="checkbox"
+                    id="type"
+                    onChange={handleCheck}
+                    checked={char.homeService}
+                    name="homeService"
+                  />
+                </div>
+              </div>
             </div>
           </>
         ) : (

@@ -78,12 +78,7 @@ const Nav = ({
         </div>
         <div
           className={`nav-item ${position === "two" ? "active" : ""}`}
-          onClick={() =>
-            handleSide(
-              role === "business" ? "/calendar" : "/appointment",
-              "main"
-            )
-          }
+          onClick={() => handleSide("/appointment", "main")}
           onMouseOver={() => setHov("two")}
         >
           <div className="icon bg">
@@ -94,45 +89,18 @@ const Nav = ({
             <CalendarSvg fill="black" />
           </div>
           <div className="text">
-            {role === "business" ? "My Calendar" : "My appointment"}
+            {role === "business" ? "Calendar" : "Appointment"}
           </div>
         </div>
         {role === "business" ? (
           <>
             <div
               className={`nav-item ${position === "three" ? "active" : ""}`}
-              onClick={() => handleSide("/performance", "main")}
+              onClick={() => handleSide("/earning", "main")}
               onMouseOver={() => setHov("three")}
             >
               <div className="icon bg">
-                <AnalyticsSvg fill={position === "three" ? "black" : "white"} />
-              </div>
-              <div className="icon sm">
-                <img src={arrow} alt="" />
-                <AnalyticsSvg fill="black" />
-              </div>
-              <div className="text">My Analytics</div>
-            </div>
-            <div
-              className={`nav-item ${position === "four" ? "active" : ""}`}
-              onMouseOver={() => setHov("four")}
-            >
-              <div className="icon bg">
-                <AccountSvg fill={position === "four" ? "black" : "white"} />
-              </div>
-              <div className="icon sm">
-                <img src={arrow} alt="" />
-                <AccountSvg fill="black" />
-              </div>
-              <div className="text">Account Settings</div>
-            </div>
-            <div
-              className={`nav-item ${position === "five" ? "active" : ""}`}
-              onClick={() => handleSide("/earning", "main")}
-              onMouseOver={() => setHov("five")}
-            >
-              <div className="icon bg">
-                <PaymentSvg fill={position === "five" ? "black" : "white"} />
+                <PaymentSvg fill={position === "three" ? "black" : "white"} />
               </div>
               <div className="icon sm">
                 <img src={arrow} alt="" />
@@ -141,18 +109,45 @@ const Nav = ({
               <div className="text">Payments</div>
             </div>
             <div
-              className={`nav-item ${position === "six" ? "active" : ""}`}
-              onClick={() => handleSide("/notification", "main")}
-              onMouseOver={() => setHov("six")}
+              className={`nav-item ${position === "four" ? "active" : ""}`}
+              onClick={() => handleSide("/performance", "main")}
+              onMouseOver={() => setHov("four")}
             >
               <div className="icon bg">
-                <MarketingSvg fill={position === "six" ? "black" : "white"} />
+                <AnalyticsSvg fill={position === "four" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <AnalyticsSvg fill="black" />
+              </div>
+              <div className="text">Analytics</div>
+            </div>
+            <div
+              className={`nav-item ${position === "five" ? "active" : ""}`}
+              onClick={() => handleSide("/notification", "main")}
+              onMouseOver={() => setHov("five")}
+            >
+              <div className="icon bg">
+                <MarketingSvg fill={position === "five" ? "black" : "white"} />
               </div>
               <div className="icon sm">
                 <img src={arrow} alt="" />
                 <MarketingSvg className="sm" fill="black" />
               </div>
               <div className="text">Notification</div>
+            </div>
+            <div
+              className={`nav-item ${position === "six" ? "active" : ""}`}
+              onMouseOver={() => setHov("six")}
+            >
+              <div className="icon bg">
+                <AccountSvg fill={position === "six" ? "black" : "white"} />
+              </div>
+              <div className="icon sm">
+                <img src={arrow} alt="" />
+                <AccountSvg fill="black" />
+              </div>
+              <div className="text">Account Settings</div>
             </div>
           </>
         ) : (
@@ -226,17 +221,7 @@ const Nav = ({
                   onClick={() => handleSide("/service")}
                   className={`side-item ${exPos === "two" ? "active" : ""}`}
                 >
-                  <div className="hedr">My Services</div>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  </p>
-                  <img src={arrow} alt="" />
-                </div>
-                <div
-                  onClick={() => handleSide("/review")}
-                  className={`side-item ${exPos === "three" ? "active" : ""}`}
-                >
-                  <div className="hedr">My Reviews</div>
+                  <div className="hedr">Services</div>
                   <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   </p>
@@ -246,7 +231,7 @@ const Nav = ({
                   onClick={() => handleSide("/portfolio")}
                   className={`side-item ${exPos === "four" ? "active" : ""}`}
                 >
-                  <div className="hedr">My Portfolio</div>
+                  <div className="hedr">Portfolio</div>
                   <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   </p>
@@ -267,25 +252,15 @@ const Nav = ({
           </div>
           <div className={`extr ${position === "two" ? "active" : ""}`}>
             <div className="title">
-              {role === "business" ? "My Calendar" : "My appointment"}
+              {role === "business" ? "Calendar" : "Appointment"}
             </div>
             <img className="back sm" src={arrow} alt="" onClick={handleBack} />
-            {role === "business" && (
-              <div
-                onClick={() => handleSide("/calendar")}
-                className={`side-item ${exPos === "one" ? "active" : ""}`}
-              >
-                <div className="hedr">Calendar Integration</div>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                <img src={arrow} alt="" />
-              </div>
-            )}
             <div
               onClick={() => handleSide("/appointment")}
-              className={`side-item ${exPos === "two" ? "active" : ""}`}
+              className={`side-item ${exPos === "one" ? "active" : ""}`}
             >
               <div className="hedr">
-                {role === "business" ? "Calendar view" : "Upcoming appointment"}
+                {role === "business" ? "Appointments" : "Upcoming appointment"}
               </div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
@@ -293,16 +268,26 @@ const Nav = ({
             {role === "business" && (
               <div
                 onClick={() => handleSide("/availability")}
-                className={`side-item ${exPos === "three" ? "active" : ""}`}
+                className={`side-item ${exPos === "two" ? "active" : ""}`}
               >
                 <div className="hedr">Availability Management</div>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                 <img src={arrow} alt="" />
               </div>
             )}
+            {role === "business" && (
+              <div
+                onClick={() => handleSide("/calendar")}
+                className={`side-item ${exPos === "three" ? "active" : ""}`}
+              >
+                <div className="hedr">Calendar Integration</div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <img src={arrow} alt="" />
+              </div>
+            )}
           </div>
-          <div className={`extr ${position === "three" ? "active" : ""}`}>
-            <div className="title">My Calendar</div>
+          <div className={`extr ${position === "four" ? "active" : ""}`}>
+            <div className="title">Performance</div>
             <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div
               onClick={() => handleSide("/performance")}
@@ -328,8 +313,16 @@ const Nav = ({
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               <img src={arrow} alt="" />
             </div>
+            <div
+              onClick={() => handleSide("/review")}
+              className={`side-item ${exPos === "four" ? "active" : ""}`}
+            >
+              <div className="hedr">Reviews</div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <img src={arrow} alt="" />
+            </div>
           </div>
-          <div className={`extr ${position === "five" ? "active" : ""}`}>
+          <div className={`extr ${position === "three" ? "active" : ""}`}>
             <div className="title">Payments</div>
             <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div
@@ -357,7 +350,7 @@ const Nav = ({
               <img src={arrow} alt="" />
             </div>
           </div>
-          <div className={`extr ${position === "four" ? "active" : ""}`}>
+          <div className={`extr ${position === "infinity" ? "active" : ""}`}>
             <div className="hadr">
               <div className="up">
                 <div className="title">Messages</div>
@@ -372,7 +365,7 @@ const Nav = ({
               <TicketNav tick={tick} id={id} handleClick={handleSide} />
             ))}
           </div>
-          <div className={`extr ${position === "six" ? "active" : ""}`}>
+          <div className={`extr ${position === "five" ? "active" : ""}`}>
             <div className="title">Notifications</div>
             <img className="back sm" src={arrow} alt="" onClick={handleBack} />
             <div

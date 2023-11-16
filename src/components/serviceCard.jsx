@@ -43,7 +43,10 @@ const ServiceCard = ({ service, locs }) => {
                       key={count}
                     >
                       <span>{ser.name}</span>
-                      <div className="price">£{ser.price}</div>
+                      <div className="price">
+                        {service.currency === "pounds" ? "£" : "€"}
+                        {ser.price}
+                      </div>
                     </div>
                   );
                 });

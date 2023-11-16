@@ -53,8 +53,10 @@ const Show = ({
   const [payable, setPayable] = useState(0);
   const [selectTime, setSelectTime] = useState(false);
   const [view, setView] = useState(false);
+  const [viewg, setViewg] = useState(false);
   const [dateString, setDateString] = useState("");
   const [duration, setDuration] = useState("");
+  const [homeService, setHomeService] = useState(false);
 
   const handlePrice = (e) => {
     const categoryDiv = e.currentTarget.closest(".category");
@@ -201,9 +203,13 @@ const Show = ({
 
   let setValue = (val) => (val > 9 ? "" : "0") + val;
 
-  const handlePay = () => {
-    if (!view) {
-      setView(true);
+  const handlePay = (pal) => {
+    if (!view && !viewg) {
+      if (pal === "view") {
+        setView(true);
+      } else {
+        setViewg(true);
+      }
       getPaymentUrl({
         cartItems: [
           {
@@ -219,6 +225,7 @@ const Show = ({
             selectTime,
             business,
             date: currDate,
+            homeService,
           },
         ],
       });
@@ -257,7 +264,6 @@ const Show = ({
             <div className="item">
               {business.reviews ? business.reviews.length : "0"} Reviews
             </div>
-            <div className="item">{business.phoneNo}</div>
             <div className="item" onClick={handleBookMark}>
               <BookmarkSvg solid={bookmark} />
             </div>
@@ -350,8 +356,26 @@ const Show = ({
                   <li>Bob</li>
                   <li>Curly</li>
                 </ul> */}
-                <div className="total">Total: £{price}</div>
-                <div className="total">Booking fee: £{payable}</div>
+                <div className="total">
+                  Total: {business.currency === "pounds" ? "£" : "€"}
+                  {price}
+                </div>
+                <div className="total">
+                  Booking fee: {business.currency === "pounds" ? "£" : "€"}
+                  {payable}
+                </div>
+                {business.homeService && (
+                  <div className="box">
+                    <input
+                      type="checkbox"
+                      id="type"
+                      onChange={(e) => setHomeService(e.target.checked)}
+                      checked={homeService}
+                      name="homeService"
+                    />
+                    <label htmlFor="type">Do you want home service?</label>
+                  </div>
+                )}
                 <div className="btn" onClick={() => setCalen(true)}>
                   Book this service
                 </div>
@@ -373,7 +397,10 @@ const Show = ({
                       {cat.service.map((ser, ind) => (
                         <div className="item" key={ind}>
                           <div className="name">{ser.name}</div>
-                          <div className="cost">£{ser.price}</div>
+                          <div className="cost">
+                            {business.currency === "pounds" ? "£" : "€"}
+                            {ser.price}
+                          </div>
                           <a
                             href={`/${business.username}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
                             className="book"
@@ -464,7 +491,10 @@ const Show = ({
                       {cat.service.map((ser, ind) => (
                         <div className="item" key={ind}>
                           <div className="name">{ser.name}</div>
-                          <div className="cost">£{ser.price}</div>
+                          <div className="cost">
+                            {business.currency === "pounds" ? "£" : "€"}
+                            {ser.price}
+                          </div>
                           <a
                             href={`/${business.username}/service?service=${ser.name}&price=${ser.price}&duration=${ser.time}`}
                             className="book"
@@ -613,6 +643,9 @@ const Show = ({
                     {setValue(selectTime.endhour)}:
                     {setValue(selectTime.endminute)} ({selectTime.duration}mins)
                   </div>
+                  {homeService && (
+                    <div className="time">Booked for a home service</div>
+                  )}
                   <div
                     className="back"
                     onClick={() => {
@@ -622,8 +655,15 @@ const Show = ({
                   >
                     Choose a different time/date
                   </div>
-                  <div className="total">Total for service: £{price}</div>
-                  <div className="total">Total to pay: £{payable}</div>
+                  <div className="total">
+                    Total for service:{" "}
+                    {business.currency === "pounds" ? "£" : "€"}
+                    {price}
+                  </div>
+                  <div className="total">
+                    Total to pay: {business.currency === "pounds" ? "£" : "€"}
+                    {payable}
+                  </div>
                   <div className="choice">
                     <div className="item">
                       <div className="str">Easy Breezy Access</div>
@@ -637,7 +677,7 @@ const Show = ({
                         <div className="btn-cover ex-sm">
                           <div
                             className={`btn ${view ? "btn-load" : ""}`}
-                            onClick={handlePay}
+                            onClick={() => handlePay("view")}
                           >
                             <span className="btn_text">Pay</span>
                           </div>
@@ -668,7 +708,7 @@ const Show = ({
                       </p>
                       <div className="btn-cover ex-sm">
                         <div
-                          className={`btn guest ${view ? "btn-load" : ""}`}
+                          className={`btn guest ${viewg ? "btn-load" : ""}`}
                           onClick={handlePay}
                         >
                           <span className="btn_text">Guest Checkout</span>
@@ -682,7 +722,7 @@ const Show = ({
                       <div className="btn-cover">
                         <div
                           className={`btn ${view ? "btn-load" : ""}`}
-                          onClick={handlePay}
+                          onClick={() => handlePay("view")}
                         >
                           <span className="btn_text">Pay</span>
                         </div>
@@ -701,7 +741,7 @@ const Show = ({
                     <div className="line bee"></div>
                     <div className="btn-cover">
                       <div
-                        className={`btn guest ${view ? "btn-load" : ""}`}
+                        className={`btn guest ${viewg ? "btn-load" : ""}`}
                         onClick={handlePay}
                       >
                         <span className="btn_text">Guest Checkout</span>

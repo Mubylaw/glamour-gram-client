@@ -721,6 +721,22 @@
   margin: 20px 0;
 }
 
+.service .add-on .total:nth-child(3) {
+  margin: 0 0 20px;
+}
+
+.service .add-on .box {
+  margin: -5px 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.service .add-on .box input {
+  width: 20px;
+  margin-right: 10px;
+  height: 20px;
+}
+
 .service .btn {
   border-radius: 100px;
   background: #eb335a;

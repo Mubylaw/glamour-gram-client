@@ -98,39 +98,39 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <img src={down} alt="down" />
           </div>
           <div className="inner">
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Nails
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Makeup
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Skincare
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Massage
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Hair Removal
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Barber
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Aesthetics
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore" onClick={() => setMob(false)} className="line">
               Hair
             </Link>
           </div>
         </div>
-        <Link to="/signin" className="nav-link">
-          <span>Glamor Gram Business</span>
+        <Link to="/signin" onClick={() => setMob(false)} className="nav-link">
+          <span>GlamorGram Business</span>
         </Link>
-        <Link to="/blog" className="nav-link">
+        <Link to="/blog" onClick={() => setMob(false)} className="nav-link">
           <span>About Us</span>
         </Link>
-        <Link to="/blog" className="nav-link">
+        <Link to="/blog" onClick={() => setMob(false)} className="nav-link">
           <span>Contact Us</span>
         </Link>
       </div>

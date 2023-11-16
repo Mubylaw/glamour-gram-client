@@ -3,12 +3,15 @@ import "../assets/styles/calendar.css";
 import { connect } from "react-redux";
 import moment from "moment-timezone";
 import cross from "../assets/svg/cross.svg";
-import { days, splitTime } from "../utils/calendar";
+import { days, splitTime, months } from "../utils/calendar";
 import { addTime, removeTime } from "../store/actions/user";
 
 const Availability = ({ addTime, removeTime, user }) => {
   const [time, setTime] = useState({
     day: "",
+    month: "",
+    date: "",
+    year: "",
     hour: "",
     endhour: "",
     endminute: "",
@@ -22,6 +25,7 @@ const Availability = ({ addTime, removeTime, user }) => {
   const [zones, setZones] = useState([]);
   const [err, setErr] = useState("");
   const [view, setView] = useState(false);
+  const [date, setDate] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +51,25 @@ const Availability = ({ addTime, removeTime, user }) => {
     }
   };
 
+  const handleDate = (e) => {
+    setDate(e.target.value);
+    const ndate = new Date(e.target.value);
+    const currentDate = new Date();
+    if (ndate < currentDate) {
+      setErr("Pick a date in the future");
+      setDate("");
+    } else {
+      setErr("");
+      setTime((prev) => ({
+        ...prev,
+        date: ndate.getDate(),
+        day: ndate.getDay(),
+        month: ndate.getMonth(),
+        year: ndate.getFullYear(),
+      }));
+    }
+  };
+
   useEffect(() => {
     const zone = moment.tz.guess();
     const zones = moment.tz.names();
@@ -55,6 +78,7 @@ const Availability = ({ addTime, removeTime, user }) => {
       ...prev,
       zone,
     }));
+    setTime();
   }, []);
 
   const handleSubmit = () => {
@@ -121,6 +145,7 @@ const Availability = ({ addTime, removeTime, user }) => {
         var times = [];
         if (time.day === "all") {
           delete time.day;
+          delete time.date;
           for (let i = 0; i < 7; i++) {
             times.push({
               day: i,
@@ -130,6 +155,7 @@ const Availability = ({ addTime, removeTime, user }) => {
           }
         } else if (time.day === "weekday") {
           delete time.day;
+          delete time.date;
           for (let i = 1; i < 6; i++) {
             times.push({
               day: i,
@@ -139,6 +165,7 @@ const Availability = ({ addTime, removeTime, user }) => {
           }
         } else if (time.day === "weekend") {
           delete time.day;
+          delete time.date;
           times.push({
             day: 0,
             brake,
@@ -181,7 +208,11 @@ const Availability = ({ addTime, removeTime, user }) => {
       endhour: "",
       endminute: "",
       minute: "",
+      month: "",
+      date: "",
+      year: "",
     }));
+    setDate("");
   }, [user.freeTime]);
 
   let setValue = (val) => (val > 9 ? "" : "0") + val;
@@ -211,7 +242,11 @@ const Availability = ({ addTime, removeTime, user }) => {
       {err && <div className="err-alert">{err}</div>}
       <div className="form">
         <div className="item">
-          <label htmlFor="day">Day(s):</label>
+          <label htmlFor="date">Specific Date:</label>
+          <input type="date" name="date" onChange={handleDate} value={date} />
+        </div>
+        <div className="item">
+          <label htmlFor="day">Days(s):</label>
           <select name="day" id="day" value={time.day} onChange={handleChange}>
             <option value="">--- Choose Day ---</option>
             <option value={1}>Monday</option>
@@ -454,8 +489,11 @@ const Availability = ({ addTime, removeTime, user }) => {
       <div className="times">
         {user.freeTime &&
           user.freeTime.map((tm) => (
-            <div className="mm" key={tm._id}>
+            <div className={`mm ${tm.date ? "full" : ""}`} key={tm._id}>
               <span className="btn_text">
+                {tm.date && `${months[tm.month]} `}
+                {tm.date && `${setValue(tm.date)}, `}
+                {tm.year && `${setValue(tm.year)}. `}
                 {days[tm.day]} {setValue(tm.hour)}:{setValue(tm.minute)} -{" "}
                 {setValue(tm.endhour)}:{setValue(tm.endminute)}
               </span>

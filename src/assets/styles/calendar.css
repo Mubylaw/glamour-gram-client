@@ -226,10 +226,22 @@
   margin: 10px 5px;
 }
 
+.cali .times .mm.full {
+  color: #856404;
+  background-color: #fff3cd;
+}
+
 .cali .times img {
   width: 20px;
   cursor: pointer;
   margin-left: 10px;
+}
+
+.cali .err-alert {
+  background-color: red;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: white;
 }
 
 .cali .err-alert {

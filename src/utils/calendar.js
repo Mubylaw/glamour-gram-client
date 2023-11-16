@@ -136,6 +136,9 @@ function splitTime(obj) {
       zone: obj.zone,
       duration: firsttimeDifference,
       day: obj.day,
+      date: obj.date,
+      month: obj.month,
+      year: obj.year,
     };
     const secondPart = {
       hour: obj.breakendhour,
@@ -145,6 +148,9 @@ function splitTime(obj) {
       zone: obj.zone,
       duration: timeDifference,
       day: obj.day,
+      date: obj.date,
+      month: obj.month,
+      year: obj.year,
     };
     return [firstPart, secondPart];
   } else if (obj.check) {
@@ -163,6 +169,9 @@ function splitTime(obj) {
         zone: obj.zone,
         duration: timeDifference,
         day: obj.day,
+        date: obj.date,
+        month: obj.month,
+        year: obj.year,
       };
       return [secondPart];
     } else if (obj.hour < obj.breakhour && obj.breakendhour > obj.endhour) {
@@ -177,6 +186,9 @@ function splitTime(obj) {
         zone: obj.zone,
         duration: firsttimeDifference,
         day: obj.day,
+        date: obj.date,
+        month: obj.month,
+        year: obj.year,
       };
 
       return [firstPart];
@@ -196,6 +208,9 @@ function splitTime(obj) {
         zone: obj.zone,
         duration: timeDifference,
         day: obj.day,
+        date: obj.date,
+        month: obj.month,
+        year: obj.year,
       },
     ];
   }

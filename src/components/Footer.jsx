@@ -18,8 +18,8 @@ const Footer = ({ top }) => {
             <a href="tel:+2347081741484" className="no">
               02031234123
             </a>
-            <a href="mailto:info@glamorgram.co.uk" className="email">
-              info@glamorgram.co.uk
+            <a href="mailto:info@glamorgram.com" className="email">
+              info@glamorgram.com
             </a>
           </div>
           <div className="social">
@@ -56,7 +56,7 @@ const Footer = ({ top }) => {
         </div>
       </div>
       <div className="bottom">
-        <div className="copy">© 2023 Glamor Gram. All rights reserved.</div>
+        <div className="copy">© 2023 GlamorGram. All rights reserved.</div>
         <div className="terms">
           <a href="/blog">Privacy Policy</a>
           <a href="/blog">Terms of Service</a>
