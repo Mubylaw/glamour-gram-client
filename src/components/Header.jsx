@@ -46,28 +46,28 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
           <img src={down} alt="down" />
           <div className="in"></div>
           <div className="inner">
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Nails" className="line">
               Nails
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Makeup" className="line">
               Makeup
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Skincare" className="line">
               Skincare
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Massage" className="line">
               Massage
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Hair%20Removal" className="line">
               Hair Removal
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Barber" className="line">
               Barber
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Aesthetics" className="line">
               Aesthetics
             </Link>
-            <Link to="/explore" className="line">
+            <Link to="/explore?service=Hair" className="line">
               Hair
             </Link>
           </div>
@@ -98,28 +98,60 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <img src={down} alt="down" />
           </div>
           <div className="inner">
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Nails"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Nails
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Makeup"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Makeup
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Skincare"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Skincare
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Massage"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Massage
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Hair%20Removal"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Hair Removal
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Barber"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Barber
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Aesthetics"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Aesthetics
             </Link>
-            <Link to="/explore" onClick={() => setMob(false)} className="line">
+            <Link
+              to="/explore?service=Hair"
+              onClick={() => setMob(false)}
+              className="line"
+            >
               Hair
             </Link>
           </div>

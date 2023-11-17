@@ -29,6 +29,9 @@ const Availability = ({ addTime, removeTime, user }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "day" && date) {
+      setDate("");
+    }
     setTime((prev) => ({
       ...prev,
       [name]: parseInt(value)

@@ -141,6 +141,12 @@
   background: #47bbec;
   margin: 5px 0;
   padding: 2px 10px;
+  cursor: pointer;
+}
+
+.xplor .iem.active {
+  color: #856404;
+  background-color: #fff3cd;
 }
 
 .xplor .iem .tag-name {
@@ -155,7 +161,7 @@
   cursor: pointer;
 }
 
-.ex-nav .item.cat input {
+.ex-nav .item input {
   border: 1px solid #000;
   background: #fff;
   border-radius: 10px;
@@ -252,7 +258,6 @@
 .main-tab .res-tab {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .main-tab .res-tab .service-card {
@@ -261,7 +266,7 @@
   border-radius: 10px;
   border: 1px solid #000;
   padding: 10px;
-  margin-bottom: 30px;
+  margin: 0 5px 30px;
 }
 
 .main-tab .res-tab .service-card img.ser {
@@ -304,6 +309,16 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
+}
+
+.ex-nav .inner .tiop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ex-nav img.refresh {
+  width: 25px;
+  cursor: pointer;
 }
 
 @media (max-width: 960px) {
@@ -438,13 +453,6 @@
 
   .main-tab .res-tab .service-card {
     width: calc(50% - 10px);
-  }
-
-  .ex-nav img.sm {
-    position: absolute;
-    top: 36px;
-    right: 22px;
-    width: 30px;
   }
 }
 
@@ -602,6 +610,16 @@
   }
 
   .profile .res-tab .service-card {
+    width: 100%;
+  }
+
+  .ex-nav {
+    top: 60px;
+  }
+}
+
+@media (max-width: 300px) {
+  .ex-nav {
     width: 100%;
   }
 }
