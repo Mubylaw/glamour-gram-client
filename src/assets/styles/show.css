@@ -521,6 +521,36 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   transition: all ease 0.5s;
   position: relative;
+  overflow: scroll;
+}
+
+.chat .body::-webkit-scrollbar {
+  display: none;
+}
+
+.chat .body .inner.load {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.chat .body .inner.load .btn-load::after {
+  width: 40px;
+  height: 40px;
+  border: 6px solid transparent;
+  border-top-color: black;
+}
+
+.chat .body .inner.load.ansa {
+  margin-left: -30px;
+  padding: 20px;
+}
+
+.chat .body .inner.load.ansa .btn-load::after {
+  width: 20px;
+  height: 20px;
+  border: 4px solid transparent;
+  border-top-color: black;
 }
 
 .chat .body.hide {
@@ -531,16 +561,17 @@
   display: none;
 }
 
-.chat .body .inner {
+.chat .body .inner.ins {
   padding: 20px;
+  min-height: 500px;
 }
 
 .chat .body .inner .ques {
   border-radius: 20px;
   background: #d9d9d9;
   width: 50%;
-  font-size: 17px;
-  padding: 20px;
+  font-size: 15px;
+  padding: 15px;
   text-align: left;
   margin: 20px 0 20px calc(100% - 210px);
 }
@@ -549,30 +580,33 @@
   border-radius: 20px;
   border: 1px solid #000;
   width: 50%;
-  font-size: 17px;
-  padding: 20px;
+  font-size: 15px;
+  padding: 15px;
   text-align: left;
   margin: 20px calc(100% - 210px) 20px 0;
 }
 
-.chat .body .inner .input {
-  position: absolute;
-  bottom: 20px;
-  width: 410px;
+.chat .body .input {
+  position: sticky;
+  bottom: 0px;
+  width: 100%;
+  padding: 20px;
+  background: white;
 }
 
-.chat .body .inner .input input {
+.chat .body .input input {
   border-radius: 20px;
   border: 1px solid #000;
   width: 100%;
   padding: 12px 20px;
 }
 
-.chat .body .inner .input img {
+.chat .body .input img {
   position: absolute;
-  right: 20px;
+  right: 38px;
   width: 18px;
-  bottom: 11px;
+  bottom: 30px;
+  cursor: pointer;
 }
 
 .show .portfolio-ex {

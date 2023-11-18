@@ -8,6 +8,7 @@ import authUrl from "./auth";
 import appointment from "./appointment";
 import ticket from "./ticket";
 import user from "./user";
+import chat from "./chat";
 
 const rootReducer = combineReducers({
   currentUser,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   appointment,
   ticket,
   user,
+  chat,
 });
 
 export default rootReducer;

@@ -84,6 +84,16 @@
   width: 100%;
 }
 
+.profile .err {
+  margin: auto;
+  color: red;
+  font-size: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+  padding: 10px;
+  background: lightpink;
+}
+
 .profile .form .item .tos .err {
   font-size: 15px;
   color: red;

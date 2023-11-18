@@ -97,7 +97,6 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   }, [service]);
 
   useEffect(() => {
-    console.log("here?");
     setSorted([...users]);
   }, [users]);
 
@@ -108,7 +107,6 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
 
   useEffect(() => {
     if (sorted.length > 0) {
-      console.log(sorted);
       const filt = sorted.filter((sor) =>
         sor.category.some((cat) =>
           cat.service.some((ser) => ser.price >= min && ser.price <= max)
@@ -211,10 +209,6 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
       }
     }
   }, [sortBy]);
-
-  useEffect(() => {
-    console.log(sorted);
-  }, [sorted]);
 
   const handleCheck = (val) => {
     if (location) {

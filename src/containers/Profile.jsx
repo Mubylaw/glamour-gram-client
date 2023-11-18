@@ -3,9 +3,10 @@ import "../assets/styles/profile.css";
 import { connect } from "react-redux";
 import { updateUser } from "../store/actions/user";
 import { uploadAvatar } from "../store/actions/auth";
+import { removeError } from "../store/actions/errors";
 import slugify from "slugify";
 
-const Profile = ({ user, updateUser, uploadAvatar }) => {
+const Profile = ({ user, updateUser, uploadAvatar, removeError, errors }) => {
   const [char, setChar] = useState({
     location: "",
     phoneNo: "",
@@ -19,21 +20,28 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     lastName: "",
     male: false,
     email: "",
+    name: "",
     female: true,
     picture: "",
     about: "",
     priceType: "flat",
     priceAmount: 0,
     currency: "euros",
-    address: "",
     homeService: "",
     // type: "",
   });
   const [view, setView] = useState(false);
   const [err, setErr] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    removeError();
+  }, []);
 
   const handleChange = (e) => {
     var { name, value } = e.target;
+    setError("");
+    removeError();
     if (name === "username") {
       value = slugify(value, { lower: true });
     }
@@ -108,9 +116,25 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
     }));
   };
 
+  useEffect(() => {
+    setView(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    const elementsWithBtnLoad = document.querySelectorAll(".btn-load");
+    if (elementsWithBtnLoad.length > 0) {
+      elementsWithBtnLoad.forEach((element) => {
+        element.classList.remove("btn-load");
+      });
+    }
+    setError(errors);
+  }, [errors]);
+
   return (
     <div className="home profile">
       <div className="headr">Profile Settings</div>
+      {error && <div className="err">{error}</div>}
       <div className="info nil">
         <div className="img">
           <input type="file" onChange={handleFileChange} />
@@ -165,15 +189,6 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
                 onChange={handleChange}
                 value={char.industry}
                 name="industry"
-              />
-            </div>
-            <div className="item">
-              <label htmlFor="address">Address:</label>
-              <input
-                type="text"
-                onChange={handleChange}
-                value={char.address}
-                name="address"
               />
             </div>
             <div className="item">
@@ -376,11 +391,12 @@ const Profile = ({ user, updateUser, uploadAvatar }) => {
 
 function mapStateToProps(state) {
   return {
-    errors: state.errors,
+    errors: state.errors.message,
   };
 }
 
 export default connect(mapStateToProps, {
   updateUser,
   uploadAvatar,
+  removeError,
 })(Profile);

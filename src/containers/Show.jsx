@@ -17,6 +17,7 @@ import Calendar from "../components/Calendar";
 import { getUser, getUsersFn, updateUser } from "../store/actions/user.jsx";
 import { getPaymentUrl } from "../store/actions/payment.jsx";
 import { getAppointmentsFn } from "../store/actions/appointment";
+import { createChatFn, askQuestion } from "../store/actions/chat";
 
 const Show = ({
   getUser,
@@ -31,6 +32,10 @@ const Show = ({
   url,
   appointments,
   getAppointmentsFn,
+  createChatFn,
+  exist,
+  askQuestion,
+  answer,
 }) => {
   const [bookmark, setBookmark] = useState(false);
   const [cal, setCal] = useState(false);
@@ -57,6 +62,8 @@ const Show = ({
   const [dateString, setDateString] = useState("");
   const [duration, setDuration] = useState("");
   const [homeService, setHomeService] = useState(false);
+  const [convo, setConvo] = useState([]);
+  const [question, setQuestion] = useState("");
 
   const handlePrice = (e) => {
     const categoryDiv = e.currentTarget.closest(".category");
@@ -248,6 +255,39 @@ const Show = ({
     const formattedDate = currDate.toLocaleDateString("en-US", options);
     setDateString(formattedDate);
   }, [currDate]);
+
+  const handleChat = () => {
+    if (business._id && currentUser.isAuthenticated) {
+      setChat(!chat);
+      createChatFn({ biz: business._id });
+    }
+  };
+
+  const handleAsk = () => {
+    if (business._id && currentUser.isAuthenticated) {
+      askQuestion({ biz: business._id, question });
+      setConvo([...convo, { question }]);
+      setQuestion("");
+      const body = document.querySelector(".body.qual");
+      body.scrollTop = body.scrollHeight;
+    }
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === "Enter") {
+      handleAsk();
+    }
+  };
+
+  useEffect(() => {
+    if (answer.text && convo.length > 0) {
+      const last = convo.length - 1;
+      const lastObj = { ...convo[last] };
+      lastObj.answer = answer.text;
+      const updatedConvo = [...convo.slice(0, last), lastObj];
+      setConvo(updatedConvo);
+    }
+  }, [answer]);
 
   return (
     <div>
@@ -558,21 +598,49 @@ const Show = ({
         )}
 
         <div className="chat">
-          <div className="head" onClick={() => setChat(!chat)}>
+          <div className="head" onClick={handleChat}>
             Chat with us ...
           </div>
-          <div className={`body ${chat ? "" : "hide"}`}>
-            <div className="inner">
-              <div className="ques">When are you releasing booking slots?</div>
-              <div className="ans">
-                Thank you for your interest in our services! Booking slots are
-                typically released on the 15th of each month.
+          <div className={`body qual ${chat ? "" : "hide"}`}>
+            {exist ? (
+              <>
+                <div className="inner ins">
+                  {convo.map((cnv) => (
+                    <>
+                      <div className="ques">{cnv.question}</div>
+                      <div className="ans">
+                        {cnv.answer ? (
+                          cnv.answer
+                        ) : (
+                          <div className="inner load ansa">
+                            <div className="btn btn-load">
+                              <span className="btn_text"></span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  ))}
+                </div>
+                <div className="input">
+                  <img src={message} alt="" onClick={handleAsk} />
+                  <input
+                    type="text"
+                    id="chat"
+                    placeholder="Ask a question ..."
+                    value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
+                    onKeyUp={handleKeyUp}
+                  />
+                </div>
+              </>
+            ) : (
+              <div className="inner load">
+                <div className="btn btn-load">
+                  <span className="btn_text"></span>
+                </div>
               </div>
-              <div className="input">
-                <img src={message} alt="" />
-                <input type="text" id="chat" placeholder="Ask a question ..." />
-              </div>
-            </div>
+            )}
           </div>
         </div>
         <div className={`booking ${book ? "" : "hide"}`}>
@@ -765,6 +833,8 @@ function mapStateToProps(state) {
     business: state.user.all.length > 0 ? state.user.all[0] : {},
     url: state.payment.url,
     appointments: state.appointment.all,
+    exist: state.chat.exist,
+    answer: state.chat.answer,
   };
 }
 
@@ -774,4 +844,6 @@ export default connect(mapStateToProps, {
   updateUser,
   getPaymentUrl,
   getAppointmentsFn,
+  createChatFn,
+  askQuestion,
 })(Show);

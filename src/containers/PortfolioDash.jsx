@@ -59,12 +59,10 @@ const PorfolioDash = ({ updateUser, user }) => {
     }
     const storedImagesOrder = localStorage.getItem("imagesOrder");
     if (storedImagesOrder) {
-      console.log("jere?");
       const parsedOrder = JSON.parse(storedImagesOrder);
       if (img.length > parsedOrder.length) {
         setImages(img);
       } else {
-        console.log(parsedOrder);
         setImages(parsedOrder);
       }
     } else {

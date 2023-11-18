@@ -31,3 +31,5 @@ export const GET_TICKET_TOTAL = "GET_TICKET_TOTAL";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_TOTAL = "GET_USER_TOTAL";
 export const GET_USER = "GET_USER";
+export const CREATE_CHAT = "CREATE_CHAT";
+export const GET_ANSWER = "GET_ANSWER";

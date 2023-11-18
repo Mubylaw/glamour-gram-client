@@ -284,6 +284,7 @@
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+  min-height: 60px;
 }
 
 .main-tab .res-tab .service-card .service .line .price,
