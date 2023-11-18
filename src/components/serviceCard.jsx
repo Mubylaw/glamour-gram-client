@@ -54,6 +54,9 @@ const ServiceCard = ({ service, locs }) => {
             </div>
           </>
         )}
+        {service.distance && (
+          <div className="dist">{Math.floor(service.distance)} miles away</div>
+        )}
         <a href={`/${service.username}`}>
           View More <img src={leftArrow} alt="" />
         </a>

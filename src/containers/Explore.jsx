@@ -10,11 +10,11 @@ import refresh from "../assets/svg/refresh.svg";
 import side from "../assets/svg/side.svg";
 import Footer from "../components/Footer";
 import MultiRangeSlider from "../components/MultiSlider";
-import { getUsersFn } from "../store/actions/user.jsx";
+import { getBusinessFn } from "../store/actions/user.jsx";
 import ServiceCard from "../components/serviceCard.jsx";
 import Fuse from "fuse.js";
 
-const Explore = ({ getUsersFn, users, total, currentUser }) => {
+const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   const [loc, setLoc] = useState(false);
   const [price, setPrice] = useState(false);
   const [ava, setAva] = useState(false);
@@ -26,8 +26,7 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
   const [sorted, setSorted] = useState([]);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(1000);
-  const [totalmin, settotalMin] = useState(0);
-  const [totalmax, settotalMax] = useState(1000);
+  const [distance, setDistance] = useState(500);
   const [date, setDate] = useState("");
   const [free, setFree] = useState("");
   const [sortBy, setSortBy] = useState("");
@@ -42,11 +41,17 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
       setService(service);
       setLocation(location);
     }
-    getUsersFn(`role=business`);
+    getBusinessFn();
     if (window.innerWidth < 960) {
       setClose(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (location) {
+      getBusinessFn({ location, distance });
+    }
+  }, [location, distance]);
 
   const handleFilter = (ser) => {
     const newService = service.filter((seer) => ser !== seer);
@@ -92,6 +97,7 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
   }, [service]);
 
   useEffect(() => {
+    console.log("here?");
     setSorted([...users]);
   }, [users]);
 
@@ -102,6 +108,7 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
 
   useEffect(() => {
     if (sorted.length > 0) {
+      console.log(sorted);
       const filt = sorted.filter((sor) =>
         sor.category.some((cat) =>
           cat.service.some((ser) => ser.price >= min && ser.price <= max)
@@ -112,11 +119,7 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
   }, [max, min]);
 
   const handleRefresh = () => {
-    setClose(true);
-    setService([]);
-    setSorted([...users]);
-    settotalMin(0);
-    settotalMax(1000);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -189,12 +192,39 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
         return priceA - priceB;
       });
       setSorted(sor);
+    } else if (sortBy === "location") {
+      if (!location) {
+        const successCallback = (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          getBusinessFn({ distance, latitude, longitude });
+        };
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(successCallback, () => {}, {
+            enableHighAccuracy: true,
+          });
+        } else {
+          alert("Geolocation is not supported in your browser");
+        }
+      }
     }
   }, [sortBy]);
 
   useEffect(() => {
     console.log(sorted);
   }, [sorted]);
+
+  const handleCheck = (val) => {
+    if (location) {
+      if (distance === val) {
+        setDistance(500);
+      } else {
+        setDistance(val);
+      }
+    }
+  };
 
   return (
     <div>
@@ -220,11 +250,7 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
                 <Down fill={"#000"} rota={!price ? false : true} />
               </div>
               <div className={`filer ${price ? "" : "hide"}`}>
-                <MultiRangeSlider
-                  min={totalmin}
-                  max={totalmax}
-                  onChange={handlePrice}
-                />
+                <MultiRangeSlider min={0} max={1000} onChange={handlePrice} />
               </div>
             </div>
             <div className="item">
@@ -234,20 +260,44 @@ const Explore = ({ getUsersFn, users, total, currentUser }) => {
               </div>
               <div className={`filer ra ${loc ? "" : "hide"}`}>
                 <div className="rad">
-                  <input type="checkbox" id="half" name="half" />
-                  <label for="half">Within 1/2 mile</label>
+                  <input
+                    type="checkbox"
+                    id="half"
+                    name="half"
+                    onChange={() => handleCheck(10)}
+                    checked={distance === 10 ? true : false}
+                  />
+                  <label for="half">Within 10 miles</label>
                 </div>
                 <div className="rad">
-                  <input type="checkbox" id="half" name="half" />
-                  <label for="half">Within 1/2 mile</label>
+                  <input
+                    type="checkbox"
+                    id="half"
+                    name="half"
+                    onChange={() => handleCheck(50)}
+                    checked={distance === 50 ? true : false}
+                  />
+                  <label for="half">Within 50 miles</label>
                 </div>
                 <div className="rad">
-                  <input type="checkbox" id="half" name="half" />
-                  <label for="half">Within 1/2 mile</label>
+                  <input
+                    type="checkbox"
+                    id="half"
+                    name="half"
+                    onChange={() => handleCheck(100)}
+                    checked={distance === 100 ? true : false}
+                  />
+                  <label for="half">Within 100 miles</label>
                 </div>
                 <div className="rad">
-                  <input type="checkbox" id="half" name="half" />
-                  <label for="half">Within 1/2 mile</label>
+                  <input
+                    type="checkbox"
+                    id="half"
+                    name="half"
+                    onChange={() => handleCheck(250)}
+                    checked={distance === 250 ? true : false}
+                  />
+                  <label for="half">Within 250 miles</label>
                 </div>
               </div>
             </div>
@@ -425,4 +475,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getUsersFn })(Explore);
+export default connect(mapStateToProps, { getBusinessFn })(Explore);

@@ -107,3 +107,20 @@ export const getUsersFn = (params) => {
       });
   };
 };
+
+export const getBusinessFn = (data, params) => {
+  return (dispatch) => {
+    return apiCall(
+      "post",
+      `/api/v1/users/business?${params ? params : ""}`,
+      data
+    )
+      .then(({ data }) => {
+        dispatch(getUsers(data));
+        dispatch(removeError());
+      })
+      .catch((err) => {
+        dispatch(addError(err));
+      });
+  };
+};

@@ -77,6 +77,8 @@ const Landing = ({ currentUser }) => {
     if (tag.length > 0) {
       const tagStr = tag.join("-");
       navigate(`/explore?service=${tagStr}&location=${char.location}`);
+    } else if (char.serivce) {
+      navigate(`/explore?service=${char.serivce}&location=${char.location}`);
     }
   };
 
