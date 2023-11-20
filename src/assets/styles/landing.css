@@ -372,6 +372,10 @@
   text-decoration: none;
 }
 
+.reviews .rev-item .item .ins p {
+  color: black;
+}
+
 .reviews .rev-item .item .subtitle {
   font-size: 15px;
   font-weight: 500;
