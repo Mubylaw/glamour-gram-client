@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/explore.css";
 import { connect } from "react-redux";
 import Header from "../components/Header";
@@ -15,6 +16,7 @@ import ServiceCard from "../components/serviceCard.jsx";
 import Fuse from "fuse.js";
 
 const Explore = ({ getBusinessFn, users, total, currentUser }) => {
+  const navigate = useNavigate();
   const [loc, setLoc] = useState(false);
   const [price, setPrice] = useState(false);
   const [ava, setAva] = useState(false);
@@ -31,6 +33,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   const [free, setFree] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [hasSort, setHasSort] = useState(false);
+  const [landing, setLanding] = useState(false);
 
   useEffect(() => {
     var search = window.location.search;
@@ -46,7 +49,27 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
     if (window.innerWidth < 960) {
       setClose(true);
     }
+    setLanding(true);
   }, []);
+
+  useEffect(() => {
+    if (landing) {
+      var search = window.location.search;
+      if (search) {
+        search = decodeURIComponent(search);
+        var service = search.split("?service=")[1].split("&")[0];
+        service = service.split("-");
+        var location = search.split("&location=")[1];
+        setService(service);
+        setLocation(location);
+      }
+      getBusinessFn();
+      if (window.innerWidth < 960) {
+        setClose(true);
+      }
+      setHasSort(false);
+    }
+  }, [window.location.href]);
 
   useEffect(() => {
     if (location) {
@@ -94,6 +117,9 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
         sort = newArray.map((obj) => obj.item);
       });
       setSorted(sort);
+      setHasSort(true);
+    } else if (users.length > 0) {
+      setSorted(users);
       setHasSort(true);
     }
   }, [service, users]);
