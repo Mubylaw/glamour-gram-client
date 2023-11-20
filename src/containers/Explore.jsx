@@ -30,6 +30,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   const [date, setDate] = useState("");
   const [free, setFree] = useState("");
   const [sortBy, setSortBy] = useState("");
+  const [hasSort, setHasSort] = useState(false);
 
   useEffect(() => {
     var search = window.location.search;
@@ -72,13 +73,13 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   };
 
   useEffect(() => {
-    if (service.length > 0) {
-      var sort = sorted;
+    if (service.length > 0 && users.length > 0) {
+      var sort = !hasSort ? users : sorted;
       service.forEach((ser) => {
         const fuseOptions = {
           findAllMatches: true,
           includeMatches: true,
-          threshold: 0.4,
+          threshold: 0.3,
           keys: [
             "name",
             "category.name",
@@ -93,12 +94,9 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
         sort = newArray.map((obj) => obj.item);
       });
       setSorted(sort);
+      setHasSort(true);
     }
-  }, [service]);
-
-  useEffect(() => {
-    setSorted([...users]);
-  }, [users]);
+  }, [service, users]);
 
   const handlePrice = (val) => {
     setMax(val.max);

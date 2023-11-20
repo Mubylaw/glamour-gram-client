@@ -817,6 +817,10 @@
   .footer .top .info .item {
     margin: 0 0 15px 0px;
   }
+
+  .landing .hero {
+    background: no-repeat center/cover url("/assets/hero-mob.jpeg");
+  }
 }
 
 @media (max-width: 480px) {

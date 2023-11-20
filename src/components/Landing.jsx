@@ -281,7 +281,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Nails"
           >
             <img className="sm" src="/assets/nails-mob.png" alt="" />
             <img className="bg" src="/assets/nails.png" alt="" />
@@ -293,7 +293,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Makeup"
           >
             <img className="sm" src="/assets/makeup-mob.png" alt="" />
             <img className="bg" src="/assets/makeup.png" alt="" />
@@ -305,7 +305,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Skincare"
           >
             <img className="sm" src="/assets/skincare-mob.png" alt="" />
             <img className="bg" src="/assets/skincare.png" alt="" />
@@ -317,7 +317,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Massage"
           >
             <img className="sm" src="/assets/massage-mob.png" alt="" />
             <img className="bg" src="/assets/massage.png" alt="" />
@@ -329,7 +329,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Hair%20Removal"
           >
             <img className="sm" src="/assets/hair-removal-mob.png" alt="" />
             <img className="bg" src="/assets/hair-removal.png" alt="" />
@@ -341,7 +341,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Barber"
           >
             <img className="sm" src="/assets/barber-mob.png" alt="" />
             <img className="bg" src="/assets/barber.png" alt="" />
@@ -353,7 +353,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Aesthetics"
           >
             <img className="sm" src="/assets/aesthetics-mob.png" alt="" />
             <img className="bg" src="/assets/aesthetics.png" alt="" />
@@ -365,7 +365,7 @@ const Landing = ({ currentUser }) => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore"
+            href="/explore?service=Hair"
           >
             <img className="sm" src="/assets/hair-mob.png" alt="" />
             <img className="bg" src="/assets/hair.png" alt="" />
