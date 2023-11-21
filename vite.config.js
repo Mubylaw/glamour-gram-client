@@ -4,9 +4,8 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  preview: {
-    port: 443,
-    https: true,
-    strictPort: true,
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
   },
 });
