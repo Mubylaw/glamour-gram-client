@@ -20,6 +20,6 @@ export function apiCall(method, path, data, config) {
   });
 }
 
-export const baseUrl = "http://16.171.219.122:5000";
+export const baseUrl = "http://3.249.117.39:5000";
 // export const baseUrl = "https://glamor-gram-server.onrender.com";
 // export const baseUrl = "http://localhost:5000";
