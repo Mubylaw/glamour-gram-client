@@ -29,6 +29,7 @@ import Favourite from "./Favourite";
 import Payment from "./Payment";
 import NewBooking from "./NewBooking";
 import Landing from "../components/Landing";
+import Business from "../components/Business";
 import Favorite from "./Favorite";
 import Empty from "./Empty";
 
@@ -58,6 +59,11 @@ const Main = (props) => {
               {...props}
             />
           }
+        />
+        <Route
+          exact
+          path="/business"
+          element={<Business currentUser={currentUser} {...props} />}
         />
         <Route
           exact

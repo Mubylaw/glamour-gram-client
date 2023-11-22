@@ -23,11 +23,24 @@ const Footer = ({ top }) => {
             </a>
           </div>
           <div className="social">
-            <img src={facebook} alt="" />
-            <img src={insta} alt="" />
-            <img src={linkedin} alt="" />
-            <img src={twitter} alt="" />
-            <img src={youtube} alt="" />
+            <a href="https://instagram.com/glamorxgram?igshid=YTQwZjQ0NmI0OA%3D%3D&utm_source=qr">
+              <img src={insta} alt="" />
+            </a>
+            <a href="https://x.com/glamorxgram?s=11&t=j4iufXeMahtgnzHNnLKoXA">
+              <img src={twitter} alt="" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@glamorxgram?_t=8hYKa4FXt37&_r=1"
+              className="tik"
+            >
+              <img src="/assets/tiktok.png" alt="" />
+            </a>
+            <a href="">
+              <img src={facebook} alt="" />
+            </a>
+            <a href="">
+              <img src={youtube} alt="" />
+            </a>
           </div>
         </div>
         <div className="slide info">

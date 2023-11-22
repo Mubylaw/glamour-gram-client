@@ -42,10 +42,13 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
       </a>
       <div className="links">
         <div className="nav-link bg">
-          <span>featured Services</span>
+          <span>Featured Services</span>
           <img src={down} alt="down" />
           <div className="in"></div>
           <div className="inner">
+            <Link to="/explore?service=Hair" className="line">
+              Hair
+            </Link>
             <Link to="/explore?service=Nails" className="line">
               Nails
             </Link>
@@ -55,9 +58,7 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <Link to="/explore?service=Skincare" className="line">
               Skincare
             </Link>
-            <Link to="/explore?service=Massage" className="line">
-              Massage
-            </Link>
+
             <Link to="/explore?service=Hair%20Removal" className="line">
               Hair Removal
             </Link>
@@ -67,12 +68,12 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
             <Link to="/explore?service=Aesthetics" className="line">
               Aesthetics
             </Link>
-            <Link to="/explore?service=Hair" className="line">
-              Hair
+            <Link to="/explore?service=Massage" className="line">
+              Massage
             </Link>
           </div>
         </div>
-        <Link to="/signin" className="nav-link bg">
+        <Link to="/business" className="nav-link bg">
           <span>Glamor Gram Business</span>
         </Link>
         <Link to="/blog" className="nav-link bg">
@@ -99,6 +100,13 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
           </div>
           <div className="inner">
             <Link
+              to="/explore?service=Hair"
+              onClick={() => setMob(false)}
+              className="line"
+            >
+              Hair
+            </Link>
+            <Link
               to="/explore?service=Nails"
               onClick={() => setMob(false)}
               className="line"
@@ -118,13 +126,6 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
               className="line"
             >
               Skincare
-            </Link>
-            <Link
-              to="/explore?service=Massage"
-              onClick={() => setMob(false)}
-              className="line"
-            >
-              Massage
             </Link>
             <Link
               to="/explore?service=Hair%20Removal"
@@ -148,15 +149,15 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
               Aesthetics
             </Link>
             <Link
-              to="/explore?service=Hair"
+              to="/explore?service=Massage"
               onClick={() => setMob(false)}
               className="line"
             >
-              Hair
+              Massage
             </Link>
           </div>
         </div>
-        <Link to="/signin" onClick={() => setMob(false)} className="nav-link">
+        <Link to="/business" onClick={() => setMob(false)} className="nav-link">
           <span>GlamorGram Business</span>
         </Link>
         <Link to="/blog" onClick={() => setMob(false)} className="nav-link">

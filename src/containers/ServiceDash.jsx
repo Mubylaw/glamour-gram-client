@@ -172,6 +172,7 @@ const ServiceDash = ({ user, updateUser }) => {
                 placeholder="Ex: "
               >
                 <option value="">--Please choose an option--</option>
+                <option value="Hair">Hair</option>
                 <option value="Nails">Nails</option>
                 <option value="Makeup">Makeup</option>
                 <option value="Skincare">Skincare</option>
@@ -179,7 +180,6 @@ const ServiceDash = ({ user, updateUser }) => {
                 <option value="Hair Removal">Hair Removal</option>
                 <option value="Barber">Barber</option>
                 <option value="Aesthetics">Aesthetics</option>
-                <option value="Hair">Hair</option>
               </select>
             </div>
             <div className="item">

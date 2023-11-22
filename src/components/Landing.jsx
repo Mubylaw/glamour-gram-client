@@ -95,6 +95,7 @@ const Landing = ({ currentUser }) => {
       <Header user={userMan} />
       <div className="hero">
         <h1>Discover Beauty. Book with Confidence.</h1>
+        <div className="ins"></div>
 
         <div className="form">
           <motion.div
@@ -276,16 +277,16 @@ const Landing = ({ currentUser }) => {
         </motion.div>
         <div className="tile-outer">
           <motion.a
-            variants={comeIn(0, 1.75)}
+            variants={comeIn(1.75, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore?service=Nails"
+            href="/explore?service=Hair"
           >
-            <img className="sm" src="/assets/nails-mob.png" alt="" />
-            <img className="bg" src="/assets/nails.png" alt="" />
-            <p>Nails</p>
+            <img className="sm" src="/assets/hair-mob.png" alt="" />
+            <img className="bg" src="/assets/hair.png" alt="" />
+            <p>Hair</p>
           </motion.a>
           <motion.a
             variants={comeIn(0.25, 1.75)}
@@ -300,6 +301,19 @@ const Landing = ({ currentUser }) => {
             <p>Makeup</p>
           </motion.a>
           <motion.a
+            variants={comeIn(0, 1.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            className="tile"
+            href="/explore?service=Nails"
+          >
+            <img className="sm" src="/assets/nails-mob.png" alt="" />
+            <img className="bg" src="/assets/nails.png" alt="" />
+            <p>Nails</p>
+          </motion.a>
+
+          <motion.a
             variants={comeIn(0.5, 1.75)}
             initial="hidden"
             whileInView="show"
@@ -311,18 +325,7 @@ const Landing = ({ currentUser }) => {
             <img className="bg" src="/assets/skincare.png" alt="" />
             <p>Skincare</p>
           </motion.a>
-          <motion.a
-            variants={comeIn(0.75, 1.75)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
-            className="tile"
-            href="/explore?service=Massage"
-          >
-            <img className="sm" src="/assets/massage-mob.png" alt="" />
-            <img className="bg" src="/assets/massage.png" alt="" />
-            <p>Massage</p>
-          </motion.a>
+
           <motion.a
             variants={comeIn(1, 1.75)}
             initial="hidden"
@@ -360,16 +363,16 @@ const Landing = ({ currentUser }) => {
             <p>Aesthetics</p>
           </motion.a>
           <motion.a
-            variants={comeIn(1.75, 1.75)}
+            variants={comeIn(0.75, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
             className="tile"
-            href="/explore?service=Hair"
+            href="/explore?service=Massage"
           >
-            <img className="sm" src="/assets/hair-mob.png" alt="" />
-            <img className="bg" src="/assets/hair.png" alt="" />
-            <p>Hair</p>
+            <img className="sm" src="/assets/massage-mob.png" alt="" />
+            <img className="bg" src="/assets/massage.png" alt="" />
+            <p>Massage</p>
           </motion.a>
         </div>
       </div>

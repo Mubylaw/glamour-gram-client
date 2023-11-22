@@ -91,6 +91,7 @@
 .landing .hero {
   min-height: 100vh;
   padding: 185px 65px 65px;
+  position: relative;
   background: no-repeat center/cover url("/assets/hero.png");
 }
 
@@ -443,6 +444,16 @@
   margin-top: 20px;
 }
 
+.footer .social a {
+  display: inline;
+  margin: 10px 5px 10px 0;
+}
+
+.footer .social a.tik img {
+  width: 20px;
+  margin-bottom: 12px;
+}
+
 .footer .social img {
   margin: 10px 5px 10px 0;
   width: 25px;
@@ -496,6 +507,151 @@
   display: block;
   color: white;
   text-decoration: none;
+}
+
+.landing .biz-hero {
+  min-height: 100vh;
+  padding: 30px 65px 65px;
+  position: relative;
+  text-align: center;
+  background: no-repeat center/cover url("/assets/biz-hero.png");
+}
+
+.landing .biz-hero .title {
+  color: #fff;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  text-shadow: 0px 4px 4px rgba(18, 18, 18, 0.5), -1px -1px 0 black,
+    1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 700;
+  width: 60%;
+  margin: 0 auto 20px;
+}
+
+.landing .biz-hero .subtitle {
+  color: #000;
+  text-align: center;
+  text-shadow: 2px 4px 7px rgba(0, 0, 0, 0.25);
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  width: 80%;
+  margin: auto;
+  font-weight: 400;
+}
+
+.landing .biz-hero img {
+  width: 100vw;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+}
+
+.landing .how-to {
+  padding: 0 65px 65px;
+  position: relative;
+}
+
+.landing .how-to .left {
+  position: absolute;
+  left: 30px;
+  top: -80px;
+}
+
+.landing .how-to .right {
+  position: absolute;
+  right: 30px;
+  top: -80px;
+}
+
+.landing .how-to .right img,
+.landing .how-to .left img {
+  margin: 3px;
+  width: 50px;
+  position: relative;
+}
+
+.landing .how-to .right img:nth-child(3),
+.landing .how-to .left img:nth-child(3),
+.landing .how-to .right img:nth-child(1),
+.landing .how-to .left img:nth-child(1) {
+  top: 20px;
+}
+
+.landing .how-to .title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.landing .how-to p {
+  width: 70%;
+  text-align: center;
+  font-weight: 500;
+  margin: 20px auto;
+}
+
+.landing .how-to .items {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+}
+
+.how-to .items .ita {
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.57);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(33% - 10px);
+  padding: 20px;
+}
+
+.how-to .items .content {
+  width: 70%;
+}
+
+.how-to .items .content .starter {
+  font-weight: 600;
+}
+
+.how-to .items .content p {
+  text-align: left;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.how-to .items .img {
+  width: 30%;
+}
+
+.how-to .items .img img {
+  width: 100%;
+}
+
+.how-to .outerbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-to .btn {
+  border-radius: 100px;
+  background: var(--Pink, #eb335a);
+  margin: auto;
+  color: white;
+  width: 150px;
+  text-align: center;
+  padding: 15px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.how-to .items .content p.xsm {
+  display: none;
 }
 
 @media (max-width: 960px) {
@@ -710,6 +866,62 @@
   .reviews .rev-item .item.active .img {
     width: 40%;
   }
+
+  .landing .biz-hero {
+    padding: 30px;
+  }
+
+  .landing .how-to {
+    padding: 0 30px 30px;
+  }
+
+  .landing .biz-hero img {
+    width: 100vw;
+  }
+
+  .landing .how-to p,
+  .landing .biz-hero .title {
+    width: 100%;
+  }
+
+  .landing .biz-hero .subtitle {
+    width: 90%;
+  }
+
+  .landing .how-to .items {
+    flex-direction: column;
+  }
+
+  .how-to .items .ita {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .how-to .items .img {
+    width: 100px;
+  }
+
+  .how-to .items .content {
+    width: calc(100% - 120px);
+  }
+
+  .landing .how-to .right img,
+  .landing .how-to .left img {
+    width: 30px;
+    margin: 0;
+  }
+
+  .landing .how-to .left {
+    position: absolute;
+    left: 10x;
+    top: -40px;
+  }
+
+  .landing .how-to .right {
+    position: absolute;
+    right: 10px;
+    top: -40px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -817,10 +1029,6 @@
   .footer .top .info .item {
     margin: 0 0 15px 0px;
   }
-
-  /* .landing .hero {
-    background: no-repeat center/cover url("/assets/hero-mob.jpeg");
-  } */
 }
 
 @media (max-width: 480px) {
@@ -921,6 +1129,69 @@
   .reviews .rev-item .item.active .ins p.ex-sm {
     display: block;
   }
+
+  .how-to .items .content p.xsm {
+    display: block;
+  }
+
+  .how-to .items .content p.xbg {
+    display: none;
+  }
+
+  .landing .how-to {
+    padding: 30px;
+  }
+
+  .landing .how-to .left {
+    position: absolute;
+    left: 5px;
+    top: -20px;
+  }
+
+  .landing .how-to .right {
+    position: absolute;
+    right: 5px;
+    top: -20px;
+  }
+
+  .how-to .items .content {
+    width: calc(100% - 95px);
+  }
+
+  .how-to .items .img {
+    width: 85px;
+  }
+
+  .landing .biz-hero .title {
+    font-size: 30px;
+    margin: 0 auto 10px;
+  }
+
+  .landing .biz-hero .subtitle {
+    width: 100%;
+  }
+
+  .landing .hero {
+    background: no-repeat center/cover url("/assets/hero-mob.jpeg");
+  }
+
+  .landing .hero .ins {
+    background-color: rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 100vw;
+  }
+
+  .landing .hero h1 {
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer .social a.tik img {
+    margin-bottom: 7px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -931,6 +1202,27 @@
   .why .tab-outer .tab:nth-child(3) .subtitle {
     min-height: 46px;
     min-height: unset;
+  }
+
+  .landing .how-to .title {
+    font-size: 25px;
+  }
+
+  .landing .how-to .right img,
+  .landing .how-to .left img {
+    width: 20px;
+  }
+
+  .landing .how-to .left {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+  }
+
+  .landing .how-to .right {
+    position: absolute;
+    right: 10px;
+    top: 0px;
   }
 }
 
