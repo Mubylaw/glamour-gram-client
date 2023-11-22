@@ -32,11 +32,11 @@ const Business = ({ currentUser }) => {
       <Header user={userMan} />
       <div className="biz-hero">
         <div className="title">
-          Join Glamor Gram and Empower Your Beauty Business!
+          Join GlamorGram and Empower Your Beauty Business!
         </div>
         <div className="subtitle">
           Whether you're a skilled hairstylist, makeup artist, nail technician,
-          or spa expert, Glamor Gram is your platform to showcase your talent,
+          or spa expert, GlamorGram is your platform to showcase your talent,
           grow your clientele, and boost your career.
         </div>
         <img src={bizBottom} alt="" />
@@ -54,9 +54,10 @@ const Business = ({ currentUser }) => {
         </div>
         <div className="title">How to Join</div>
         <p>
-          Embark on a journey of growth, creativity, and success. Join Glamor
-          Gram and become part of a supportive community dedicated to empowering
-          beauty professionals. Your next client is just a click away!
+          Embark on a journey of growth, creativity, and success. Join
+          GlamorGram and become part of a supportive community dedicated to
+          empowering beauty professionals. Your next client is just a click
+          away!
         </p>
         <div className="items">
           <div className="ita">

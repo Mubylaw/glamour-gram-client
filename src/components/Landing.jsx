@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../assets/styles/landing.css";
 import SectionWrapper from "../hocs/SectionWrapper";
+import { connect } from "react-redux";
 import cross from "../assets/svg/cross.svg";
 import topCrown from "../assets/svg/topCrown.svg";
 import bottomCrown from "../assets/svg/bottomCrown.svg";
@@ -14,18 +15,32 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { addWaitlistFn } from "../store/actions/waitlist";
 import { comeIn, fadeIn, textVariant, drawStroke } from "../utils/motion";
 
-const Landing = ({ currentUser }) => {
+const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
   const [tag, setTag] = useState([]);
   const [popu, setPopu] = useState(false);
+  const [pop, setPop] = useState(false);
   const typingTimer = useRef(null);
   const [userMan, setUserMan] = useState(false);
   const [char, setChar] = useState({
     location: "",
     serivce: "",
   });
+  const [wait, setWait] = useState({
+    location: "",
+    serivces: [],
+    name: "",
+    email: "",
+    insta: "",
+    role: "",
+    phoneNo: "",
+  });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [err, setErr] = useState("");
+  const [view, setView] = useState("");
+  const [done, setDone] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -89,6 +104,51 @@ const Landing = ({ currentUser }) => {
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + 4) % 4);
   };
+
+  const handleChange = (e) => {
+    var { name, value } = e.target;
+    if (name === "phoneNo") {
+      const pattern = /^(?:\+44|\+353|44|353)/;
+      if (value.length > 4 && !pattern.test(value)) {
+        value = "";
+        setErr("Phone No should start with either +353 or +44");
+      } else {
+        setErr(false);
+      }
+    }
+    setWait((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleWait = () => {
+    if (!view) {
+      setView(true);
+      addWaitlistFn(wait);
+    }
+  };
+
+  const handleCheck = (e) => {
+    var services = wait.serivces;
+    const index = services.indexOf(e.target.value);
+    if (index !== -1) {
+      services.splice(index, 1);
+    } else {
+      services.push(e.target.value);
+    }
+    setWait((prevFormData) => ({
+      ...prevFormData,
+      services,
+    }));
+  };
+
+  useEffect(() => {
+    if (waitlist.new && waitlist.new._id && click) {
+      setView(false);
+      setDone(true);
+    }
+  }, [waitlist.new]);
 
   return (
     <div className="landing">
@@ -479,14 +539,192 @@ const Landing = ({ currentUser }) => {
           <Link to="/explore" className="btn">
             Explore GlamorGram
           </Link>
-          <Link to="/signin" className="btn join">
-            Join Now
-          </Link>
+          <div className="btn join" onClick={() => {}}>
+            Join Our Waitlist
+          </div>
         </div>
       </div>
+      {/* <div className={`pop ${pop ? "" : "hide"}`}>
+        <div className="cancel" onClick={() => setPop(false)}></div>
+        <div className="inner">
+          <img src={cross} alt="" onClick={() => setPop(false)} />
+          {done ? (
+            <div>
+              <h1>Congratulations on Joining the GlamorGram Waitlist</h1>
+            </div>
+          ) : (
+            <>
+              <div className="form">
+                <div className="title">Join Our Waitlist</div>
+                <div className="item">
+                  <div className="checks">
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Hair")}
+                        id="Hair"
+                        value="Hair"
+                      />
+                      <label htmlFor="Hair">Hair</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Nails")}
+                        id="Nails"
+                        value="Nails"
+                      />
+                      <label htmlFor="Nails">Nails</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Makeup")}
+                        id="Makeup"
+                        value="Makeup"
+                      />
+                      <label htmlFor="Makeup">Makeup</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Skincare")}
+                        id="Skincare"
+                        value="Skincare"
+                      />
+                      <label htmlFor="Skincare">Skincare</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Massage")}
+                        id="Massage"
+                        value="Massage"
+                      />
+                      <label htmlFor="Massage">Massage</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Hair Removal")}
+                        id="Hair Removal"
+                        value="Hair Removal"
+                      />
+                      <label htmlFor="Hair Removal">Hair Removal</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Barber")}
+                        id="Barber"
+                        value="Barber"
+                      />
+                      <label htmlFor="Barber">Barber</label>
+                    </div>
+                    <div className="dows">
+                      <input
+                        type="checkbox"
+                        onChange={handleCheck}
+                        checked={wait.serivces.includes("Aesthetics")}
+                        id="Aesthetics"
+                        value="Aesthetics"
+                      />
+                      <label htmlFor="Aesthetics">Aesthetics</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="item">
+                  <label htmlFor="name">Name:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.name}
+                    name="name"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.email}
+                    name="email"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="insta">Insta:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.insta}
+                    name="insta"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="location">Location:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.location}
+                    name="location"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="role">Role:</label>
+                  <select
+                    id="role"
+                    name="role"
+                    onChange={handleChange}
+                    value={wait.role}
+                    type="text"
+                    placeholder="Ex: "
+                  >
+                    <option value="">--Please choose an option--</option>
+                    <option value="customer">Customer</option>
+                    <option value="business">Business</option>
+                  </select>
+                </div>
+                <div className="item">
+                  <label htmlFor="phoneNo">Phone Number:</label>
+                  <div className="tos">
+                    {err && <div className="err">{err}</div>}
+                    <input
+                      type="text"
+                      onChange={handleChange}
+                      value={wait.phoneNo}
+                      name="phoneNo"
+                      className={err ? "err-inp" : ""}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`btn ${view ? "btn-load" : ""}`}
+                onClick={handleWait}
+              >
+                <span className="btn_text">Join Waitlist</span>
+              </div>
+            </>
+          )}
+        </div>
+      </div> */}
       <Footer />
     </div>
   );
 };
 
-export default Landing;
+function mapStateToProps(state) {
+  return {
+    errors: state.errors,
+    waitlist: state.waitlist,
+  };
+}
+
+export default connect(mapStateToProps, { addWaitlistFn })(Landing);
