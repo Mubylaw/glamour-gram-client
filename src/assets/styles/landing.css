@@ -655,6 +655,147 @@
   display: none;
 }
 
+.landing .pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.landing .pop.hide {
+  display: none;
+}
+
+.landing .pop .cancel {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+}
+
+.landing .pop .inner {
+  width: 600px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  max-height: 90vh;
+  overflow: scroll;
+}
+
+.landing .pop .inner::-webkit-scrollbar {
+  display: none;
+}
+
+.landing .pop .inner .form {
+  display: block;
+}
+
+.landing .pop .inner img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.landing .pop .inner .form {
+  width: 100%;
+  margin: 0;
+}
+
+.landing .pop .inner .form .title {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.landing .pop .inner .form .item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.landing .pop .inner .form .item label {
+  margin-right: 20px;
+  width: 100px;
+}
+
+.landing .pop .inner .form .item input {
+  color: #000;
+  padding: 10px;
+}
+
+.landing .pop .inner .form .item input,
+.landing .pop .inner .form .item select {
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: calc(100% - 120px);
+  height: 35px;
+}
+
+.landing .pop .inner .form .item .tos {
+  width: calc(100% - 120px);
+}
+
+.landing .pop .inner .form .item .tos input {
+  width: 100%;
+}
+
+.landing .pop .inner .form .checks {
+  width: calc(100% - 120px);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.landing .pop .inner .form .checks .dows {
+  width: calc(33.3% - 10px);
+  margin: 10px 5px;
+  display: flex;
+  align-items: center;
+}
+
+.landing .pop .inner .form .checks .dows label {
+  margin: 0;
+  font-size: 14px;
+}
+
+.landing .pop .inner .form .checks .dows input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.landing .pop .outerbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing .pop .btn {
+  border-radius: 100px;
+  background: var(--Pink, #eb335a);
+  margin: auto;
+  color: white;
+  width: 150px;
+  text-align: center;
+  padding: 15px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.landing .pop h1 {
+  text-align: center;
+  margin: 50px;
+  font-size: 20px;
+}
+
 @media (max-width: 960px) {
   .bg {
     display: none;
@@ -1030,6 +1171,10 @@
   .footer .top .info .item {
     margin: 0 0 15px 0px;
   }
+
+  .landing .pop .inner {
+    width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1193,6 +1338,31 @@
   .footer .social a.tik img {
     margin-bottom: 7px;
   }
+
+  .landing .pop h1 {
+    margin: 10px;
+  }
+
+  .landing .pop .inner .form .item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landing .pop .inner .form .item label {
+    margin: 0 0 10px;
+    width: 100%;
+  }
+
+  .landing .pop .inner .form .item .tos,
+  .landing .pop .inner .form .checks,
+  .landing .pop .inner .form .item input,
+  .landing .pop .inner .form .item select {
+    width: 100%;
+  }
+
+  .landing .pop .inner .form .checks .dows label {
+    width: unset;
+  }
 }
 
 @media (max-width: 400px) {
@@ -1224,6 +1394,10 @@
     position: absolute;
     right: 10px;
     top: 0px;
+  }
+
+  .landing .pop .inner .form .checks .dows {
+    width: calc(50% - 10px);
   }
 }
 

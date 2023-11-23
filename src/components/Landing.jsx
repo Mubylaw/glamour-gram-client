@@ -34,13 +34,14 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
     name: "",
     email: "",
     insta: "",
-    role: "",
+    role: "customer",
     phoneNo: "",
   });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [err, setErr] = useState("");
   const [view, setView] = useState("");
   const [done, setDone] = useState("");
+  const [click, setClick] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -126,6 +127,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
     if (!view) {
       setView(true);
       addWaitlistFn(wait);
+      setClick(true);
     }
   };
 
@@ -147,6 +149,16 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
     if (waitlist.new && waitlist.new._id && click) {
       setView(false);
       setDone(true);
+      setClick(false);
+      setWait({
+        location: "",
+        serivces: [],
+        name: "",
+        email: "",
+        insta: "",
+        role: "customer",
+        phoneNo: "",
+      });
     }
   }, [waitlist.new]);
 
@@ -539,12 +551,12 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
           <Link to="/explore" className="btn">
             Explore GlamorGram
           </Link>
-          <div className="btn join" onClick={() => {}}>
+          <div className="btn join" onClick={() => setPop(true)}>
             Join Our Waitlist
           </div>
         </div>
       </div>
-      {/* <div className={`pop ${pop ? "" : "hide"}`}>
+      <div className={`pop ${pop ? "" : "hide"}`}>
         <div className="cancel" onClick={() => setPop(false)}></div>
         <div className="inner">
           <img src={cross} alt="" onClick={() => setPop(false)} />
@@ -557,6 +569,49 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
               <div className="form">
                 <div className="title">Join Our Waitlist</div>
                 <div className="item">
+                  <label htmlFor="name">Name:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.name}
+                    name="name"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.email}
+                    name="email"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="location">Location:</label>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    value={wait.location}
+                    name="location"
+                  />
+                </div>
+                <div className="item">
+                  <label htmlFor="role">User:</label>
+                  <select
+                    id="role"
+                    name="role"
+                    onChange={handleChange}
+                    value={wait.role}
+                    type="text"
+                    placeholder="Ex: "
+                  >
+                    <option value="">--Please choose an option--</option>
+                    <option value="customer">Customer</option>
+                    <option value="business">Business</option>
+                  </select>
+                </div>
+                <div className="item">
+                  <label htmlFor="">Services:</label>
                   <div className="checks">
                     <div className="dows">
                       <input
@@ -641,24 +696,6 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
                   </div>
                 </div>
                 <div className="item">
-                  <label htmlFor="name">Name:</label>
-                  <input
-                    type="text"
-                    onChange={handleChange}
-                    value={wait.name}
-                    name="name"
-                  />
-                </div>
-                <div className="item">
-                  <label htmlFor="email">Email:</label>
-                  <input
-                    type="text"
-                    onChange={handleChange}
-                    value={wait.email}
-                    name="email"
-                  />
-                </div>
-                <div className="item">
                   <label htmlFor="insta">Insta:</label>
                   <input
                     type="text"
@@ -666,30 +703,6 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
                     value={wait.insta}
                     name="insta"
                   />
-                </div>
-                <div className="item">
-                  <label htmlFor="location">Location:</label>
-                  <input
-                    type="text"
-                    onChange={handleChange}
-                    value={wait.location}
-                    name="location"
-                  />
-                </div>
-                <div className="item">
-                  <label htmlFor="role">Role:</label>
-                  <select
-                    id="role"
-                    name="role"
-                    onChange={handleChange}
-                    value={wait.role}
-                    type="text"
-                    placeholder="Ex: "
-                  >
-                    <option value="">--Please choose an option--</option>
-                    <option value="customer">Customer</option>
-                    <option value="business">Business</option>
-                  </select>
                 </div>
                 <div className="item">
                   <label htmlFor="phoneNo">Phone Number:</label>
@@ -705,16 +718,18 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
                   </div>
                 </div>
               </div>
-              <div
-                className={`btn ${view ? "btn-load" : ""}`}
-                onClick={handleWait}
-              >
-                <span className="btn_text">Join Waitlist</span>
+              <div className="outer-btn">
+                <div
+                  className={`btn ${view ? "btn-load" : ""}`}
+                  onClick={handleWait}
+                >
+                  <span className="btn_text">Join Waitlist</span>
+                </div>
               </div>
             </>
           )}
         </div>
-      </div> */}
+      </div>
       <Footer />
     </div>
   );
