@@ -349,7 +349,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
         </motion.div>
         <div className="tile-outer">
           <motion.a
-            variants={comeIn(1.75, 1.75)}
+            variants={comeIn(0, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -373,7 +373,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
             <p>Makeup</p>
           </motion.a>
           <motion.a
-            variants={comeIn(0, 1.75)}
+            variants={comeIn(0.5, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -386,7 +386,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
           </motion.a>
 
           <motion.a
-            variants={comeIn(0.5, 1.75)}
+            variants={comeIn(0.75, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -435,7 +435,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
             <p>Aesthetics</p>
           </motion.a>
           <motion.a
-            variants={comeIn(0.75, 1.75)}
+            variants={comeIn(1.75, 1.75)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
