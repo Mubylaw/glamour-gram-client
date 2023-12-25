@@ -66,6 +66,12 @@
   margin-bottom: 15px;
 }
 
+.auth-container .form .group select.err,
+.auth-container .form .group input.err {
+  border: 1px solid red;
+  color: red;
+}
+
 .auth-container .form .group select {
   padding: 0 15px;
 }

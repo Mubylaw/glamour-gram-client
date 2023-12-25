@@ -18,6 +18,7 @@ export default class AuthForm extends Component {
       success: false,
       dashboard: false,
       tempErr: "",
+      empty: false,
     };
   }
 
@@ -29,6 +30,7 @@ export default class AuthForm extends Component {
     this.setState({
       [e.target.name]: e.target.value,
       tempErr: "",
+      empty: false,
     });
   };
 
@@ -40,22 +42,53 @@ export default class AuthForm extends Component {
       const authType = this.props.signUp ? "register" : "login";
       const { email, password, firstName, lastName, role, name } = this.state;
 
-      this.props
-        .onAuth(authType, {
-          firstName,
-          lastName,
-          role,
-          name,
-          email,
-          password,
-        })
-        .then(() => {
-          this.setState({ dashboard: true });
-        })
-        .catch(() => {
-          this.setState({ view: false });
-          return;
-        });
+      if (authType === "register") {
+        if (!email || !password || !firstName || !lastName || !role || !name) {
+          this.setState({
+            empty: true,
+            tempErr: "All fields are required",
+            view: false,
+          });
+        } else {
+          this.props
+            .onAuth(authType, {
+              firstName,
+              lastName,
+              role,
+              name,
+              email,
+              password,
+            })
+            .then(() => {
+              this.setState({ dashboard: true });
+            })
+            .catch(() => {
+              this.setState({ view: false });
+              return;
+            });
+        }
+      } else {
+        if (!email || !password || !firstName || !lastName || !role || !name) {
+          this.setState({
+            empty: true,
+            tempErr: "All fields are required",
+            view: false,
+          });
+        } else {
+          this.props
+            .onAuth(authType, {
+              email,
+              password,
+            })
+            .then(() => {
+              this.setState({ dashboard: true });
+            })
+            .catch(() => {
+              this.setState({ view: false });
+              return;
+            });
+        }
+      }
     }
     // setTimeout(() => {
     //   this.setState({
@@ -86,9 +119,27 @@ export default class AuthForm extends Component {
   };
 
   render() {
-    const { email, tempErr, show, dashboard, firstName, lastName, role, name } =
-      this.state;
+    const {
+      email,
+      tempErr,
+      show,
+      dashboard,
+      firstName,
+      lastName,
+      role,
+      name,
+      empty,
+      password,
+    } = this.state;
     const { errors, reset, signUp } = this.props;
+
+    let nameErr = false;
+    let emailErr = false;
+    if (errors.message === "That business name is already taken") {
+      nameErr = true;
+    } else if (errors.message === "This account already exists") {
+      emailErr = true;
+    }
 
     return (
       <>
@@ -116,7 +167,9 @@ export default class AuthForm extends Component {
                       First Name
                     </label>
                     <input
-                      className={`${reset ? "hide" : ""}`}
+                      className={`${reset ? "hide" : ""} ${
+                        empty && !firstName ? "err" : ""
+                      }`}
                       id="firstName"
                       name="firstName"
                       onChange={this.handleChange}
@@ -133,7 +186,9 @@ export default class AuthForm extends Component {
                       Last Name
                     </label>
                     <input
-                      className={`${reset ? "hide" : ""}`}
+                      className={`${reset ? "hide" : ""} ${
+                        empty && !lastName ? "err" : ""
+                      }`}
                       id="lastName"
                       name="lastName"
                       onChange={this.handleChange}
@@ -147,7 +202,9 @@ export default class AuthForm extends Component {
                       Role
                     </label>
                     <select
-                      className={`${reset ? "hide" : ""}`}
+                      className={`${reset ? "hide" : ""} ${
+                        empty && !role ? "err" : ""
+                      }`}
                       id="role"
                       name="role"
                       onChange={this.handleChange}
@@ -169,7 +226,9 @@ export default class AuthForm extends Component {
                         Business Name
                       </label>
                       <input
-                        className={`${reset ? "hide" : ""}`}
+                        className={`${reset ? "hide" : ""} ${
+                          nameErr ? "err" : ""
+                        } ${empty && !name ? "err" : ""}`}
                         id="name"
                         name="name"
                         onChange={this.handleChange}
@@ -186,7 +245,9 @@ export default class AuthForm extends Component {
                   Email
                 </label>
                 <input
-                  className={`${reset ? "hide" : ""}`}
+                  className={`${reset ? "hide" : ""} ${emailErr ? "err" : ""} ${
+                    empty && !email ? "err" : ""
+                  }`}
                   id="email"
                   name="email"
                   onChange={this.handleChange}
@@ -198,7 +259,9 @@ export default class AuthForm extends Component {
               <div className="group">
                 <label htmlFor="password">Password</label>
                 <input
-                  className={`${reset ? "reset" : ""}`}
+                  className={`${reset ? "reset" : ""} ${
+                    empty && !password ? "err" : ""
+                  }`}
                   id="password"
                   name="password"
                   onChange={this.handleChange}
