@@ -68,7 +68,7 @@ export default class AuthForm extends Component {
             });
         }
       } else {
-        if (!email || !password || !firstName || !lastName || !role || !name) {
+        if (!email || !password) {
           this.setState({
             empty: true,
             tempErr: "All fields are required",
