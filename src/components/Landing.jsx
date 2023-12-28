@@ -17,8 +17,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { addWaitlistFn } from "../store/actions/waitlist";
 import { comeIn, fadeIn, textVariant, drawStroke } from "../utils/motion";
+import { googleUser } from "../store/actions/auth";
 
-const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
+const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
   const [tag, setTag] = useState([]);
   const [popu, setPopu] = useState(false);
   const [pop, setPop] = useState(false);
@@ -161,6 +162,24 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist }) => {
       });
     }
   }, [waitlist.new]);
+
+  useEffect(() => {
+    const query = window.location.search;
+    if (query.includes("code=")) {
+      const lastAuthTime = localStorage.getItem("lastAuthTime");
+      if (
+        !lastAuthTime ||
+        Date.now() - parseInt(lastAuthTime, 10) > 60 * 1000
+      ) {
+        googleUser(query);
+        localStorage.setItem("lastAuthTime", Date.now().toString());
+      } else {
+        console.log(
+          "Authentication not needed. Less than a minute have passed since the last authentication."
+        );
+      }
+    }
+  }, []);
 
   return (
     <div className="landing">
@@ -742,4 +761,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addWaitlistFn })(Landing);
+export default connect(mapStateToProps, { addWaitlistFn, googleUser })(Landing);

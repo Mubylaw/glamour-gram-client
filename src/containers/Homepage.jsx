@@ -5,13 +5,11 @@ import Landing from "../components/Landing";
 import Header from "../components/Header";
 import { connect } from "react-redux";
 import { getUser } from "../store/actions/user";
-import { googleUser } from "../store/actions/auth";
 
 const Homepage = ({
   currentUser,
   Page,
   position,
-  googleUser,
   title,
   noSide,
   exPos,
@@ -21,13 +19,6 @@ const Homepage = ({
   useEffect(() => {
     if (currentUser.user.iat) {
       getUser(currentUser.user.id);
-    }
-  }, []);
-
-  useEffect(() => {
-    const query = window.location.search;
-    if (query.includes("code=")) {
-      googleUser(query);
     }
   }, []);
 
@@ -64,5 +55,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   getUser,
-  googleUser,
 })(Homepage);
