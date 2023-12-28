@@ -97,6 +97,23 @@ export function googleUrl() {
   };
 }
 
+export function googleUrlLogin() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      return apiCall("GET", `/api/v1/auth/googleurlLogin`)
+        .then(({ data }) => {
+          dispatch(getUrl(data));
+          dispatch(removeError());
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(addError(err));
+          reject();
+        });
+    });
+  };
+}
+
 export function googleUser(query) {
   return (dispatch) => {
     return new Promise((resolve, reject) => {

@@ -535,6 +535,10 @@
     font-size: 12px;
   }
 
+  .profile .form .item .tos {
+    width: 100%;
+  }
+
   .profile .btn {
     padding: 9px 30px;
     font-size: 12px;

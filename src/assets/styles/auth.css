@@ -109,12 +109,38 @@
   background: rgba(71, 187, 236, 0.5);
 }
 
+.auth-container .form .google {
+  position: relative;
+  height: 50px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.auth-container .form .google img {
+  width: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.auth-container .form .google:hover {
+  box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.05);
+}
+
 .auth-container .header img {
   width: 185px;
 }
 
 .auth-container .create {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 30px;
   color: #8f8e89;
@@ -134,6 +160,11 @@
   .auth-container .form form,
   .auth-container .form .title {
     width: 100%;
+  }
+
+  .auth-container p.create {
+    position: unset;
+    margin-top: 30px;
   }
 }
 
@@ -164,9 +195,26 @@
   .auth-container .form {
     width: 100%;
   }
+}
+
+@media (max-width: 350px) {
+  .auth-container .form {
+    width: 100%;
+  }
 
   .auth-container p.create {
     position: unset;
     margin-top: 30px;
+  }
+
+  .auth-container .form .google img {
+    width: 20px;
+    left: 10px;
+    top: 15px;
+  }
+
+  .auth-container .form .google span {
+    margin: 0 25px;
+    text-align: center;
   }
 }

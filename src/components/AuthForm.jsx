@@ -118,6 +118,17 @@ export default class AuthForm extends Component {
     });
   };
 
+  handleGoogleAuth = () => {
+    this.props
+      .googleUrlLogin()
+      .then(() => {
+        window.location.href = this.props.authUrl.url;
+      })
+      .catch(() => {
+        return;
+      });
+  };
+
   render() {
     const {
       email,
@@ -279,6 +290,10 @@ export default class AuthForm extends Component {
                     {signUp ? "Sign Up" : "Log in"}
                   </span>
                 </button>
+                <div className="google" onClick={this.handleGoogleAuth}>
+                  <img src="/assets/google.png" alt="" />
+                  <span>{signUp ? "Sign Up" : "Log in"} with google</span>
+                </div>
               </div>
             </form>
             {/* <div className="trouble">

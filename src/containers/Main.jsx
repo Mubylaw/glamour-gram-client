@@ -3,7 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import AuthForm from "../components/AuthForm";
 import Homepage from "./Homepage";
-import { authUser, forgotPassword, resetPassword } from "../store/actions/auth";
+import {
+  authUser,
+  forgotPassword,
+  resetPassword,
+  googleUrlLogin,
+  googleUser,
+} from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import Explore from "./Explore";
 import Show from "./Show";
@@ -41,6 +47,9 @@ const Main = (props) => {
     currentUser,
     forgotPassword,
     resetPassword,
+    googleUrlLogin,
+    googleUser,
+    authUrl,
   } = props;
 
   return (
@@ -369,7 +378,9 @@ const Main = (props) => {
               removeError={removeError}
               errors={errors}
               onAuth={authUser}
+              googleUrlLogin={googleUrlLogin}
               forgot={forgotPassword}
+              authUrl={authUrl}
               {...props}
             />
           }
@@ -381,8 +392,10 @@ const Main = (props) => {
             <AuthForm
               removeError={removeError}
               errors={errors}
+              googleUrlLogin={googleUrlLogin}
               onAuth={authUser}
               forgot={forgotPassword}
+              authUrl={authUrl}
               signUp
               {...props}
             />
@@ -449,6 +462,7 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     errors: state.errors,
+    authUrl: state.authUrl,
   };
 }
 
@@ -457,4 +471,5 @@ export default connect(mapStateToProps, {
   removeError,
   forgotPassword,
   resetPassword,
+  googleUrlLogin,
 })(Main);
