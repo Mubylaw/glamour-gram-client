@@ -285,7 +285,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
                     onChange={() => handleCheck(10)}
                     checked={distance === 10 ? true : false}
                   />
-                  <label for="half">Within 10 miles</label>
+                  <label htmlFor="half">Within 10 miles</label>
                 </div>
                 <div className="rad">
                   <input
@@ -295,7 +295,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
                     onChange={() => handleCheck(50)}
                     checked={distance === 50 ? true : false}
                   />
-                  <label for="half">Within 50 miles</label>
+                  <label htmlFor="half">Within 50 miles</label>
                 </div>
                 <div className="rad">
                   <input
@@ -305,7 +305,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
                     onChange={() => handleCheck(100)}
                     checked={distance === 100 ? true : false}
                   />
-                  <label for="half">Within 100 miles</label>
+                  <label htmlFor="half">Within 100 miles</label>
                 </div>
                 <div className="rad">
                   <input
@@ -315,7 +315,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
                     onChange={() => handleCheck(250)}
                     checked={distance === 250 ? true : false}
                   />
-                  <label for="half">Within 250 miles</label>
+                  <label htmlFor="half">Within 250 miles</label>
                 </div>
               </div>
             </div>
@@ -460,7 +460,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
             </div>
           </div>
           <div className="sort bg">
-            <label for="sort">Sort By:</label>
+            <label htmlFor="sort">Sort By:</label>
             <select
               type="text"
               id="sort"

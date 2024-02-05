@@ -1,7 +1,7 @@
 import { apiCall } from "../../services/api";
 import { addError, removeError } from "./errors";
 import { setCurrentUser, setAuthorizationToken } from "./auth";
-import { GET_USERS, GET_USER_TOTAL, GET_USER } from "../actionTypes";
+import { GET_USERS, GET_USER_TOTAL, GET_USER, PAGINATE } from "../actionTypes";
 
 export const getUsers = (user) => ({
   type: GET_USERS,
@@ -16,6 +16,12 @@ export const storeUser = (user) => ({
 export const getUserTotal = (total) => ({
   type: GET_USER_TOTAL,
   total,
+});
+
+export const paginate = (step, paginate) => ({
+  type: PAGINATE,
+  step,
+  paginate,
 });
 
 export function getUser(id, params, action) {
@@ -93,6 +99,9 @@ export const getUsersFn = (params) => {
   return (dispatch) => {
     return apiCall("get", `/api/v1/users?${params ? params : ""}`)
       .then(({ data, total, count, pagination }) => {
+        if (data.length === 0) {
+          throw new Error("No users found");
+        }
         dispatch(getUsers(data));
         dispatch(getUserTotal(total));
         if (count !== 0) {

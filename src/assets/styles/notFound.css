@@ -1,0 +1,73 @@
+.notFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+  min-height: 600px;
+  flex-direction: column;
+  margin: 0 15px;
+  text-align: center;
+}
+
+.notFound.load svg {
+  min-width: 200px;
+  min-height: 200px;
+}
+
+.notFound svg {
+  width: 80vw;
+  max-width: 400px;
+  height: 80vw;
+  max-height: 400px;
+  margin: -20px 0;
+}
+
+.notFound .btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: all 0.5s;
+}
+
+.notFound .btn:hover {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+.notFound .btn:nth-child(1) {
+  background: #47bbec;
+  color: white;
+  border: 1px solid #47bbec;
+  padding: 10px 35px;
+}
+
+.notFound .btn:nth-child(1):hover {
+  background: #1a4457;
+  color: white;
+  border: 1px solid #1a4457;
+}
+
+@media (max-width: 480px) {
+  .notFound .btn-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notFound .btn {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 300px) {
+  .notFound.load svg {
+    min-width: 80vw;
+    min-height: 80vw;
+  }
+}
