@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Lottie from "lottie-react";
 import notfound from "../assets/animation/404.json";
 import { Link } from "react-router-dom";
-import "../assets/styles/NotFound.css";
+import "../assets/styles/notFound.css";
 
 const NotFound = ({}) => {
   return (
