@@ -166,18 +166,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
   useEffect(() => {
     const query = window.location.search;
     if (query.includes("code=")) {
-      const lastAuthTime = localStorage.getItem("lastAuthTime");
-      if (
-        !lastAuthTime ||
-        Date.now() - parseInt(lastAuthTime, 10) > 60 * 1000
-      ) {
-        googleUser(query);
-        localStorage.setItem("lastAuthTime", Date.now().toString());
-      } else {
-        console.log(
-          "Authentication not needed. Less than a minute have passed since the last authentication."
-        );
-      }
+      googleUser(query);
     }
   }, []);
 
