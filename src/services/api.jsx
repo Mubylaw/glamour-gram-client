@@ -20,7 +20,7 @@ export function apiCall(method, path, data, config) {
   });
 }
 
-// export const baseUrl = "https://d2cnobs543chsz.cloudfront.net";
+export const baseUrl = "https://d2cnobs543chsz.cloudfront.net";
 // export const baseUrl = "http://3.249.117.39:5000";
 // export const baseUrl = "https://glamor-gram-server.onrender.com";
-export const baseUrl = "http://localhost:5000";
+// export const baseUrl = "http://localhost:5000";
