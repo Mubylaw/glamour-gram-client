@@ -6,9 +6,11 @@ import { logout } from "../store/actions/auth";
 import { connect } from "react-redux";
 import menu from "../assets/svg/menu.svg";
 import cancel from "../assets/svg/cancel.svg";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ logout, title, noInfo, obj, user }) => {
   const [mob, setMob] = useState(false);
+  const navigate = useNavigate();
   if (obj && obj.name) {
     var name = obj.name;
   } else {
