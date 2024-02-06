@@ -14,8 +14,10 @@ import MultiRangeSlider from "../components/MultiSlider";
 import { getBusinessFn } from "../store/actions/user.jsx";
 import ServiceCard from "../components/serviceCard.jsx";
 import Fuse from "fuse.js";
+import NotFound from "../components/NotFound.jsx";
+import Loader from "../components/Loader.jsx";
 
-const Explore = ({ getBusinessFn, users, total, currentUser }) => {
+const Explore = ({ getBusinessFn, users, total, currentUser, errors }) => {
   const navigate = useNavigate();
   const [loc, setLoc] = useState(false);
   const [price, setPrice] = useState(false);
@@ -34,6 +36,8 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   const [sortBy, setSortBy] = useState("");
   const [hasSort, setHasSort] = useState(false);
   const [landing, setLanding] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     var search = window.location.search;
@@ -96,6 +100,7 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
   };
 
   useEffect(() => {
+    setLoading(false);
     if (service.length > 0 && users.length > 0) {
       var sort = !hasSort ? users : sorted;
       service.forEach((ser) => {
@@ -116,11 +121,19 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
         const newArray = fuse.search(ser);
         sort = newArray.map((obj) => obj.item);
       });
+      if (sort.length === 0) {
+        setNotFound(true);
+      } else {
+        setNotFound(false);
+      }
       setSorted(sort);
       setHasSort(true);
     } else if (users.length > 0) {
+      setNotFound(false);
       setSorted(users);
       setHasSort(true);
+    } else {
+      setNotFound(true);
     }
   }, [service, users]);
 
@@ -243,6 +256,13 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
       }
     }
   };
+
+  useEffect(() => {
+    if (errors.message) {
+      setLoading(false);
+      setNotFound(true);
+    }
+  }, [errors]);
 
   return (
     <div>
@@ -473,11 +493,17 @@ const Explore = ({ getBusinessFn, users, total, currentUser }) => {
               <option value="location">Closest Option</option>
             </select>
           </div>
-          <div className="res-tab">
-            {sorted.map((usr) => (
-              <ServiceCard service={usr} key={usr._id} />
-            ))}
-          </div>
+          {loading && !notFound ? (
+            <Loader xplor />
+          ) : notFound ? (
+            <NotFound xplor />
+          ) : (
+            <div className="res-tab">
+              {sorted.map((usr) => (
+                <ServiceCard service={usr} key={usr._id} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <Footer top />

@@ -18,8 +18,16 @@ import { motion } from "framer-motion";
 import { addWaitlistFn } from "../store/actions/waitlist";
 import { comeIn, fadeIn, textVariant, drawStroke } from "../utils/motion";
 import { googleUser } from "../store/actions/auth";
+import { removeError } from "../store/actions/errors";
 
-const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
+const Landing = ({
+  currentUser,
+  addWaitlistFn,
+  waitlist,
+  googleUser,
+  errors,
+  removeError,
+}) => {
   const [tag, setTag] = useState([]);
   const [popu, setPopu] = useState(false);
   const [pop, setPop] = useState(false);
@@ -122,6 +130,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
       ...prevFormData,
       [name]: value,
     }));
+    removeError();
   };
 
   const handleWait = () => {
@@ -169,6 +178,17 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
       googleUser(query);
     }
   }, []);
+
+  useEffect(() => {
+    if (errors.message) {
+      setView(false);
+      const form = document.querySelector(".pop .inner");
+      form.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [errors]);
 
   return (
     <div className="landing">
@@ -576,6 +596,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
             <>
               <div className="form">
                 <div className="title">Join Our Waitlist</div>
+                {errors.message && <div className="err">{errors.message}</div>}
                 <div className="item">
                   <label htmlFor="name">Name:</label>
                   <input
@@ -715,7 +736,7 @@ const Landing = ({ currentUser, addWaitlistFn, waitlist, googleUser }) => {
                 <div className="item">
                   <label htmlFor="phoneNo">Phone Number:</label>
                   <div className="tos">
-                    {err && <div className="err">{err}</div>}
+                    {err && <div className="errs">{err}</div>}
                     <input
                       type="text"
                       onChange={handleChange}
@@ -750,4 +771,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addWaitlistFn, googleUser })(Landing);
+export default connect(mapStateToProps, {
+  addWaitlistFn,
+  googleUser,
+  removeError,
+})(Landing);

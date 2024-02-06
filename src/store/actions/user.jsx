@@ -125,6 +125,9 @@ export const getBusinessFn = (data, params) => {
       data
     )
       .then(({ data }) => {
+        if (data.length === 0) {
+          throw new Error("No businesses found");
+        }
         dispatch(getUsers(data));
         dispatch(removeError());
       })

@@ -716,6 +716,15 @@
   margin-bottom: 20px;
 }
 
+.landing .pop .inner .form .err {
+  color: red;
+  text-align: center;
+  margin: 20px 0;
+  background-color: rgb(243, 170, 170);
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .landing .pop .inner .form .item {
   display: flex;
   margin-bottom: 20px;

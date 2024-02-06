@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+.xplor.notFound {
+  height: unset;
+  min-height: unset;
+}
+
 .notFound.load svg {
   min-width: 200px;
   min-height: 200px;
@@ -52,6 +57,12 @@
   background: #1a4457;
   color: white;
   border: 1px solid #1a4457;
+}
+
+@media (max-width: 960px) {
+  .xplor.notFound {
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 480px) {

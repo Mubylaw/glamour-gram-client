@@ -41,6 +41,11 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
         <img src="/assets/logo.png" alt="" />
       </a>
       <div className="links">
+        {user && (
+          <Link to="/" className="nav-link bg">
+            <span>Dashboard</span>
+          </Link>
+        )}
         <div className="nav-link bg">
           <span>Featured Services</span>
           <img src={down} alt="down" />
