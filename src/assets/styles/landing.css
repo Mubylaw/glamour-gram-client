@@ -920,6 +920,10 @@
     left: 280px;
   }
 
+  .header .mob.hide .innr {
+    display: none;
+  }
+
   .header .mob .tiop {
     display: flex;
     align-items: center;
