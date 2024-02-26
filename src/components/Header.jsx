@@ -100,6 +100,7 @@ const Header = ({ logout, title, noInfo, obj, user }) => {
         )}
       </div>
       <div className={`mob sm ${mob ? "" : "hide"}`}>
+        <div className="innr" onClick={() => setMob(false)}></div>
         <div className="nav-link">
           <div className="tiop" onClick={handleOpen}>
             <span>Featured Services</span>

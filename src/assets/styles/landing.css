@@ -913,6 +913,13 @@
     transition: all ease 0.5s;
   }
 
+  .header .mob .innr {
+    position: absolute;
+    width: 100vh;
+    height: 100vw;
+    left: 280px;
+  }
+
   .header .mob .tiop {
     display: flex;
     align-items: center;
